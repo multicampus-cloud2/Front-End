@@ -20,7 +20,7 @@ const About = () => {
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="team__item set-bg" data-setbg="img/team/team-1.jpg">
-                                    <img src={teamA}></img>
+                                    <img src={teamA} alt="teamA"></img>
                                     <div class="team__item__text">
                                         <h6>이재환</h6>
                                         <div class="team__item__social">
@@ -33,7 +33,7 @@ const About = () => {
                             </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="team__item set-bg" data-setbg="img/team/team-2.jpg">
-                                <img src={teamB}></img>
+                                <img src={teamB} alt="teamB"></img>
                                 <div class="team__item__text">
                                     <h6>주성우</h6>
                                     <div class="team__item__social">
@@ -46,7 +46,7 @@ const About = () => {
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="team__item set-bg" data-setbg="img/team/team-3.jpg">
-                                <img src={teamC}></img>
+                                <img src={teamC} alt="teamC"></img>
                                 <div class="team__item__text">
                                     <h6>김윤영</h6>
                                     <div class="team__item__social">
@@ -59,7 +59,7 @@ const About = () => {
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="team__item set-bg" data-setbg="img/team/team-4.jpg">
-                                <img src={teamD}></img>
+                                <img src={teamD} alt="teamD"></img>
                                 <div class="team__item__text">
                                     <h6>안예진</h6>
                                     <div class="team__item__social">
