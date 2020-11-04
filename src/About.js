@@ -1,8 +1,8 @@
 import React from 'react';
-import teamA from './teamA.jpg'
-import teamB from './teamB.jpg'
-import teamC from './teamC.jpg'
-import teamD from './teamD.jpg'
+import teamA from 'img/teamA.jpg'
+import teamB from 'img/teamB.jpg'
+import teamC from 'img/teamC.jpg'
+import teamD from 'img/teamD.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 

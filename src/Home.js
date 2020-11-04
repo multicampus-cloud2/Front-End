@@ -1,11 +1,50 @@
 import React from 'react';
+import Slider from "react-slick";
+import 'App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import teamA from 'img/teamA.jpg' 
+
  
 const Home = () => {
+  var settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplayspeed: 4000,
+    pauseOnHover: true,
+    fade: false,
+    lazyLoad: true
+  };
+
   return (
-    <div>
-      <h1>홈</h1>
-      <p>홈, 그 페이지는 가장 먼저 보여지는 페이지.</p>
-    </div>
+    <>
+      <Slider {...settings}>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+        <div className="team">
+          <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
+        </div>
+      </Slider>
+    </>
   );
 };
 
