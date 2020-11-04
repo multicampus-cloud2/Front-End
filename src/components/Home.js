@@ -12,14 +12,15 @@ const Home = () => {
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplayspeed: 4000,
-    pauseOnHover: true,
+    speed: 1000,
+    autoplayspeed: 1000,
+    pauseOnHover: false,
     fade: false,
-    lazyLoad: true
+    lazyLoad: true,
+    touchMove: false
   };
 
   return (
