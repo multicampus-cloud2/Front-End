@@ -25,22 +25,22 @@ const Home = () => {
   return (
     <>
       <Slider {...settings}>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
-        <div className="team">
+        <div className="banner">
           <img src='https://testbucket20201103-h.s3.amazonaws.com/starbucksnew.png' alt="starbucksnew"/>
         </div>
       </Slider>
