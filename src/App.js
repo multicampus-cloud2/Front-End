@@ -41,10 +41,10 @@ class App extends React.Component {
           </div>
         </header>
         
-        <div className="banner">
+        <div>
             <Route path="/" component={Home} exact={true} />
-            <Route path="/about" component={About} />
             <Route path="/compare" component={Compare}/>
+            <Route path="/about" component={About} />
         </div>
       </>
   )};

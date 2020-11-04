@@ -140,7 +140,6 @@
   height: 360px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 30px;
 }
 .team__item:hover .team__item__text {
   opacity: 1;
