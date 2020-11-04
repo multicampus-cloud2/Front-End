@@ -31,7 +31,7 @@ class App extends React.Component {
                   <Link to="/">홈</Link>
                 </li>
                 <li>
-                  <Link to="/compare">카카오비교</Link>
+                  <Link to="/compare">카카비교</Link>
                 </li>
                 <li>
                   <Link to="/about">카카오바웃</Link>
