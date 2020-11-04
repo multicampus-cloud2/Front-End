@@ -5,6 +5,7 @@ import teamC from 'img/teamC.jpg'
 import teamD from 'img/teamD.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
+import 'css/about.css';
 
 const About = () => {
   return (

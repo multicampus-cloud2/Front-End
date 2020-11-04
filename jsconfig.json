@@ -1,4 +1,3 @@
-// 절대경로 설정 : 현재절대경로 == ../src
 {
     "compilerOptions": {
         "baseUrl": "src"

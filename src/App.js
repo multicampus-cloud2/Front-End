@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Home from 'Home';
-import Compare from 'compare';
-import About from 'About';
-import 'App.css';
+import Home from 'components/Home';
+import Compare from 'components/Compare';
+import About from 'components/About';
+import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
 //import { faCentercode } from '@fortawesome/free-brands-svg-icons';
