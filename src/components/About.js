@@ -16,15 +16,15 @@ const About = () => {
         </div>
         <div>
             <h2>개발자 소개</h2>
-                <section class="team spad">
-                   <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="team__item set-bg" data-setbg="img/team/team-1.jpg">
+                <section className="team spad">
+                   <div className="container">
+                        <div className="row">
+                            <div className="col-lg-3 col-md-6 col-sm-6">
+                                <div className="team__item set-bg" data-setbg="img/team/team-1.jpg">
                                     <img src={teamA} alt="teamA"></img>
-                                    <div class="team__item__text">
+                                    <div className="team__item__text">
                                         <h6>이재환</h6>
-                                        <div class="team__item__social">
+                                        <div className="team__item__social">
                                             <a href="https://www.instagram.com/hwanjae_93/"><FontAwesomeIcon icon={faInstagram}/>Instagram</a>
                                             <br/>
                                             <a href="https://github.com/boolks"><FontAwesomeIcon icon={faGithub}/>Github</a>
@@ -32,12 +32,12 @@ const About = () => {
                                     </div>
                                 </div>
                             </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="team__item set-bg" data-setbg="img/team/team-2.jpg">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
+                            <div className="team__item set-bg" data-setbg="img/team/team-2.jpg">
                                 <img src={teamB} alt="teamB"></img>
-                                <div class="team__item__text">
+                                <div className="team__item__text">
                                     <h6>주성우</h6>
-                                    <div class="team__item__social">
+                                    <div className="team__item__social">
                                         <a href="https://www.instagram.com/sung_wooo"><FontAwesomeIcon icon={faInstagram}/>Instagram</a>
                                         <br/>
                                         <a href="https://github.com/nickhealthy"><FontAwesomeIcon icon={faGithub}/>Github</a>
@@ -45,12 +45,12 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="team__item set-bg" data-setbg="img/team/team-3.jpg">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
+                            <div className="team__item set-bg" data-setbg="img/team/team-3.jpg">
                                 <img src={teamC} alt="teamC"></img>
-                                <div class="team__item__text">
+                                <div className="team__item__text">
                                     <h6>김윤영</h6>
-                                    <div class="team__item__social">
+                                    <div className="team__item__social">
                                         <a href="https://www.instagram.com/y.younge"><FontAwesomeIcon icon={faInstagram}/>Instagram</a>
                                         <br/>
                                         <a href="https://github.com/yooonyoung"><FontAwesomeIcon icon={faGithub}/>Github</a>
@@ -58,12 +58,12 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="team__item set-bg" data-setbg="img/team/team-4.jpg">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
+                            <div className="team__item set-bg" data-setbg="img/team/team-4.jpg">
                                 <img src={teamD} alt="teamD"></img>
-                                <div class="team__item__text">
+                                <div className="team__item__text">
                                     <h6>안예진</h6>
-                                    <div class="team__item__social">
+                                    <div className="team__item__social">
                                         <a href="https://www.instagram.com/say_0i"><FontAwesomeIcon icon={faInstagram}/>Instagram</a>
                                         <br/>
                                         <a href="https://github.com/ok2qw66"><FontAwesomeIcon icon={faGithub}/>Github</a>
