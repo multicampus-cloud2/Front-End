@@ -85,7 +85,7 @@
     transition: all, 0.2s;
   }
   .categories__item__icon div img {
-      width: 60px;
+      width: 80px;
       object-fit: cover;
       display: block; margin: 0px auto;
   }
