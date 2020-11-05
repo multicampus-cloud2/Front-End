@@ -9,6 +9,8 @@ import axios from 'axios';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -194,16 +196,19 @@ class Compare extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    {this.createCheckboxes()}
-
-                                    <button className="btn btn-primary" type="submit">검색</button>
-                                </form>
-                            </div>
-                            <div className="col-sm-12">
-                                <Select></Select>
+                        <div className="" style={{'borderBottom':'1px solid #f08632','paddingBottom':'10px'}}>
+                            <div className="row">
+                                <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        {this.createCheckboxes()}
+                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearchengin} size="2x"/></button>
+                                    </form>
+                                </div>
+                                <div className="shop__option__right">
+                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
+                                        <Select></Select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

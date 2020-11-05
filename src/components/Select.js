@@ -23,7 +23,7 @@ const options = [
         //const { selectedOption } = this.state;
         
         return (
-            <Selects className="col-sm-6 col-md-3 col-offset-8" onChange={this.handleChange}
+            <Selects onChange={this.handleChange}
             options={options}
             autoFocus={true} />
         );
