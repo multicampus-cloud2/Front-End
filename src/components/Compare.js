@@ -5,30 +5,9 @@ import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import Slider from 'react-slick';
-
-// 참고 : https://blog.logrocket.com/getting-started-with-react-select/
-
-import starbucks from 'img/starbucks.png';
-import coffeebean from 'img/coffeebean.png';
-import hollys from 'img/hollys.png';
-import ediya from 'img/ediya.png';
-import bbaek from 'img/bbaek.png';
-import tomntoms from 'img/tomntoms.png';
-import angelinus from 'img/angelinus.png';
-import twosome from 'img/twosome.png';
-import LeftArrow from 'img/leftarrow.png';
-import RightArrow from 'img/rightarrow.png';
 import axios from 'axios';
-
-import {
-    Starbucks,
-    Hollys,
-    Ediya
-} from 'img';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
+import images from 'img/brand';
+// 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
     const { onClick, className } = props;
