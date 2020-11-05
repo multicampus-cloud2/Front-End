@@ -7,6 +7,8 @@ import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import images from 'img/brand';
+import RightArrow from 'img/rightarrow.png'
+import LeftArrow from 'img/leftarrow.png'
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -126,7 +128,7 @@ class Compare extends React.Component {
                                             <div onClick={() => alert('Starbucks!')} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={starbucks} alt="starbucks" /></div>
+                                                        <div><img src={images.starbucks} alt="starbucks" /></div>
                                                         <h5>Starbucks</h5>
                                                     </div>
                                                 </div>
@@ -134,7 +136,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={hollys} /></div>
+                                                        <div><img src={images.hollys} /></div>
                                                         <h5>HOLLYS</h5>
                                                     </div>
                                                 </div>
@@ -142,7 +144,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={tomntoms} /></div>
+                                                        <div><img src={images.tomntoms} /></div>
                                                         <h5>TOMNTOMS</h5>
                                                     </div>
                                                 </div>
@@ -150,7 +152,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={ediya} /></div>
+                                                        <div><img src={images.ediya} /></div>
                                                         <h5>EDIYA</h5>
                                                     </div>
                                                 </div>
@@ -158,7 +160,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={coffeebean} /></div>
+                                                        <div><img src={images.coffeebean} /></div>
                                                         <h5>COFFEEBEAN</h5>
                                                     </div>
                                                 </div>
@@ -166,7 +168,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={twosome} /></div>
+                                                        <div><img src={images.twosome} /></div>
                                                         <h5>TWOSOMEPLACE</h5>
                                                     </div>
                                                 </div>
@@ -174,7 +176,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={angelinus} /></div>
+                                                        <div><img src={images.angelinus} /></div>
                                                         <h5>ANGELINUS</h5>
                                                     </div>
                                                 </div>
@@ -182,7 +184,7 @@ class Compare extends React.Component {
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={bbaek} /></div>
+                                                        <div><img src={images.bbaek} /></div>
                                                         <h5>BBAEKDABANG</h5>
                                                     </div>
                                                 </div>
