@@ -5,29 +5,10 @@ import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import teamA from 'img/teamA.jpg';
-//import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
-//import Slider from 'react-slick';
+import axios from 'axios';
+import images from 'img/brand';
 
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
-
-import starbucks from 'img/starbucks.png';
-import coffeebean from 'img/coffeebean.png';
-import hollys from 'img/hollys.png';
-import ediya from 'img/ediya.png';
-import bbaek from 'img/bbaek.png';
-import tomntoms from 'img/tomntoms.png';
-import angelinus from 'img/angelinus.png';
-import twosome from 'img/twosome.png';
-import axios from 'axios';
-
-import {
-    Starbucks,
-    Hollys,
-    Ediya
-  } from 'img';
-
-
 
 function NextArrow(props) {
     const { className, style, onClick } = props;
@@ -127,13 +108,13 @@ class Compare extends React.Component{
         const productList = this.state.params.map((product) => (
             <div className="col-lg-3 col-md-6 col-sm-6">
                 <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${product[6]})`}} data-setbg="img/shop/product-2.jpg">
+                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${product['image']})`}} data-setbg="img/shop/product-2.jpg">
                         <div className="product__label">
                             <span>카카오</span>
                         </div>
                     </div>
                     <div className="product__item__text">
-                        <h6><p>{product[1]}</p></h6>
+                        <h6><p>{product['name']}</p></h6>
                         <div className="product__item__price">$32.00</div>
                         <div className="cart_add">
                             <p>Add to cart</p>
@@ -155,7 +136,7 @@ class Compare extends React.Component{
                                     <div onClick={() => alert('Starbucks!')} className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={starbucks} alt="starbucks"/></div>
+                                                <div><img src={images.starbucks} alt="starbucks"/></div>
                                                 <h5>Starbucks</h5>
                                             </div>
                                         </div>
@@ -163,7 +144,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={hollys}/></div>
+                                                <div><img src={images.hollys}/></div>
                                                 <h5>HOLLYS</h5>
                                             </div>
                                         </div>
@@ -171,7 +152,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={tomntoms}/></div>
+                                                <div><img src={images.tomntoms}/></div>
                                                 <h5>TOMNTOMS</h5>
                                             </div>
                                         </div>
@@ -179,7 +160,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={ediya}/></div>
+                                                <div><img src={images.ediya}/></div>
                                                 <h5>EDIYA</h5>
                                             </div>
                                         </div>
@@ -187,7 +168,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={coffeebean}/></div>
+                                                <div><img src={images.coffeebean}/></div>
                                                 <h5>COFFEEBEAN</h5>
                                             </div>
                                         </div>
@@ -195,7 +176,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={twosome}/></div>
+                                                <div><img src={images.twosome}/></div>
                                                 <h5>TWOSOMEPLACE</h5>
                                             </div>
                                         </div>
@@ -203,7 +184,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={angelinus}/></div>
+                                                <div><img src={images.angelinus}/></div>
                                                 <h5>ANGELINUS</h5>
                                             </div>
                                         </div>
@@ -211,7 +192,7 @@ class Compare extends React.Component{
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
-                                                <div><img src={bbaek}/></div>
+                                                <div><img src={images.bbaek}/></div>
                                                 <h5>BBAEKDABANG</h5>
                                             </div>
                                         </div>
@@ -240,134 +221,6 @@ class Compare extends React.Component{
     <div className="container">
         <div className="row">
             {productList}
-            {/* <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${this.state.params[6]})`}} data-setbg="img/shop/product-2.jpg">
-                        <div className="product__label">
-                            <span>카카오</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>{this.state.params[1]}</p></h6>
-                        <div className="product__item__price">$32.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{background: `url('http://paikdabang.com/wp-content/uploads/2018/05/03_앗메리카노_HOT.jpg')`,backgroundRepeat: 'no-repeat',backgroundSize: 'contain',backgroundPosition: 'center'}} data-setbg="img/shop/product-2.jpg">
-                        <div className="product__label">
-                            <span>빽다방</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>앗!메리카노(HOT)</p></h6>
-                        <div className="product__item__price">3000원</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-3.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>Gluten Free Mini Dozen</p></h6>
-                        <div className="product__item__price">$31.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-4.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>Cookie Dough</p></h6>
-                        <div className="product__item__price">$25.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-5.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>Vanilla Salted Caramel</p></h6>
-                        <div className="product__item__price">$05.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-6.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>German Chocolate</p></h6>
-                        <div className="product__item__price">$14.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-7.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>Dulce De Leche</p></h6>
-                        <div className="product__item__price">$32.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="img/shop/product-8.jpg">
-                        <div className="product__label">
-                            <span>Cupcake</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>Mississippi Mud</p></h6>
-                        <div className="product__item__price">$08.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
         </div>
     </div>
 </section>
