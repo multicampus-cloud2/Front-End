@@ -6,7 +6,6 @@ import About from 'components/About';
 import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
-//import { faCentercode } from '@fortawesome/free-brands-svg-icons';
 
 
 class App extends React.Component {
