@@ -9,6 +9,7 @@ import axios from 'axios';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
+import Image from 'react-native';
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -22,6 +23,23 @@ function PrevArrow(props) {
     const { onClick, className } = props;
     return (
         <img src={LeftArrow} alt="" onClick={onClick} className={className}/>
+    );
+}
+
+function BrandMenu(props) {
+    let ImagePath = require("img/"+props.brand);
+    return (
+    <div onClick={() => alert('starbucks!')} className="categories__item__whole">
+        <div className="categories__item">
+            <div className="categories__item__icon">
+                <div>
+                    {/* <img src={ImageName} alt={props.brand} /> */}
+                    <Image source={ImagePath}/>
+                    </div>
+                <h5>{props.brand}</h5>
+            </div>
+        </div>
+    </div>
     );
 }
 
@@ -44,6 +62,7 @@ class Compare extends React.Component {
     componentDidMount() {
         this._dbTest();
     }
+
 
     _dbTest = async () => {
         await axios.get('https://0u7o5gwge3.execute-api.us-east-1.amazonaws.com/aaa/data', {
@@ -130,14 +149,7 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => alert('Starbucks!')} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.starbucks} alt="starbucks" /></div>
-                                                        <h5>Starbucks</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           <BrandMenu brand="starbucks"/>
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
