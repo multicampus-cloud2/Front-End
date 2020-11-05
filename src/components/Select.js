@@ -18,11 +18,12 @@ const options = [
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
     }
-
+    
     render(){
         //const { selectedOption } = this.state;
+        
         return (
-            <Selects className="mt-4 col-md-3 col-offset-4" onChange={this.handleChange}
+            <Selects className="col-sm-6 col-md-3 col-offset-8" onChange={this.handleChange}
             options={options}
             autoFocus={true} />
         );

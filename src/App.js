@@ -14,7 +14,7 @@ class App extends React.Component {
     const style = {
       display: 'block',
       margin: 'auto',
-      'padding': '5px 0px'
+      'padding': '15px 0px'
     };
     
     return (

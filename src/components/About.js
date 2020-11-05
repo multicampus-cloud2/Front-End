@@ -20,8 +20,7 @@ const About = () => {
                    <div className="container">
                         <div className="row">
                             <div className="col-lg-3 col-md-6 col-sm-6">
-                                <div className="team__item set-bg" data-setbg="img/team/team-1.jpg">
-                                    <img src={teamA} alt="teamA"></img>
+                                <div className="team__item set-bg" style={{backgroundImage:`url(${teamA})`}} data-setbg="img/team/team-1.jpg">
                                     <div className="team__item__text">
                                         <h6>이재환</h6>
                                         <div className="team__item__social">
@@ -33,8 +32,7 @@ const About = () => {
                                 </div>
                             </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
-                            <div className="team__item set-bg" data-setbg="img/team/team-2.jpg">
-                                <img src={teamB} alt="teamB"></img>
+                            <div className="team__item set-bg" style={{backgroundImage:`url(${teamB})`}} data-setbg="img/team/team-2.jpg">
                                 <div className="team__item__text">
                                     <h6>주성우</h6>
                                     <div className="team__item__social">
@@ -46,8 +44,7 @@ const About = () => {
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
-                            <div className="team__item set-bg" data-setbg="img/team/team-3.jpg">
-                                <img src={teamC} alt="teamC"></img>
+                            <div className="team__item set-bg" style={{backgroundImage:`url(${teamC})`}} data-setbg="img/team/team-3.jpg">
                                 <div className="team__item__text">
                                     <h6>김윤영</h6>
                                     <div className="team__item__social">
@@ -59,8 +56,7 @@ const About = () => {
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
-                            <div className="team__item set-bg" data-setbg="img/team/team-4.jpg">
-                                <img src={teamD} alt="teamD"></img>
+                            <div className="team__item set-bg" style={{backgroundImage:`url(${teamD})`}} data-setbg="img/team/team-4.jpg">
                                 <div className="team__item__text">
                                     <h6>안예진</h6>
                                     <div className="team__item__social">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import 'css/compare.css';
 
 // 참고 :  http://react.tips/checkboxes-in-react/
 
@@ -24,12 +25,9 @@ class Checkbox extends Component {
   render() {
     const { label } = this.props;
     const { isChecked } = this.state;
-    const style={
-        float: 'left'
-    };
-
+  
     return (
-      <div className="checkbox" style={style}>
+      <div className="checkbox">
         <label>
           <input
             type="checkbox"
