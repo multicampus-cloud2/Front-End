@@ -19,6 +19,7 @@ import bbaek from 'img/bbaek.png';
 import tomntoms from 'img/tomntoms.png';
 import angelinus from 'img/angelinus.png';
 import twosome from 'img/twosome.png';
+import axios from 'axios';
 
 import {
     Starbucks,
@@ -32,7 +33,7 @@ function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
-      className={className}
+            className={className}
       style={{ ...style, display: "block", background: "green" }}
       onClick={onClick}
       >
@@ -63,6 +64,21 @@ const items = [
 ];
 
 class Compare extends React.Component{
+    state = {
+        params: []
+    }
+
+    componentDidMount(){
+        this._dbTest();
+    }
+
+    _dbTest = async() => {
+        await axios.get('https://efk4atd0l6.execute-api.us-east-1.amazonaws.com/dev/data')
+        .then(res => {
+            const params = res.data;
+            this.setState({params});
+        })
+    }
       
     UNSAFE_componentWillMount = () => {
         this.selectedCheckboxes = new Set();
@@ -107,6 +123,25 @@ class Compare extends React.Component{
             prevArrow: <PrevArrow />
         }
         const sss = require('img/starbucks.png')
+
+        const productList = this.state.params.map((product) => (
+            <div className="col-lg-3 col-md-6 col-sm-6">
+                <div className="product__item">
+                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${product[6]})`}} data-setbg="img/shop/product-2.jpg">
+                        <div className="product__label">
+                            <span>카카오</span>
+                        </div>
+                    </div>
+                    <div className="product__item__text">
+                        <h6><p>{product[1]}</p></h6>
+                        <div className="product__item__price">$32.00</div>
+                        <div className="cart_add">
+                            <p>Add to cart</p>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        ));
 
         return (
           <>
@@ -204,15 +239,16 @@ class Compare extends React.Component{
 <section className="product spad">
     <div className="container">
         <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-6">
+            {productList}
+            {/* <div className="col-lg-3 col-md-6 col-sm-6">
                 <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${teamA})`}} data-setbg="img/shop/product-2.jpg">
+                    <div className="product__item__pic set-bg" style={{backgroundImage:`url(${this.state.params[6]})`}} data-setbg="img/shop/product-2.jpg">
                         <div className="product__label">
                             <span>카카오</span>
                         </div>
                     </div>
                     <div className="product__item__text">
-                        <h6><p>이재환 팀장</p></h6>
+                        <h6><p>{this.state.params[1]}</p></h6>
                         <div className="product__item__price">$32.00</div>
                         <div className="cart_add">
                             <p>Add to cart</p>
@@ -331,7 +367,7 @@ class Compare extends React.Component{
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
 </section>
