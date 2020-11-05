@@ -46,7 +46,7 @@ class Compare extends React.Component {
     }
 
     _dbTest = async () => {
-        await axios.get('https://1yl1cjy0cc.execute-api.us-east-1.amazonaws.com/test/data')
+        await axios.get('https://efk4atd0l6.execute-api.us-east-1.amazonaws.com/dev/data')
             .then(res => {
                 const params = res.data;
                 this.setState({ params });
@@ -102,7 +102,7 @@ class Compare extends React.Component {
                 <div className="product__item">
                     <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${product['image']})` }} data-setbg="img/shop/product-2.jpg">
                         <div className="product__label">
-                            <span>카카오</span>
+                            <span>{product['brand']}</span>
                         </div>
                     </div>
                     <div className="product__item__text">
