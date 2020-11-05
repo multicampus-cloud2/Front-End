@@ -85,6 +85,16 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
+    apiEndpoint = "https://t1uym627x6.execute-api.us-east-1.amazonaws.com/dev/filter"
+    
+    handleFilter = async function(name) {
+        const obj = {brand: name, body: 'n'};
+
+        const response = await axios.post(this.apiEndpoint, obj);
+        const params = response.data;
+        this.setState({ params });
+    }
+
     render() {
         var settings = {
             dots: false,
@@ -115,6 +125,8 @@ class Compare extends React.Component {
                 </div>
             </div>
         ));
+        
+
 
         return (
             <>
@@ -125,7 +137,7 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => alert('Starbucks!')} className="categories__item__whole">
+                                            <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} alt="starbucks" /></div>
@@ -133,7 +145,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("hollys")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.hollys} /></div>
@@ -165,7 +177,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("twosome")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.twosome} /></div>
