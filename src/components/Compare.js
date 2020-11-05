@@ -46,10 +46,15 @@ class Compare extends React.Component {
     }
 
     _dbTest = async () => {
-        await axios.get('https://1yl1cjy0cc.execute-api.us-east-1.amazonaws.com/test/data')
+        await axios.get('https://0u7o5gwge3.execute-api.us-east-1.amazonaws.com/aaa/data', {
+            params: {
+                "name": "복숭아 자두 스파클링"
+            }
+        })
             .then(res => {
-                const params = res.data;
-                this.setState({ params });
+                console.log(res.data);
+                // const params = res.data;
+                // this.setState({ params });
             })
     }
 
@@ -212,7 +217,7 @@ class Compare extends React.Component {
                 <section className="product spad">
                     <div className="container">
                         <div className="row">
-                            {productList}
+                            {/* {productList} */}
                         </div>
                     </div>
                 </section>
