@@ -20,7 +20,7 @@
   
   .categories__item {
     text-align: center;
-    border-radius: 50%;
+    border-radius: 30%;
     -webkit-transition: all, 0.3s;
     -o-transition: all, 0.3s;
     transition: all, 0.3s;
@@ -28,7 +28,7 @@
     width: 194px;
     padding-top: 25px;
     position: relative;
-    border: 2px solid #888888;
+    border: 1px solid #b4b4b4;
     
   }
   .categories__item:after {
@@ -76,7 +76,7 @@
     
   }
   .categories__item__icon h5 {
-    color: #111111;
+    color: #4e4e4e;
     font-weight: 600;
     text-transform: uppercase;
     margin-top: 4px;
