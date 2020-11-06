@@ -158,7 +158,6 @@ class Compare extends React.Component {
         ));
         
 
-
         return (
             <>
                 <section className="search spad">
