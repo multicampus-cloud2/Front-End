@@ -9,7 +9,6 @@ import axios from 'axios';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
-import Image from 'react-native';
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -27,14 +26,17 @@ function PrevArrow(props) {
 }
 
 function BrandMenu(props) {
-    let ImagePath = require("img/"+props.brand);
+    // let ImagePath = require("img/"+props.brand);
+    const imageName = props.brand + '.png';
+    // const filePath = 'img/${imageName}';
+    // const fileUrl = require(filePath);
     return (
-    <div onClick={() => alert('starbucks!')} className="categories__item__whole">
+    <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
         <div className="categories__item">
             <div className="categories__item__icon">
                 <div>
                     {/* <img src={ImageName} alt={props.brand} /> */}
-                    <Image source={ImagePath}/>
+                    <img src={images.starbucks}/>
                     </div>
                 <h5>{props.brand}</h5>
             </div>
@@ -63,18 +65,25 @@ class Compare extends React.Component {
         this._dbTest();
     }
 
-
     _dbTest = async () => {
-        await axios.get('https://0u7o5gwge3.execute-api.us-east-1.amazonaws.com/aaa/data', {
-            params: {
-                "name": "복숭아 자두 스파클링"
-            }
-        })
+        // const http = { httpMethod : "GET" };
+        await axios.get('https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data')
             .then(res => {
                 console.log(res.data);
-                // const params = res.data;
-                // this.setState({ params });
+                const params = res.data;
+                this.setState({ params });
             })
+    }
+
+    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
+    
+    handleFilter = async function(name) {
+        const obj = {brand: name, httpMethod: "POST"};
+
+        const response = await axios.post(this.apiEndpoint, obj);
+        const params = response.data;
+        this.setState({ params });
+        console.log(params);
     }
 
     UNSAFE_componentWillMount = () => {
@@ -119,7 +128,6 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-        const sss = require('img/starbucks.png')
 
         const productList = this.state.params.map((product) => (
             <div className="col-lg-3 col-md-6 col-sm-6">
@@ -149,7 +157,14 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                           <BrandMenu brand="starbucks"/>
+                                            <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
+                                                <div className="categories__item">
+                                                    <div className="categories__item__icon">
+                                                        <div><img src={images.starbucks} /></div>
+                                                        <h5>STARBUCKS</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
@@ -229,7 +244,7 @@ class Compare extends React.Component {
                 <section className="product spad">
                     <div className="container">
                         <div className="row">
-                            {/* {productList} */}
+                            {productList}
                         </div>
                     </div>
                 </section>
