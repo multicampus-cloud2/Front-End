@@ -54,7 +54,7 @@ class Compare extends React.Component {
     }
 
     _dbTest = async () => {
-        await axios.get('https://efk4atd0l6.execute-api.us-east-1.amazonaws.com/dev/data')
+        await axios.get('https://wd1x1tuufg.execute-api.us-east-1.amazonaws.com/test/data')
             .then(res => {
                 const params = res.data;
                 this.setState({ params });
@@ -93,7 +93,7 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
-    apiEndpoint = "https://t1uym627x6.execute-api.us-east-1.amazonaws.com/dev/filter"
+    apiEndpoint = "https://k24fdm4o9b.execute-api.us-east-1.amazonaws.com/dev/filter"
     
     handleFilter = async function(name) {
         const obj = {brand: name, body: 'n'};
