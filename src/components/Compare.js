@@ -27,6 +27,26 @@ function PrevArrow(props) {
     );
 }
 
+function BrandMenu(props) {
+    // let ImagePath = require("img/"+props.brand);
+    const imageName = props.brand + '.png';
+    // const filePath = 'img/${imageName}';
+    // const fileUrl = require(filePath);
+    return (
+    <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
+        <div className="categories__item">
+            <div className="categories__item__icon">
+                <div>
+                    {/* <img src={ImageName} alt={props.brand} /> */}
+                    <img src={images.starbucks}/>
+                    </div>
+                <h5>{props.brand}</h5>
+            </div>
+        </div>
+    </div>
+    );
+}
+
 
 
 const items = [
@@ -52,13 +72,24 @@ class Compare extends React.Component {
     componentDidMount() {
         this._dbTest();
     }
-
+    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
     _dbTest = async () => {
-        await axios.get('https://wd1x1tuufg.execute-api.us-east-1.amazonaws.com/test/data')
+        await axios.get(this.apiEndpoint)
+
             .then(res => {
+                console.log(res.data);
                 const params = res.data;
                 this.setState({ params });
             })
+    }
+
+    handleFilter = async function(name) {
+        const obj = {brand: name, httpMethod: "POST"};
+
+        const response = await axios.post(this.apiEndpoint, obj);
+        const params = response.data;
+        this.setState({ params });
+        console.log(params);
     }
 
     UNSAFE_componentWillMount = () => {
@@ -93,16 +124,6 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
-    apiEndpoint = "https://k24fdm4o9b.execute-api.us-east-1.amazonaws.com/dev/filter"
-    
-    handleFilter = async function(name) {
-        const obj = {brand: name, body: 'n'};
-
-        const response = await axios.post(this.apiEndpoint, obj);
-        const params = response.data;
-        this.setState({ params });
-    }
-
     render() {
         var settings = {
             dots: false,
@@ -113,7 +134,6 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-        const sss = require('img/starbucks.png')
 
         const productList = this.state.params.map((product) => (
             <div className="col-lg-3 col-md-6 col-sm-6">
@@ -148,8 +168,8 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.starbucks} alt="starbucks" /></div>
-                                                        <h5>Starbucks</h5>
+                                                        <div><img src={images.starbucks} /></div>
+                                                        <h5>STARBUCKS</h5>
                                                     </div>
                                                 </div>
                                             </div>
