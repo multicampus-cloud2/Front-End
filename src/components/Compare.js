@@ -82,8 +82,8 @@ class Compare extends React.Component {
             })
     }
 
-    handleFilter = async function(name) {
-        const obj = {brand: name, httpMethod: "POST"};
+    handleFilter = async function(name_eng, name_kor) {
+        const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
 
         const response = await axios.post(this.apiEndpoint, obj);
         const params = response.data;
@@ -122,14 +122,6 @@ class Compare extends React.Component {
     createCheckboxes = () => (
         items.map(this.createCheckbox)
     )
-
-    handleFilter = async function(name_eng, name_kor) {
-        const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
-
-        const response = await axios.post(this.apiEndpoint, obj);
-        const params = response.data;
-        this.setState({ params });
-    }
 
     render() {
         var settings = {
