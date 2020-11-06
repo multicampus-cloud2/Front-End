@@ -137,7 +137,7 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} alt="starbucks" /></div>
@@ -153,7 +153,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("tomntoms")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.tomntoms} /></div>
@@ -161,7 +161,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("ediya")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.ediya} /></div>
@@ -169,7 +169,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffebean")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
@@ -185,7 +185,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("angelinus")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.angelinus} /></div>
@@ -193,7 +193,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("paikdabang")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.bbaek} /></div>
