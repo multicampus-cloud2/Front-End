@@ -3,8 +3,6 @@
   }
   .categories__slider.owl-carousel {
     padding-bottom: 40px;
-    border-bottom: 1px solid rgba(240, 135, 50, 0.5);
-
   }
   .categories__slider.owl-carousel .owl-nav button {
     font-size: 36px;
@@ -128,7 +126,6 @@ div.checkbox{
     margin: 5px;
 }
 
-/* 왜 여기선 안 먹을까여? */
 .set-bg {
     background-repeat: no-repeat;
     background-size: contain;
@@ -225,40 +222,3 @@ div.checkbox{
     border-bottom: 2px solid #f08632;
     padding-bottom: 4px;
   }
-
-/* 
-
-  .shop__option__search form {
-    margin: 15px;
-    border: 1px solid #e1e1e1;
-    height: 46px;
-    position: relative;
-  }
-  
-  .shop__option__search form input::-webkit-input-placeholder {
-    color: #000000;
-  }
-  .shop__option__search form input::-moz-placeholder {
-    color: #000000;
-  }
-  .shop__option__search form input:-ms-input-placeholder {
-    color: #000000;
-  }
-  .shop__option__search form input::-ms-input-placeholder {
-    color: #000000;
-  }
-  .shop__option__search form input::placeholder {
-    color: #000000;
-  }
-  .shop__option__search form button {
-    color: #000000;
-    font-size: 16px;
-    font-weight: 700;
-    position: absolute;
-    right: 0;
-    top: 0;
-    border: none;
-    background: transparent;
-    height: 100%;
-    padding: 0 15px;
-  } */
