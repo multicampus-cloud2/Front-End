@@ -10,7 +10,7 @@ import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTrashAlt, faBalanceScale } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -101,6 +101,7 @@ class Compare extends React.Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
+        console.log(this.selectedCheckboxes)
     }
 
     handleFormSubmit = formSubmitEvent => {
@@ -157,7 +158,8 @@ class Compare extends React.Component {
 
         return (
             <>
-                <section className="search spad">
+                <section style={{float:'left',width:'80%'}}>
+                    <section className="search spad">
                     <div className="container">
                         <div className="categories">
                             <div className="container">
@@ -251,10 +253,61 @@ class Compare extends React.Component {
                     </div>
                 </section>
 
-                <section className="product spad">
+                    <section className="product spad">
                     <div className="container">
                         <div className="row">
                             {productList}
+                        </div>
+                    </div>
+                </section>
+                </section>
+
+                <section class="wishlist spad" style={{width:'18%',float:'left',position:'fixed',top:'400px',right:'30px'}}> 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12" style={{textAlign:'center'}}>Compare List</div>
+                                <div class="wishlist__cart__table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th style={{width:'70%'}} colSpan='2'>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="product__cart__item">
+                                                    <div class="product__cart__item__pic">
+                                                        <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
+                                                    </div>
+                                                </td>
+                                                <td class="cart__price">Vanilla Salted Caramel</td>
+                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt}  style={{width:'30px'}}/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product__cart__item">
+                                                    <div class="product__cart__item__pic">
+                                                    <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
+                                                    </div>
+                                                </td>
+                                                <td class="cart__price">Vanilla Salted Caramel</td>
+                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt}  style={{width:'30px'}}/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product__cart__item">
+                                                    <div class="product__cart__item__pic">
+                                                    <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
+                                                    </div>
+                                                </td>
+                                                <td class="cart__price">Vanilla Salted Caramel</td>
+                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt} style={{width:'30px'}}/></td>
+                                            </tr>                                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-lg-12" style={{textAlign:'right'}}><button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faBalanceScale} size="2x"/>비교하러 가기</button></div>
+                            </div>
                         </div>
                     </div>
                 </section>
