@@ -9,6 +9,8 @@ import axios from 'axios';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -28,6 +30,12 @@ function PrevArrow(props) {
 
 
 const items = [
+    { value: 1, name: '아메리카노' },
+    { value: 2, name: '카페라떼' },
+    { value: 3, name: '스무디' },
+    { value: 4, name: '차 (티)' },
+    { value: 5, name: 'NON-카페인' },
+    { value: 6, name: '기타' },
     { value: 1, name: '아메리카노' },
     { value: 2, name: '카페라떼' },
     { value: 3, name: '스무디' },
@@ -206,16 +214,19 @@ class Compare extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    {this.createCheckboxes()}
-
-                                    <button className="btn btn-primary" type="submit">검색</button>
-                                </form>
-                            </div>
-                            <div className="col-sm-12">
-                                <Select></Select>
+                        <div className="" style={{borderTop:'1px solid rgba(240, 135, 50, 0.5)',borderBottom:'1px solid rgba(240, 135, 50, 0.5)','paddingBottom':'10px'}}>
+                            <div className="row">
+                                <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        {this.createCheckboxes()}
+                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearch} size="2x"/>검색</button>
+                                    </form>
+                                </div>
+                                <div className="shop__option__right">
+                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
+                                        <Select></Select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
