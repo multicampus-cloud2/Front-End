@@ -72,10 +72,15 @@ class Compare extends React.Component {
     componentDidMount() {
         this._dbTest();
     }
-
+    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
     _dbTest = async () => {
+<<<<<<< HEAD
         // const http = { httpMethod : "GET" };
         await axios.get('https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data')
+=======
+        await axios.get(this.apiEndpoint)
+
+>>>>>>> cf2d29f9e5672d5a7ebe48bcf05fad92d05feb15
             .then(res => {
                 console.log(res.data);
                 const params = res.data;
@@ -83,8 +88,6 @@ class Compare extends React.Component {
             })
     }
 
-    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
-    
     handleFilter = async function(name) {
         const obj = {brand: name, httpMethod: "POST"};
 
@@ -126,7 +129,10 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf2d29f9e5672d5a7ebe48bcf05fad92d05feb15
     render() {
         var settings = {
             dots: false,
