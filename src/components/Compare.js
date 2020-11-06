@@ -9,6 +9,8 @@ import axios from 'axios';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -54,6 +56,12 @@ const items = [
     { value: 4, name: '차 (티)' },
     { value: 5, name: 'NON-카페인' },
     { value: 6, name: '기타' },
+    { value: 1, name: '아메리카노' },
+    { value: 2, name: '카페라떼' },
+    { value: 3, name: '스무디' },
+    { value: 4, name: '차 (티)' },
+    { value: 5, name: 'NON-카페인' },
+    { value: 6, name: '기타' },
 ];
 
 class Compare extends React.Component {
@@ -64,10 +72,10 @@ class Compare extends React.Component {
     componentDidMount() {
         this._dbTest();
     }
-
+    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
     _dbTest = async () => {
-        // const http = { httpMethod : "GET" };
-        await axios.get('https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data')
+        await axios.get(this.apiEndpoint)
+
             .then(res => {
                 console.log(res.data);
                 const params = res.data;
@@ -75,8 +83,6 @@ class Compare extends React.Component {
             })
     }
 
-    apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/data"
-    
     handleFilter = async function(name) {
         const obj = {brand: name, httpMethod: "POST"};
 
@@ -134,7 +140,7 @@ class Compare extends React.Component {
                 <div className="product__item">
                     <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${product['image']})` }} data-setbg="img/shop/product-2.jpg">
                         <div className="product__label">
-                            <span>카카오</span>
+                            <span>{product['brand']}</span>
                         </div>
                     </div>
                     <div className="product__item__text">
@@ -147,6 +153,8 @@ class Compare extends React.Component {
                 </div>
             </div>
         ));
+        
+
 
         return (
             <>
@@ -165,7 +173,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("hollys")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.hollys} /></div>
@@ -173,7 +181,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("tomntoms")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.tomntoms} /></div>
@@ -181,7 +189,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("ediya")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.ediya} /></div>
@@ -189,7 +197,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffebean")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
@@ -197,7 +205,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("twosome")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.twosome} /></div>
@@ -205,7 +213,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("angelinus")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.angelinus} /></div>
@@ -213,7 +221,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("paikdabang")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.bbaek} /></div>
@@ -226,16 +234,19 @@ class Compare extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    {this.createCheckboxes()}
-
-                                    <button className="btn btn-primary" type="submit">검색</button>
-                                </form>
-                            </div>
-                            <div className="col-sm-12">
-                                <Select></Select>
+                        <div className="" style={{borderTop:'1px solid rgba(240, 135, 50, 0.5)',borderBottom:'1px solid rgba(240, 135, 50, 0.5)','paddingBottom':'10px'}}>
+                            <div className="row">
+                                <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        {this.createCheckboxes()}
+                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearch} size="2x"/>검색</button>
+                                    </form>
+                                </div>
+                                <div className="shop__option__right">
+                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
+                                        <Select></Select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
