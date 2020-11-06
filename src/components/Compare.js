@@ -52,16 +52,13 @@ function BrandMenu(props) {
 const items = [
     { value: 1, name: '아메리카노' },
     { value: 2, name: '카페라떼' },
-    { value: 3, name: '스무디' },
-    { value: 4, name: '차 (티)' },
-    { value: 5, name: 'NON-카페인' },
-    { value: 6, name: '기타' },
-    { value: 1, name: '아메리카노' },
-    { value: 2, name: '카페라떼' },
-    { value: 3, name: '스무디' },
-    { value: 4, name: '차 (티)' },
-    { value: 5, name: 'NON-카페인' },
-    { value: 6, name: '기타' },
+    { value: 3, name: '카페모카' },
+    { value: 4, name: '바닐라라떼' },
+    { value: 5, name: '카페모카' },
+    { value: 6, name: '스무디' },
+    { value: 7, name: '티' },
+    { value: 8, name: 'NON-카페인' },
+    { value: 9, name: '기타' },
 ];
 
 class Compare extends React.Component {
@@ -95,13 +92,25 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
+    handleMenuFilter = async function(menu_name) {
+        const obj = {menu: menu_name};
+        const response = await axios.post('https://76rsehyegc.execute-api.us-east-1.amazonaws.com/dev/coffeefiltering', obj);
+        const params = response.data;
+        this.setState({ params });
+        console.log(response.data);
+    }
+
     toggleCheckbox = label => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
             this.selectedCheckboxes.add(label);
         }
+        console.log(typeof([...this.selectedCheckboxes][0]));
+        this.handleMenuFilter([...this.selectedCheckboxes]);
     }
+
+   
 
     handleFormSubmit = formSubmitEvent => {
         formSubmitEvent.preventDefault();
@@ -122,7 +131,7 @@ class Compare extends React.Component {
     createCheckboxes = () => (
         items.map(this.createCheckbox)
     )
-    
+
     render() {
         var settings = {
             dots: false,
