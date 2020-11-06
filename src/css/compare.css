@@ -3,8 +3,6 @@
   }
   .categories__slider.owl-carousel {
     padding-bottom: 40px;
-    border-bottom: 1px solid rgba(240, 135, 50, 0.5);
-
   }
   .categories__slider.owl-carousel .owl-nav button {
     font-size: 36px;
@@ -128,7 +126,6 @@ div.checkbox{
     margin: 5px;
 }
 
-/* 왜 여기선 안 먹을까여? */
 .set-bg {
     background-repeat: no-repeat;
     background-size: contain;
@@ -225,4 +222,3 @@ div.checkbox{
     border-bottom: 2px solid #f08632;
     padding-bottom: 4px;
   }
-
