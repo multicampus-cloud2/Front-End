@@ -54,7 +54,7 @@ class Compare extends React.Component {
     }
 
     _dbTest = async () => {
-        await axios.get('https://efk4atd0l6.execute-api.us-east-1.amazonaws.com/dev/data')
+        await axios.get('https://uxskorsvrd.execute-api.us-east-1.amazonaws.com/dev/data')
             .then(res => {
                 const params = res.data;
                 this.setState({ params });
@@ -93,10 +93,10 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
-    apiEndpoint = "https://t1uym627x6.execute-api.us-east-1.amazonaws.com/dev/filter"
+    apiEndpoint = "https://uxskorsvrd.execute-api.us-east-1.amazonaws.com/dev/data"
     
-    handleFilter = async function(name) {
-        const obj = {brand: name, body: 'n'};
+    handleFilter = async function(name_eng, name_kor) {
+        const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
 
         const response = await axios.post(this.apiEndpoint, obj);
         const params = response.data;
@@ -145,7 +145,7 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} alt="starbucks" /></div>
@@ -153,7 +153,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("hollys")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.hollys} /></div>
@@ -161,7 +161,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("tomntoms")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("tomntoms", "탐앤탐스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.tomntoms} /></div>
@@ -169,7 +169,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("ediya")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("ediya", "이디야")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.ediya} /></div>
@@ -177,7 +177,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("coffebean")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffebean", "커피빈")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
@@ -185,7 +185,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("twosome")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("twosome", "투썸플레이스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.twosome} /></div>
@@ -193,7 +193,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("angelinus")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("angelinus", "엔제리너스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.angelinus} /></div>
@@ -201,7 +201,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("paikdabang")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("paikdabang", "빽다방")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.bbaek} /></div>
