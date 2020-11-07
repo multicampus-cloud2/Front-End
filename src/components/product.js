@@ -30,8 +30,8 @@ class Coffee extends React.Component{
 
         return (
             <div className="col-lg-3 col-md-6 col-sm-6">
-                <div onClick={() => this.checkingred()} className="product__item">
-                    <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${this.props.coffee['image']})` }}>
+                <div className="product__item">
+                    <div onClick={() => this.checkingred()} className="product__item__pic set-bg" style={{ backgroundImage: `url(${this.props.coffee['image']})` }}>
                         <div className="product__label">
                             <span>{this.props.coffee['brand']}</span>
                         </div>
@@ -45,12 +45,13 @@ class Coffee extends React.Component{
                             </form>
                         </div>
                     </div>
-                    <div className="product__detail" style={{display: this.state.open === true ? "block" : "none"}}>
-                        <ul>
-                            <li><span>{this.props.coffee['kcal']}</span></li>
-                            <li><span>{this.props.coffee['size']}</span></li>
-                            <li><span>{this.props.coffee['sugar']}</span></li>
-                            <li><span>{this.props.coffee['caffeine']}</span></li>
+                    <div onClick={() => this.checkingred()} className="ingredient_table_box" style={{display: this.state.open === true ? "block" : "none"}}>
+                        <br/>
+                        <p>※1회 제공량 기준: {this.props.coffee['size']} ml</p>
+                        <ul className="ingredient_table">
+                            <li><div>칼로리 (kcal)</div><div>{this.props.coffee['kcal']}</div></li>
+                            <li><div>당류 (g)</div><div>{this.props.coffee['sugar']}</div></li>
+                            <li><div>카페인 (mg)</div><div>{this.props.coffee['caffeine']}</div></li>
                         </ul>
                     </div>
                 </div>
