@@ -1,18 +1,18 @@
 
-import React from 'react';
+import React,{useRef, useState} from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import ModalExample from 'components/Modal';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Coffee from 'components/product';
-
+import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -52,20 +52,30 @@ function BrandMenu(props) {
 
 
 const items = [
-    { value: 1, name: '아메리카노' },
-    { value: 2, name: '카페라떼' },
-    { value: 3, name: '카페모카' },
-    { value: 4, name: '바닐라라떼' },
-    { value: 5, name: '카페모카' },
-    { value: 6, name: '스무디' },
-    { value: 7, name: '티' },
-    { value: 8, name: 'NON-카페인' },
-    { value: 9, name: '기타' },
+    { value: 1, name: '전체' },
+    { value: 2, name: '아메리카노' },
+    { value: 3, name: '에스프레소' },
+    { value: 4, name: '콜드브루' },
+    { value: 5, name: '카페라떼' },
+    { value: 6, name: '카푸치노' },
+    { value: 7, name: '카페모카' },
+    { value: 8, name: '마끼아또' },
+    { value: 9, name: '라떼' },
+    { value: 10, name: '블렌디드' },
+    { value: 11, name: '스무디' },
+    { value: 12, name: '에이드' },
+    { value: 13, name: '티' },
+    { value: 14, name: '기타' },
+
 ];
+
+const data_all = [];
 
 class Compare extends React.Component {
     state = {
-        params: []
+        params: [],
+        params_compare: [],
+        ModalStatus : false, Modal: null
     }
 
     componentDidMount() {
@@ -77,13 +87,13 @@ class Compare extends React.Component {
             .then(res => {
                 console.log(res.data);
                 const params = res.data;
+                this.data_all = res.data;
                 this.setState({ params });
             })
     }
 
     handleFilter = async function(name_eng, name_kor) {
         const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
-
         const response = await axios.post(this.apiEndpoint, obj);
         const params = response.data;
         this.setState({ params });
@@ -94,30 +104,27 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
-    handleMenuFilter = async function(menu_name) {
-        const obj = {menu: menu_name};
-        const response = await axios.post('https://76rsehyegc.execute-api.us-east-1.amazonaws.com/dev/coffeefiltering', obj);
-        const params = response.data;
-        this.setState({ params });
-        console.log(response.data);
-    }
-
     toggleCheckbox = label => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
             this.selectedCheckboxes.add(label);
         }
-        console.log(typeof([...this.selectedCheckboxes][0]));
         this.handleMenuFilter([...this.selectedCheckboxes]);
     }
 
-    handleFormSubmit = formSubmitEvent => {
-        formSubmitEvent.preventDefault();
-
-        for (const checkbox of this.selectedCheckboxes) {
-            console.log(checkbox, 'is selected.');
+    handleMenuFilter = function(menu_name) {
+        if (!(this.data_all == null)) {
+            let params = [];
+            for (var i=0; i<menu_name.length; i++) {
+                const filteringData = this.data_all.filter(function(element){
+                    return element.category==menu_name[i];
+                })
+                params=params.concat(filteringData);
+            }
+            this.setState({ params });  
         }
+
     }
 
     createCheckbox = label => (
@@ -132,6 +139,32 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
+
+    // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
+    handleCompareAdd = function(product) {
+        const { params_compare } = this.state;
+        if (params_compare.length <3 ){
+            this.setState({
+                params_compare: params_compare.concat({ ...product })
+            })
+        }else{
+            alert('비교함에 최대 3개까지 넣을 수 있습니다.');
+        }
+        
+    }
+
+    // 비교박스에서 상품 제거
+    handleCompareDelete = function(product) {
+        const { params_compare } = this.state;
+        if (params_compare.length >0 ){
+            this.setState({
+                params_compare: params_compare.filter(info => info.id !== product.id)
+            })
+        }else{
+            alert('비교함에 제거할 상품이 없습니다.');
+        }
+    }
+
     render() {
         var settings = {
             dots: false,
@@ -142,28 +175,41 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
+        
         const productList = this.state.params.map((product) => (
             <Coffee coffee={product}></Coffee>
         ));
-        
+
+        const compareList = this.state.params_compare.map((product) => (
+            <tr>
+                <td className="product__cart__item">
+                    <div className="product__cart__item__pic">
+                        <img  onClick={() => this.handleCompareDelete(product)} src={product['image']} style={{width:'100px',height:'100px'}} alt=""/>
+                    </div>
+                </td>
+                <td className="cart__price">{product['name']}{product['brand']}</td>
+                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{width:'30px'}}/></td>
+            </tr>
+        ));
 
         return (
             <>
-                <section className="search spad">
+                <section style={{float:'left',width:'80%'}}>
+                    <section className="search spad">
                     <div className="container">
                         <div className="categories">
                             <div className="container">
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
+                                            {<div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} /></div>
                                                         <h5>STARBUCKS</h5>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>}
                                             <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
@@ -230,7 +276,6 @@ class Compare extends React.Component {
                                 <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
                                     <form onSubmit={this.handleFormSubmit}>
                                         {this.createCheckboxes()}
-                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearch} size="2x"/>검색</button>
                                     </form>
                                 </div>
                                 <div className="shop__option__right">
@@ -243,14 +288,40 @@ class Compare extends React.Component {
                     </div>
                 </section>
 
-                <section className="product spad">
+                    <section className="product spad">
                     <div className="container">
                         <div className="row">
                             {productList}
                         </div>
                     </div>
                 </section>
-            </>
+                </section>
+
+                <section className="wishlist spad" style={{width:'18%',float:'left',position:'fixed',top:'300px',right:'30px'}}> 
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="col-lg-12" style={{textAlign:'center'}}>Compare Box</div>
+                                <div className="wishlist__cart__table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th style={{width:'70%'}} colSpan='2'>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {compareList}                                               
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ModalExample product={this.state.params_compare}></ModalExample>
+                                <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </> 
         );
     }
 }
