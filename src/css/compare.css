@@ -135,11 +135,23 @@ div.checkbox{
 /*---------------------
   Product
 -----------------------*/
+.product__detail {
+  background: turquoise;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 270px;
+  height: 270px;
+  opacity: 0.5;
+}
+
 .product {
     padding-top: 50px;
   }
   
   .product__item {
+    position: relative;
     margin-bottom: 40px;
   }
   .product__item:hover .product__item__pic .product__label span {

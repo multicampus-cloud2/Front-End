@@ -11,6 +11,8 @@ import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Coffee from 'components/product';
+
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -110,8 +112,6 @@ class Compare extends React.Component {
         this.handleMenuFilter([...this.selectedCheckboxes]);
     }
 
-   
-
     handleFormSubmit = formSubmitEvent => {
         formSubmitEvent.preventDefault();
 
@@ -142,24 +142,8 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-
         const productList = this.state.params.map((product) => (
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${product['image']})` }} data-setbg="img/shop/product-2.jpg">
-                        <div className="product__label">
-                            <span>{product['brand']}</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>{product['name']}</p></h6>
-                        <div className="product__item__price">$32.00</div>
-                        <div className="cart_add">
-                            <p>Add to cart</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Coffee coffee={product}></Coffee>
         ));
         
 
@@ -204,7 +188,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("coffebean", "커피빈")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffeebean", "커피빈")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
