@@ -1,16 +1,17 @@
 
-import React from 'react';
+import React,{useRef, useState} from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import ModalExample from 'components/Modal';
 import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTrashAlt, faBalanceScale } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -63,7 +64,9 @@ const items = [
 
 class Compare extends React.Component {
     state = {
-        params: []
+        params: [],
+        params_compare: [],
+        ModalStatus : false, Modal: null
     }
 
     componentDidMount() {
@@ -106,12 +109,8 @@ class Compare extends React.Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
-<<<<<<< HEAD
         console.log(typeof([...this.selectedCheckboxes][0]));
         this.handleMenuFilter([...this.selectedCheckboxes]);
-=======
-        console.log(this.selectedCheckboxes)
->>>>>>> ce93ffaf826a6d121d9f8d1f722c508675806162
     }
 
    
@@ -136,6 +135,32 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
+
+    // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
+    handleCompareAdd = function(product) {
+        const { params_compare } = this.state;
+        if (params_compare.length <3 ){
+            this.setState({
+                params_compare: params_compare.concat({ ...product })
+            })
+        }else{
+            alert('비교함에 최대 3개까지 넣을 수 있습니다.');
+        }
+        
+    }
+    // 비교박스에서 상품 제거
+    handleCompareDelete = function(product) {
+        const { params_compare } = this.state;
+        if (params_compare.length >0 ){
+            this.setState({
+                params_compare: params_compare.filter(info => info.id !== product.id)
+            })
+        }else{
+            alert('비교함에 제거할 상품이 없습니다.');
+        }
+        
+    }
+
     render() {
         var settings = {
             dots: false,
@@ -146,6 +171,18 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
+
+        const compareList = this.state.params_compare.map((product) => (
+            <tr>
+                <td className="product__cart__item">
+                    <div className="product__cart__item__pic">
+                        <img  onClick={() => this.handleCompareDelete(product)} src={product['image']} style={{width:'100px',height:'100px'}} alt=""/>
+                    </div>
+                </td>
+                <td className="cart__price">{product['name']}{product['brand']}</td>
+                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{width:'30px'}}/></td>
+            </tr>
+        ));
 
         const productList = this.state.params.map((product) => (
             <div className="col-lg-3 col-md-6 col-sm-6">
@@ -159,7 +196,7 @@ class Compare extends React.Component {
                         <h6><p>{product['name']}</p></h6>
                         <div className="product__item__price">$32.00</div>
                         <div className="cart_add">
-                            <p>Add to cart</p>
+                            <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => this.handleCompareAdd(product)}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
                         </div>
                     </div>
                 </div>
@@ -209,7 +246,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("coffebean", "커피빈")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffeebean", "커피빈")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
@@ -273,12 +310,12 @@ class Compare extends React.Component {
                 </section>
                 </section>
 
-                <section class="wishlist spad" style={{width:'18%',float:'left',position:'fixed',top:'400px',right:'30px'}}> 
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="col-lg-12" style={{textAlign:'center'}}>Compare List</div>
-                                <div class="wishlist__cart__table">
+                <section className="wishlist spad" style={{width:'18%',float:'left',position:'fixed',top:'300px',right:'30px'}}> 
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="col-lg-12" style={{textAlign:'center'}}>Compare Box</div>
+                                <div className="wishlist__cart__table">
                                     <table>
                                         <thead>
                                             <tr>
@@ -287,42 +324,17 @@ class Compare extends React.Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="product__cart__item">
-                                                    <div class="product__cart__item__pic">
-                                                        <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__price">Vanilla Salted Caramel</td>
-                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt}  style={{width:'30px'}}/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product__cart__item">
-                                                    <div class="product__cart__item__pic">
-                                                    <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__price">Vanilla Salted Caramel</td>
-                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt}  style={{width:'30px'}}/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product__cart__item">
-                                                    <div class="product__cart__item__pic">
-                                                    <img src='http://paikdabang.com/wp-content/uploads/2019/10/57_%EC%9B%90%EC%A1%B0_%EB%B2%A0%EC%9D%B4%EC%A7%81.jpg' style={{width:'100px',height:'100px'}} alt=""/>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__price">Vanilla Salted Caramel</td>
-                                                <td class="cart__close"><FontAwesomeIcon icon={faTrashAlt} style={{width:'30px'}}/></td>
-                                            </tr>                                                
+                                            {compareList}                                               
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="col-lg-12" style={{textAlign:'right'}}><button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faBalanceScale} size="2x"/>비교하러 가기</button></div>
+                                <ModalExample product={this.state.params_compare}></ModalExample>
+                                <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button>
                             </div>
                         </div>
                     </div>
                 </section>
-            </>
+            </> 
         );
     }
 }
