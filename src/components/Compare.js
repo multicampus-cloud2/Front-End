@@ -75,6 +75,7 @@ class Compare extends React.Component {
     state = {
         params: [],
         params_compare: [],
+        num: 0,
         ModalStatus : false, Modal: null
     }
 
@@ -142,15 +143,14 @@ class Compare extends React.Component {
 
     // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
     handleCompareAdd = function(product) {
-        const { params_compare } = this.state;
-        if (params_compare.length <3 ){
-            this.setState({
-                params_compare: params_compare.concat({ ...product })
-            })
+        if (this.state.params_compare.length < 3 ) {
+            this.setState(() => {
+                return {params_compare: this.state.params_compare.concat(product)};
+            });
+            console.log(this.state.params_compare)
         }else{
             alert('비교함에 최대 3개까지 넣을 수 있습니다.');
         }
-        
     }
 
     // 비교박스에서 상품 제거
@@ -177,7 +177,7 @@ class Compare extends React.Component {
         }
         
         const productList = this.state.params.map((product) => (
-            <Coffee coffee={product}></Coffee>
+            <Coffee coffee={product} submit={this.handleCompareAdd.bind(this)}></Coffee>
         ));
 
         const compareList = this.state.params_compare.map((product) => (
@@ -316,7 +316,7 @@ class Compare extends React.Component {
                                     </table>
                                 </div>
                                 <ModalExample product={this.state.params_compare}></ModalExample>
-                                <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button>
+                                {/* <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button> */}
                             </div>
                         </div>
                     </div>
