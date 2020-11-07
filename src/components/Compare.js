@@ -11,6 +11,7 @@ import images from 'img/brand';
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Coffee from 'components/product';
 import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
@@ -122,9 +123,9 @@ class Compare extends React.Component {
                 params=params.concat(filteringData);
             }
             this.setState({ params });  
-    }
-    }
+        }
 
+    }
 
     createCheckbox = label => (
         <Checkbox
@@ -151,6 +152,7 @@ class Compare extends React.Component {
         }
         
     }
+
     // 비교박스에서 상품 제거
     handleCompareDelete = function(product) {
         const { params_compare } = this.state;
@@ -161,7 +163,6 @@ class Compare extends React.Component {
         }else{
             alert('비교함에 제거할 상품이 없습니다.');
         }
-        
     }
 
     render() {
@@ -174,6 +175,10 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
+        
+        const productList = this.state.params.map((product) => (
+            <Coffee coffee={product}></Coffee>
+        ));
 
         const compareList = this.state.params_compare.map((product) => (
             <tr>
@@ -186,26 +191,6 @@ class Compare extends React.Component {
                 <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{width:'30px'}}/></td>
             </tr>
         ));
-
-        const productList = this.state.params.map((product) => (
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="product__item">
-                    <div className="product__item__pic set-bg" style={{ backgroundImage: `url(${product['image']})` }} data-setbg="img/shop/product-2.jpg">
-                        <div className="product__label">
-                            <span>{product['brand']}</span>
-                        </div>
-                    </div>
-                    <div className="product__item__text">
-                        <h6><p>{product['name']}</p></h6>
-                        <div className="product__item__price">$32.00</div>
-                        <div className="cart_add">
-                            <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => this.handleCompareAdd(product)}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ));
-        
 
         return (
             <>
