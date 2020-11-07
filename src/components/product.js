@@ -1,6 +1,8 @@
 import React from 'react';
 import 'css/compare.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class Coffee extends React.Component{
 
@@ -15,6 +17,12 @@ class Coffee extends React.Component{
             this.state.open = true
         }
         this.setState(this.props.coffee)
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("이벤트발생");
+        this.props.submit(this.props.coffee);
     }
 
     
@@ -32,7 +40,9 @@ class Coffee extends React.Component{
                         <h6><p>{this.props.coffee['name']}</p></h6>
                         <div className="product__item__price">$32.00</div>
                         <div className="cart_add">
-                            <p>Add to cart</p>
+                            <form onSubmit={this.handleSubmit}>
+                                <button type="submit" style={{'backgroundColor': 'white', border: 'none'}}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
+                            </form>
                         </div>
                     </div>
                     <div className="product__detail" style={{display: this.state.open === true ? "block" : "none"}}>
