@@ -67,6 +67,8 @@ const items = [
 
 ];
 
+const data_all = [];
+
 class Compare extends React.Component {
     state = {
         params: []
@@ -81,13 +83,13 @@ class Compare extends React.Component {
             .then(res => {
                 console.log(res.data);
                 const params = res.data;
+                this.data_all = res.data;
                 this.setState({ params });
             })
     }
 
     handleFilter = async function(name_eng, name_kor) {
         const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
-
         const response = await axios.post(this.apiEndpoint, obj);
         const params = response.data;
         this.setState({ params });
@@ -98,22 +100,26 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
-    handleMenuFilter = async function(menu_name) {
-        const obj = {menu: menu_name};
-        const response = await axios.post('https://76rsehyegc.execute-api.us-east-1.amazonaws.com/dev/coffeefiltering', obj);
-        const params = response.data;
-        this.setState({ params });
-        console.log(response.data);
-    }
-
     toggleCheckbox = label => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
             this.selectedCheckboxes.add(label);
         }
-        console.log(typeof([...this.selectedCheckboxes][0]));
         this.handleMenuFilter([...this.selectedCheckboxes]);
+    }
+
+    handleMenuFilter = function(menu_name) {
+        if (!(this.data_all == null)) {
+            var params = [];
+            for (var i=0; i<menu_name.length; i++) {
+                const filteringData = this.data_all.filter(function(element){
+                    return element.category==menu_name[i];
+                })
+                params=params.concat(filteringData);
+            }
+            this.setState({ params });
+    }
     }
 
 
@@ -169,14 +175,14 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
+                                            {<div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} /></div>
                                                         <h5>STARBUCKS</h5>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>}
                                             <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
@@ -243,7 +249,6 @@ class Compare extends React.Component {
                                 <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
                                     <form onSubmit={this.handleFormSubmit}>
                                         {this.createCheckboxes()}
-                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearch} size="2x"/>검색</button>
                                     </form>
                                 </div>
                                 <div className="shop__option__right">
