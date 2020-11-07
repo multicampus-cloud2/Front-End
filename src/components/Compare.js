@@ -111,14 +111,14 @@ class Compare extends React.Component {
 
     handleMenuFilter = function(menu_name) {
         if (!(this.data_all == null)) {
-            var params = [];
+            let params = [];
             for (var i=0; i<menu_name.length; i++) {
                 const filteringData = this.data_all.filter(function(element){
                     return element.category==menu_name[i];
                 })
                 params=params.concat(filteringData);
             }
-            this.setState({ params });
+            this.setState({ params });  
     }
     }
 
