@@ -50,15 +50,21 @@ function BrandMenu(props) {
 
 
 const items = [
-    { value: 1, name: '아메리카노' },
-    { value: 2, name: '카페라떼' },
-    { value: 3, name: '카페모카' },
-    { value: 4, name: '바닐라라떼' },
-    { value: 5, name: '카페모카' },
-    { value: 6, name: '스무디' },
-    { value: 7, name: '티' },
-    { value: 8, name: 'NON-카페인' },
-    { value: 9, name: '기타' },
+    { value: 1, name: '전체' },
+    { value: 2, name: '아메리카노' },
+    { value: 3, name: '에스프레소' },
+    { value: 4, name: '콜드브루' },
+    { value: 5, name: '카페라떼' },
+    { value: 6, name: '카푸치노' },
+    { value: 7, name: '카페모카' },
+    { value: 8, name: '마끼아또' },
+    { value: 9, name: '라떼' },
+    { value: 10, name: '블렌디드' },
+    { value: 11, name: '스무디' },
+    { value: 12, name: '에이드' },
+    { value: 13, name: '티' },
+    { value: 14, name: '기타' },
+
 ];
 
 class Compare extends React.Component {
@@ -110,15 +116,6 @@ class Compare extends React.Component {
         this.handleMenuFilter([...this.selectedCheckboxes]);
     }
 
-   
-
-    handleFormSubmit = formSubmitEvent => {
-        formSubmitEvent.preventDefault();
-
-        for (const checkbox of this.selectedCheckboxes) {
-            console.log(checkbox, 'is selected.');
-        }
-    }
 
     createCheckbox = label => (
         <Checkbox
@@ -204,7 +201,7 @@ class Compare extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div onClick={() => this.handleFilter("coffebean", "커피빈")} className="categories__item__whole">
+                                            <div onClick={() => this.handleFilter("coffeebean", "커피빈")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.coffeebean} /></div>
