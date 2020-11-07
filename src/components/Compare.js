@@ -51,16 +51,24 @@ function BrandMenu(props) {
 
 
 const items = [
-    { value: 1, name: '아메리카노' },
-    { value: 2, name: '카페라떼' },
-    { value: 3, name: '카페모카' },
-    { value: 4, name: '바닐라라떼' },
-    { value: 5, name: '카페모카' },
-    { value: 6, name: '스무디' },
-    { value: 7, name: '티' },
-    { value: 8, name: 'NON-카페인' },
-    { value: 9, name: '기타' },
+    { value: 1, name: '전체' },
+    { value: 2, name: '아메리카노' },
+    { value: 3, name: '에스프레소' },
+    { value: 4, name: '콜드브루' },
+    { value: 5, name: '카페라떼' },
+    { value: 6, name: '카푸치노' },
+    { value: 7, name: '카페모카' },
+    { value: 8, name: '마끼아또' },
+    { value: 9, name: '라떼' },
+    { value: 10, name: '블렌디드' },
+    { value: 11, name: '스무디' },
+    { value: 12, name: '에이드' },
+    { value: 13, name: '티' },
+    { value: 14, name: '기타' },
+
 ];
+
+const data_all = [];
 
 class Compare extends React.Component {
     state = {
@@ -78,13 +86,13 @@ class Compare extends React.Component {
             .then(res => {
                 console.log(res.data);
                 const params = res.data;
+                this.data_all = res.data;
                 this.setState({ params });
             })
     }
 
     handleFilter = async function(name_eng, name_kor) {
         const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
-
         const response = await axios.post(this.apiEndpoint, obj);
         const params = response.data;
         this.setState({ params });
@@ -95,33 +103,28 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
-    handleMenuFilter = async function(menu_name) {
-        const obj = {menu: menu_name};
-        const response = await axios.post('https://76rsehyegc.execute-api.us-east-1.amazonaws.com/dev/coffeefiltering', obj);
-        const params = response.data;
-        this.setState({ params });
-        console.log(response.data);
-    }
-
     toggleCheckbox = label => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
             this.selectedCheckboxes.add(label);
         }
-        console.log(typeof([...this.selectedCheckboxes][0]));
         this.handleMenuFilter([...this.selectedCheckboxes]);
     }
 
-   
-
-    handleFormSubmit = formSubmitEvent => {
-        formSubmitEvent.preventDefault();
-
-        for (const checkbox of this.selectedCheckboxes) {
-            console.log(checkbox, 'is selected.');
-        }
+    handleMenuFilter = function(menu_name) {
+        if (!(this.data_all == null)) {
+            let params = [];
+            for (var i=0; i<menu_name.length; i++) {
+                const filteringData = this.data_all.filter(function(element){
+                    return element.category==menu_name[i];
+                })
+                params=params.concat(filteringData);
+            }
+            this.setState({ params });  
     }
+    }
+
 
     createCheckbox = label => (
         <Checkbox
@@ -214,14 +217,14 @@ class Compare extends React.Component {
                                 <div>
                                     <div className="categories__slider owl-carousel">
                                         <Slider {...settings}>
-                                            <div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
+                                            {<div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
                                                         <div><img src={images.starbucks} /></div>
                                                         <h5>STARBUCKS</h5>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>}
                                             <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
@@ -288,7 +291,6 @@ class Compare extends React.Component {
                                 <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
                                     <form onSubmit={this.handleFormSubmit}>
                                         {this.createCheckboxes()}
-                                        <button type="submit" style={{'backgroundColor': 'white',border: 'none'}}><FontAwesomeIcon icon={faSearch} size="2x"/>검색</button>
                                     </form>
                                 </div>
                                 <div className="shop__option__right">
