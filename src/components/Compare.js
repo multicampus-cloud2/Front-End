@@ -7,47 +7,32 @@ import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ModalExample from 'components/Modal';
-import images from 'img/brand';
-import RightArrow from 'img/rightarrow.png'
-import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Coffee from 'components/product';
+import Product from 'components/product';
+import Brand from 'components/brand';
 import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
-function NextArrow(props) {
-    const { onClick, className } = props;
-    return (
-        <img src={RightArrow} alt="" onClick={onClick} className={className}/>
-    );
-}
 
-function PrevArrow(props) {
-    const { onClick, className } = props;
-    return (
-        <img src={LeftArrow} alt="" onClick={onClick} className={className}/>
-    );
-}
-
-function BrandMenu(props) {
-    // let ImagePath = require("img/"+props.brand);
-    const imageName = props.brand + '.png';
-    // const filePath = 'img/${imageName}';
-    // const fileUrl = require(filePath);
-    return (
-    <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
-        <div className="categories__item">
-            <div className="categories__item__icon">
-                <div>
-                    {/* <img src={ImageName} alt={props.brand} /> */}
-                    <img src={images.starbucks}/>
-                    </div>
-                <h5>{props.brand}</h5>
-            </div>
-        </div>
-    </div>
-    );
-}
+// function BrandMenu(props) {
+//     // let ImagePath = require("img/"+props.brand);
+//     const imageName = props.brand + '.png';
+//     // const filePath = 'img/${imageName}';
+//     // const fileUrl = require(filePath);
+//     return (
+//     <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
+//         <div className="categories__item">
+//             <div className="categories__item__icon">
+//                 <div>
+//                     {/* <img src={ImageName} alt={props.brand} /> */}
+//                     <img src={images.starbucks}/>
+//                     </div>
+//                 <h5>{props.brand}</h5>
+//             </div>
+//         </div>
+//     </div>
+//     );
+// }
 
 
 
@@ -166,18 +151,9 @@ class Compare extends React.Component {
     }
 
     render() {
-        var settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            nextArrow: <NextArrow />,
-            prevArrow: <PrevArrow />
-        }
         
         const productList = this.state.params.map((product) => (
-            <Coffee coffee={product} submit={this.handleCompareAdd.bind(this)}></Coffee>
+            <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
         ));
 
         const compareList = this.state.params_compare.map((product) => (
@@ -197,80 +173,7 @@ class Compare extends React.Component {
                 <section style={{float:'left',width:'80%'}}>
                     <section className="search spad">
                     <div className="container">
-                        <div className="categories">
-                            <div className="container">
-                                <div>
-                                    <div className="categories__slider owl-carousel">
-                                        <Slider {...settings}>
-                                            {<div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.starbucks} /></div>
-                                                        <h5>STARBUCKS</h5>
-                                                    </div>
-                                                </div>
-                                            </div>}
-                                            <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.hollys} /></div>
-                                                        <h5>HOLLYS</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("tomntoms", "탐앤탐스")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.tomntoms} /></div>
-                                                        <h5>TOMNTOMS</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("ediya", "이디야")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.ediya} /></div>
-                                                        <h5>EDIYA</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("coffeebean", "커피빈")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.coffeebean} /></div>
-                                                        <h5>COFFEEBEAN</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("twosome", "투썸플레이스")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.twosome} /></div>
-                                                        <h5>TWOSOMEPLACE</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("angelinus", "엔제리너스")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.angelinus} /></div>
-                                                        <h5>ANGELINUS</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div onClick={() => this.handleFilter("paikdabang", "빽다방")} className="categories__item__whole">
-                                                <div className="categories__item">
-                                                    <div className="categories__item__icon">
-                                                        <div><img src={images.bbaek} /></div>
-                                                        <h5>BBAEKDABANG</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Slider>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Brand submit={this.handleFilter.bind(this)}></Brand>
                         <div className="" style={{borderTop:'1px solid rgba(240, 135, 50, 0.5)',borderBottom:'1px solid rgba(240, 135, 50, 0.5)','paddingBottom':'10px'}}>
                             <div className="row">
                                 <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>

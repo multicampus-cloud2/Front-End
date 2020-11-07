@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-class Coffee extends React.Component{
+class Product extends React.Component{
 
     state = {
         open : false
@@ -33,7 +33,7 @@ class Coffee extends React.Component{
                 <div className="product__item">
                     <div onClick={() => this.checkingred()} className="product__item__pic set-bg" style={{ backgroundImage: `url(${this.props.coffee['image']})` }}>
                         <div className="product__label">
-                            <span>{this.props.coffee['brand']}</span>
+                            <span>{this.props.coffee['brand_kor']}</span>
                         </div>
                     </div>
                     <div className="product__item__text">
@@ -60,4 +60,4 @@ class Coffee extends React.Component{
     }
 }
 
-export default Coffee;
+export default Product;

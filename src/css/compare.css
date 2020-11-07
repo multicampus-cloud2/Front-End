@@ -135,25 +135,6 @@ div.checkbox{
 /*---------------------
   Product
 -----------------------*/
-.ingredient_table_box {
-  background:#cc99ff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 260px;
-  height: 270px;
-  opacity: 0.6;
-  font-weight: bold;
-  border-radius: 10%;
-}
-
-.ingredient_table {
-  list-style: none;
-  padding-top: 5%;
-	border-top:3px solid #000;
-	border-bottom:3px solid #000;
-}
 
 .product {
     padding-top: 50px;
@@ -242,4 +223,32 @@ div.checkbox{
     display: inline-block;
     border-bottom: 2px solid #f08632;
     padding-bottom: 4px;
+  }
+
+
+  .ingredient_table_box {
+    background:#cc99ff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 260px;
+    height: 270px;
+    opacity: 0.6;
+    font-weight: bold;
+    border-radius: 10%;
+  }
+  
+  .ingredient_table {
+    list-style: none;
+    padding-top: 5%;
+    border-top:3px solid #000;
+    border-bottom:3px solid #000;
+  }
+
+  .brand_button {
+    border: 0;
+    outline: none;
+    background: transparent;
+    margin: auto;
   }
