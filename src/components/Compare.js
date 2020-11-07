@@ -1,5 +1,5 @@
 
-import React,{useRef, useState} from 'react';
+import React from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
@@ -12,7 +12,7 @@ import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coffee from 'components/product';
-import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
 
 function NextArrow(props) {
@@ -40,7 +40,7 @@ function BrandMenu(props) {
             <div className="categories__item__icon">
                 <div>
                     {/* <img src={ImageName} alt={props.brand} /> */}
-                    <img src={images.starbucks}/>
+                    <img src={images.starbucks} alt="starbucks"/>
                     </div>
                 <h5>{props.brand}</h5>
             </div>
@@ -119,7 +119,7 @@ class Compare extends React.Component {
             let params = [];
             for (var i=0; i<menu_name.length; i++) {
                 const filteringData = this.data_all.filter(function(element){
-                    return element.category==menu_name[i];
+                    return element.category===menu_name[i];
                 })
                 params=params.concat(filteringData);
             }
@@ -143,13 +143,17 @@ class Compare extends React.Component {
 
     // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
     handleCompareAdd = function(product) {
-        if (this.state.params_compare.length < 3 ) {
-            this.setState(() => {
-                return {params_compare: this.state.params_compare.concat(product)};
-            });
-            console.log(this.state.params_compare)
-        }else{
+        const { params_compare } = this.state;
+        let verify_overlap = params_compare.filter(info => info.id === product.id)
+
+        if (params_compare.length >= 3 ) {
             alert('비교함에 최대 3개까지 넣을 수 있습니다.');
+        }else if (verify_overlap.length !== 0){
+            alert('비교함에 동일한 음료가 이미 들어있습니다.');
+        }else{
+            this.setState(() => {
+                return {params_compare: params_compare.concat(product)};
+            });
         }
     }
 
@@ -205,7 +209,7 @@ class Compare extends React.Component {
                                             {<div onClick={() => this.handleFilter("starbucks", "스타벅스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.starbucks} /></div>
+                                                        <div><img src={images.starbucks} alt="startbucks"/></div>
                                                         <h5>STARBUCKS</h5>
                                                     </div>
                                                 </div>
@@ -213,7 +217,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("hollys", "할리스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.hollys} /></div>
+                                                        <div><img src={images.hollys} alt="hollys"/></div>
                                                         <h5>HOLLYS</h5>
                                                     </div>
                                                 </div>
@@ -221,7 +225,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("tomntoms", "탐앤탐스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.tomntoms} /></div>
+                                                        <div><img src={images.tomntoms} alt="tomntoms"/></div>
                                                         <h5>TOMNTOMS</h5>
                                                     </div>
                                                 </div>
@@ -229,7 +233,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("ediya", "이디야")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.ediya} /></div>
+                                                        <div><img src={images.ediya} alt="ediya"/></div>
                                                         <h5>EDIYA</h5>
                                                     </div>
                                                 </div>
@@ -237,7 +241,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("coffeebean", "커피빈")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.coffeebean} /></div>
+                                                        <div><img src={images.coffeebean} alt="coffeebean"/></div>
                                                         <h5>COFFEEBEAN</h5>
                                                     </div>
                                                 </div>
@@ -245,7 +249,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("twosome", "투썸플레이스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.twosome} /></div>
+                                                        <div><img src={images.twosome} alt="twosome"/></div>
                                                         <h5>TWOSOMEPLACE</h5>
                                                     </div>
                                                 </div>
@@ -253,7 +257,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("angelinus", "엔제리너스")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.angelinus} /></div>
+                                                        <div><img src={images.angelinus} alt="angelinus"/></div>
                                                         <h5>ANGELINUS</h5>
                                                     </div>
                                                 </div>
@@ -261,7 +265,7 @@ class Compare extends React.Component {
                                             <div onClick={() => this.handleFilter("paikdabang", "빽다방")} className="categories__item__whole">
                                                 <div className="categories__item">
                                                     <div className="categories__item__icon">
-                                                        <div><img src={images.bbaek} /></div>
+                                                        <div><img src={images.bbaek} alt="bbaek"/></div>
                                                         <h5>BBAEKDABANG</h5>
                                                     </div>
                                                 </div>
