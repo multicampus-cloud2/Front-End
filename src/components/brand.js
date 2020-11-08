@@ -25,6 +25,7 @@ class Brand extends React.Component {
         brand_kor: ''
     }
 
+    // submit의 이벤트 처리를 통해 33번 째 줄에서 부모에게 값을 전달해줌
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.brand_eng);
@@ -32,6 +33,7 @@ class Brand extends React.Component {
         this.props.submit(this.state.brand_eng, this.state.brand_kor);
     }
 
+    // 버튼 클릭 시 함수 호출하면서 state의 변수를 파라미터값으로 지정해줌
     handleFilter = function(eng, kor){
         this.setState({
             brand_eng: eng,
@@ -56,10 +58,12 @@ class Brand extends React.Component {
                     <div>
                         <div className="categories__slider owl-carousel">
                             <Slider {...settings}>
+                                {/* form 태그를 사용해서 자식에서 부모한테 값을 전달해줄 수 있음 */}
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
                                             <div className="categories__item__icon">
+                                                {/* 버튼의 submit 타입으로 실행 결과를 form에 이벤트로 전달 */}
                                                 <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("starbucks", "스타벅스")}><img src={images.starbucks} /></button></div>
                                                 <h5>STARBUCKS</h5>
                                             </div>

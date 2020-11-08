@@ -19,6 +19,7 @@ class Product extends React.Component{
         this.setState(this.props.coffee)
     }
 
+    // form 태그 내부의 버튼 클릭 시 이벤트를 발생시켜서 부모 컴포넌트에게 해당 음료 객체를 전달해줌
     handleSubmit = (e) => {
         e.preventDefault();
         console.log("이벤트발생");
@@ -40,6 +41,7 @@ class Product extends React.Component{
                         <h6><p>{this.props.coffee['name']}</p></h6>
                         <div className="product__item__price">$32.00</div>
                         <div className="cart_add">
+                            {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                             <form onSubmit={this.handleSubmit}>
                                 <button type="submit" style={{'backgroundColor': 'white', border: 'none'}}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
                             </form>

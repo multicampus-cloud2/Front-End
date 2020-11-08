@@ -78,6 +78,7 @@ class Compare extends React.Component {
             })
     }
 
+    // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
     handleFilter = async function(name_eng, name_kor) {
         const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
         const response = await axios.post(this.apiEndpoint, obj);
@@ -125,7 +126,8 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
-
+    // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
+    // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
     // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
     handleCompareAdd = function(product) {
         if (this.state.params_compare.length < 3 ) {
@@ -152,6 +154,7 @@ class Compare extends React.Component {
 
     render() {
         
+        // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
         ));
@@ -173,6 +176,7 @@ class Compare extends React.Component {
                 <section style={{float:'left',width:'80%'}}>
                     <section className="search spad">
                     <div className="container">
+                        {/* 자식(brand.js) 에게 submit이라는 props를 보내주고 자식에서 실행된 결과를 handleFilter의 파라미터값으로 받아옴 */}
                         <Brand submit={this.handleFilter.bind(this)}></Brand>
                         <div className="" style={{borderTop:'1px solid rgba(240, 135, 50, 0.5)',borderBottom:'1px solid rgba(240, 135, 50, 0.5)','paddingBottom':'10px'}}>
                             <div className="row">
