@@ -1,5 +1,5 @@
 
-import React,{useRef, useState} from 'react';
+import React from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
@@ -37,20 +37,20 @@ import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons"
 
 
 const items = [
-    { value: 1, name: '전체' },
-    { value: 2, name: '아메리카노' },
-    { value: 3, name: '에스프레소' },
-    { value: 4, name: '콜드브루' },
-    { value: 5, name: '카페라떼' },
-    { value: 6, name: '카푸치노' },
-    { value: 7, name: '카페모카' },
-    { value: 8, name: '마끼아또' },
-    { value: 9, name: '라떼' },
-    { value: 10, name: '블렌디드' },
-    { value: 11, name: '스무디' },
-    { value: 12, name: '에이드' },
-    { value: 13, name: '티' },
-    { value: 14, name: '기타' },
+    { name: '전체' },
+    { name: '아메리카노' },
+    { name: '에스프레소' },
+    { name: '콜드브루' },
+    { name: '카페라떼' },
+    { name: '카푸치노' },
+    { name: '카페모카' },
+    { name: '마끼아또' },
+    { name: '라떼' },
+    { name: '블렌디드' },
+    { name: '스무디' },
+    { name: '에이드' },
+    { name: '티' },
+    { name: '기타' },
 
 ];
 
@@ -105,7 +105,7 @@ class Compare extends React.Component {
             let params = [];
             for (var i=0; i<menu_name.length; i++) {
                 const filteringData = this.data_all.filter(function(element){
-                    return element.category==menu_name[i];
+                    return element.category===menu_name[i];
                 })
                 params=params.concat(filteringData);
             }
@@ -227,7 +227,6 @@ class Compare extends React.Component {
                                     </table>
                                 </div>
                                 <ModalExample product={this.state.params_compare}></ModalExample>
-                                {/* <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button> */}
                             </div>
                         </div>
                     </div>
