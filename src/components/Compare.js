@@ -17,19 +17,19 @@ import LeftArrow from 'img/leftarrow.png'
 
 
 const items = [
-    { name: '아메리카노' },
-    { name: '에스프레소' },
-    { name: '콜드브루' },
-    { name: '카페라떼' },
-    { name: '카푸치노' },
-    { name: '카페모카' },
-    { name: '마끼아또' },
-    { name: '라떼' },
-    { name: '블렌디드' },
-    { name: '스무디' },
-    { name: '에이드' },
-    { name: '티' },
-    { name: '기타' },
+    { rowidx: 0, check: 0, name: '아메리카노' },
+    { rowidx: 1, check: 0, name: '에스프레소' },
+    { rowidx: 2, check: 0, name: '콜드브루' },
+    { rowidx: 3, check: 0, name: '카페라떼' },
+    { rowidx: 4, check: 0, name: '카푸치노' },
+    { rowidx: 5, check: 0, name: '카페모카' },
+    { rowidx: 6, check: 0, name: '마끼아또' },
+    { rowidx: 7, check: 0, name: '라떼' },
+    { rowidx: 8, check: 0, name: '블렌디드' },
+    { rowidx: 9, check: 0, name: '스무디' },
+    { rowidx: 10, check: 0, name: '에이드' },
+    { rowidx: 11, check: 0, name: '티' },
+    { rowidx: 12, check: 0, name: '기타' },
 ];
 
 const brandItems = [
@@ -68,7 +68,9 @@ class Compare extends React.Component {
         params_compare: [],
         num: 0,
         ModalStatus: false, Modal: null,
-        menuAllChecked: true
+
+        menuAllChecked: true,
+        setCheckedCount: 0
     }
 
     componentDidMount() {
@@ -103,6 +105,7 @@ class Compare extends React.Component {
     }
 
     toggleCheckbox = label => {
+        console.log("호출되었다");
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
@@ -202,6 +205,27 @@ class Compare extends React.Component {
         }
     }
 
+
+// 단일 체크박스 선택 
+handleChk = (selectRowIdx) => { 
+    const {setCheckedCnt } = this.state 
+    let retChecked = 0 
+    items.forEach(element => { 
+        if (element.rowIdx === selectRowIdx) { 
+            retChecked = element.chk === 1 ? -1 : 1 // 체크된 항목이 체크값 저장 
+            
+            // 체크 -> 미 체크, 미 체크 -> 체크 
+            element.chk = element.chk === 1 ? 0 : 1 
+        } 
+    }) 
+    this.setState({ 
+        // 체크된 항목이 있으면 개수 마이너스 처리 
+        setCheckedCnt: retChecked === -1 ? setCheckedCnt - 1 : setCheckedCnt + 1, 
+        allChecked: false, 
+    }) 
+} // 체크박스 전체 선택 handleAllChk = () => { const { list, allChecked, setCheckedCnt } = this.state let unCheckNum = 0 let checkNum = 0 const changeAllChecked = !allChecked ? 1 : 0 list.forEach(element => { if (allChecked) { unCheckNum = element.chk === 1 ? unCheckNum + 1 : unCheckNum } else { checkNum = element.chk === 0 ? checkNum + 1 : checkNum } element.chk = changeAllChecked }) this.setState({ list, allChecked: !allChecked ? true : false, setCheckedCnt: !allChecked ? setCheckedCnt + checkNum : setCheckedCnt - unCheckNum, }) }
+
+
     render() {
         var settings = {
             dots: false,
@@ -212,7 +236,6 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-        console.log(this.state.params);
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
@@ -228,6 +251,17 @@ class Compare extends React.Component {
                 <td className="cart__price">{product['name']}{product['brand']}</td>
                 <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{ width: '30px' }} /></td>
             </tr>
+        ));
+
+        let allChkInput;
+        if (!this.state.menuAllChecked || this.state.setCheckedCount == 0){
+            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false}/>
+        } else {
+            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true}/>
+        }
+
+        const checkboxList = this.items.map((element) => (
+            <input type={'checkbox'} name={element.rowidx} checked={element.check == 1} onChange={() => this.handleChk(element.rowIdx)} />
         ));
 
         return (
@@ -262,7 +296,8 @@ class Compare extends React.Component {
                                                 />전체
                                             </label>
                                         </div>
-                                        {this.createCheckboxes()}
+                                        {/* {this.createCheckboxes()} */}
+                                        {checkboxList}
                                     </div>
                                     <div className="shop__option__right">
                                         <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
