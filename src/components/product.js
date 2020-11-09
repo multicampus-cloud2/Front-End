@@ -2,7 +2,7 @@ import React from 'react';
 import 'css/compare.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class Product extends React.Component{
 
@@ -12,9 +12,14 @@ class Product extends React.Component{
 
     checkingred(){
         if (this.state.open === true){
-            this.state.open = false
+            this.setState(() => {
+                return {open: false};
+            });
         } else{
-            this.state.open = true
+            this.setState(() => {
+                return {open: true};
+            });
+            //this.state.open = true
         }
         this.setState(this.props.coffee)
     }
