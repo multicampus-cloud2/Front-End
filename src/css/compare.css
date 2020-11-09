@@ -50,7 +50,9 @@
   }
   .categories__item:hover {
     background: #888888;
-
+  }
+  .categories__item:active {
+    background: transparent;
   }
   .categories__item:hover:after {
     opacity: 1;
