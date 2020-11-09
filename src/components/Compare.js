@@ -227,7 +227,6 @@ class Compare extends React.Component {
                                     </table>
                                 </div>
                                 <ModalExample product={this.state.params_compare}></ModalExample>
-                                {/* <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button> */}
                             </div>
                         </div>
                     </div>
