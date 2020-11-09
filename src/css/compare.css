@@ -252,3 +252,13 @@ div.checkbox{
     background: transparent;
     margin: auto;
   }
+
+  .input_hidden {
+    background-color: transparent;
+    border-radius: 30%;
+    border: 0px;
+    outline: none;
+    position: absolute; top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }

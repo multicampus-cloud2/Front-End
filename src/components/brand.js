@@ -62,9 +62,10 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            {/* input의 submit 타입으로 실행 결과를 form에 이벤트로 전달 */}
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("starbucks", "스타벅스")} />
                                             <div className="categories__item__icon">
-                                                {/* 버튼의 submit 타입으로 실행 결과를 form에 이벤트로 전달 */}
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("starbucks", "스타벅스")}><img src={images.starbucks} /></button></div>
+                                                <div><img src={images.starbucks} /></div>
                                                 <h5>STARBUCKS</h5>
                                             </div>
                                         </div>
@@ -73,8 +74,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("hollys", "할리스")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("hollys", "할리스")}><img src={images.hollys} /></button></div>
+                                                <div><img src={images.hollys} /></div>
                                                 <h5>HOLLYS</h5>
                                             </div>
                                         </div>
@@ -83,8 +85,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("tomntoms", "탐앤탐스")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("tomntoms", "탐앤탐스")}><img src={images.tomntoms} /></button></div>
+                                                <div><img src={images.tomntoms} /></div>
                                                 <h5>TOMNTOMS</h5>
                                             </div>
                                         </div>
@@ -93,8 +96,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("ediya", "이디야")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("ediya", "이디야")}><img src={images.ediya} /></button></div>
+                                                <div><img src={images.ediya} /></div>
                                                 <h5>EDIYA</h5>
                                             </div>
                                         </div>
@@ -103,8 +107,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("coffeebean", "커피빈")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("coffeebean", "커피빈")}><img src={images.coffeebean} /></button></div>
+                                                <div><img src={images.coffeebean} /></div>
                                                 <h5>COFFEEBEAN</h5>
                                             </div>
                                         </div>
@@ -113,8 +118,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                            <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("twosome", "투썸플레이스")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("twosome", "투썸플레이스")}><img src={images.twosome} /></button></div>
+                                                <div><img src={images.twosome} /></div>
                                                 <h5>TWOSOMEPLACE</h5>
                                             </div>
                                         </div>
@@ -123,8 +129,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("angelinus", "엔제리너스")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("angelinus", "엔제리너스")}><img src={images.angelinus} /></button></div>
+                                                <div><img src={images.angelinus} /></div>
                                                 <h5>ANGELINUS</h5>
                                             </div>
                                         </div>
@@ -133,8 +140,9 @@ class Brand extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="categories__item__whole">
                                         <div className="categories__item">
+                                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleFilter("paikdabang", "빽다방")} />
                                             <div className="categories__item__icon">
-                                                <div><button className="brand_button" type="submit" onClick={() => this.handleFilter("paikdabang", "빽다방")}><img src={images.bbaek} /></button></div>
+                                                <div><img src={images.bbaek} /></div>
                                                 <h5>BBAEKDABANG</h5>
                                             </div>
                                         </div>
