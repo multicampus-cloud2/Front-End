@@ -25,8 +25,7 @@ class ModalExample extends React.Component {
       }));
     }
   }
-
-
+  
   render() {
 
     const compareList = this.props.product.map((product) => (
