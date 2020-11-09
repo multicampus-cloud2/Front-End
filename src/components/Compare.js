@@ -17,7 +17,6 @@ import LeftArrow from 'img/leftarrow.png'
 
 
 const items = [
-    { name: '전체' },
     { name: '아메리카노' },
     { name: '에스프레소' },
     { name: '콜드브루' },
@@ -68,7 +67,8 @@ class Compare extends React.Component {
         params: [],
         params_compare: [],
         num: 0,
-        ModalStatus: false, Modal: null
+        ModalStatus: false, Modal: null,
+        menuAllChecked: true
     }
 
     componentDidMount() {
@@ -137,22 +137,40 @@ class Compare extends React.Component {
     }
 
     
-   
+
     createBrandMenus = () => (
-        brandItems.map(element=> <Brand name_eng={element.name_eng} name_kor={element.name_kor} image={element.image} submit={this.handleFilter.bind(this)}/> )
+        brandItems.map(element =>
+            <Brand
+                name_eng={element.name_eng}
+                name_kor={element.name_kor}
+                image={element.image}
+                submit={this.handleFilter.bind(this)} />
+        )
     )
 
     createCheckbox = label => (
         <Checkbox
             label={label.name}
             handleCheckboxChange={this.toggleCheckbox}
-            key={label.value}
+            isAllChecked={this.state.menuAllChecked}
         />
     )
 
     createCheckboxes = () => (
         items.map(this.createCheckbox)
     )
+
+    handleAllChecked = () => {
+        const {menuAllChecked} = this.state;
+        // if (this.state.menuAllChecked) {
+            this.setState(({ menuAllChecked }) => (
+                {
+                    menuAllChecked: !menuAllChecked,
+                }
+            ));
+        // }
+
+    }
 
     // // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
     // // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
@@ -233,15 +251,23 @@ class Compare extends React.Component {
 
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
-                                  <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
-                                    <form onSubmit={this.handleFormSubmit}>
+                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
+                                        <div className="checkbox">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    // value={label}
+                                                    checked={this.state.menuAllChecked}
+                                                    onChange={this.handleAllChecked}
+                                                />전체
+                                            </label>
+                                        </div>
                                         {this.createCheckboxes()}
-                                    </form>
-                                </div>
-                                <div className="shop__option__right">
-                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select coffee={this.state.params}></Select>
                                     </div>
+                                    <div className="shop__option__right">
+                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
+                                            <Select coffee={this.state.params}></Select>
+                                        </div>
 
                                     </div>
                                 </div>
