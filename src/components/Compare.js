@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
@@ -10,7 +10,7 @@ import ModalExample from 'components/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
-import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt,faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
@@ -126,7 +126,7 @@ class Compare extends React.Component {
             for (let i = 0; i < selectedBrand.length; i++) {
                 for (let j = 0; j < selectedMenu.length; j++) {
                     let filteringData = this.dataAll.filter(function (element) {
-                        return element.brand == selectedBrand[i] && element.category == selectedMenu[j];
+                        return element.brand === selectedBrand[i] && element.category === selectedMenu[j];
                     })
                     params = params.concat(filteringData);
                 }
@@ -182,6 +182,11 @@ class Compare extends React.Component {
         } else {
             alert('비교함에 제거할 상품이 없습니다.');
         }
+    }
+
+    // 스크롤 위로 올리기
+    scrollUp(){
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -258,7 +263,7 @@ class Compare extends React.Component {
                     </section>
                 </section>
 
-                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '300px', right: '30px' }}>
+                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -281,6 +286,7 @@ class Compare extends React.Component {
                         </div>
                     </div>
                 </section>
+                <div onClick={this.scrollUp} style={{float:'right',position:'fixed',right:'40px',bottom:'40px'}}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
             </>
         );
     }

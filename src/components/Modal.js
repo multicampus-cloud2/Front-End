@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
-
+import _ from 'lodash';
 //참고 사이트 : https://www.hanumoka.net/2019/10/26/react-20191026-react-modal-draggable/
 // model 공식사이트 : https://reactstrap.github.io/components/modals/
 
@@ -10,7 +10,9 @@ class ModalExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      lowest: [],
+      highest: []
     };
 
     this.toggle = this.toggle.bind(this);
@@ -25,21 +27,22 @@ class ModalExample extends React.Component {
       }));
     }
   }
-  
+
   render() {
 
     const compareList = this.props.product.map((product) => (
-      <div className="product__cart__item" style={{float: 'left',width:this.props.product.length <= 2? '40%':'25%'}}>
+      <div className="product__cart__item" style={{float: 'left',width:this.props.product.length <= 2? '40%':'26%'}}>
         <div className="product__cart__item__pic" style={{textAlign:'center'}}>
           <img src={product['image']} style={{ width: '130px', height: '125px'}} alt="" />
         </div>
         <div style={{ textAlign: 'center',marginTop:'10px'}}>
-          <p>{product['name']}</p>
+          <p style={{fontWeight:'bold'}}>{product['name']}</p>
           <p>{product['brand']}</p>
           <p>{product['category']}</p>
           <p>{product['kcal']}</p>
           <p>{product['size']}</p>
           <p>{product['caffeine']}</p>
+          
           <p>{product['sugar']}</p>
           <p>{product['price']}</p>
         </div>

@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <>
         <div>
-          <div style={{ position: "absolute" }}>
+          <div style={{ position: "absolute",left:'10px'}}>
             <Login></Login>
             <Logout></Logout>
             <User_LikeBrand></User_LikeBrand>

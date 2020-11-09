@@ -44,7 +44,7 @@ class Product extends React.Component{
                     </div>
                     <div className="product__item__text">
                         <h6><p>{this.props.coffee['name']}</p></h6>
-                        <div className="product__item__price">$32.00</div>
+                        <div className="product__item__price">{this.props.coffee['price']}원</div>
                         <div className="cart_add">
                             {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                             <form onSubmit={this.handleSubmit}>
