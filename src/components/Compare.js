@@ -71,13 +71,13 @@ class Compare extends React.Component {
     _dbTest = async () => {
         await axios.get(this.apiEndpoint)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 const params = res.data;
                 this.data_all = res.data;
                 this.setState({ params });
             })
     }
-
+    
     // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
     handleFilter = async function(name_eng, name_kor) {
         const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
@@ -157,7 +157,7 @@ class Compare extends React.Component {
     }
 
     render() {
-        
+        console.log(this.state.params);
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
@@ -191,7 +191,7 @@ class Compare extends React.Component {
                                 </div>
                                 <div className="shop__option__right">
                                     <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select></Select>
+                                        <Select coffee={this.state.params}></Select>
                                     </div>
                                 </div>
                             </div>
