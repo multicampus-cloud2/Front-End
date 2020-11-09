@@ -3,6 +3,10 @@ import { Route, Link } from 'react-router-dom';
 import Home from 'components/Home';
 import Compare from 'components/Compare';
 import About from 'components/About';
+import Login from 'components/LoginButton';
+import Logout from 'components/LogoutButton';
+import User_Profile from 'components/User_Profile';
+import User_LikeBrand from 'components/User_LikeBrand';
 import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
@@ -19,7 +23,12 @@ class App extends React.Component {
     return (
       <>
         <div>
+          <Login></Login>
+          <Logout></Logout>
+          <User_LikeBrand></User_LikeBrand>
+          <User_Profile></User_Profile>
           <Link to="/"><img src={logo} style={style} alt="logo"/></Link>
+          
         </div>
 
         <header className="header">
