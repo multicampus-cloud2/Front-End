@@ -17,20 +17,20 @@ import LeftArrow from 'img/leftarrow.png'
 
 
 const items = [
-    { value: 1, name: '전체' },
-    { value: 2, name: '아메리카노' },
-    { value: 3, name: '에스프레소' },
-    { value: 4, name: '콜드브루' },
-    { value: 5, name: '카페라떼' },
-    { value: 6, name: '카푸치노' },
-    { value: 7, name: '카페모카' },
-    { value: 8, name: '마끼아또' },
-    { value: 9, name: '라떼' },
-    { value: 10, name: '블렌디드' },
-    { value: 11, name: '스무디' },
-    { value: 12, name: '에이드' },
-    { value: 13, name: '티' },
-    { value: 14, name: '기타' },
+    { name: '전체' },
+    { name: '아메리카노' },
+    { name: '에스프레소' },
+    { name: '콜드브루' },
+    { name: '카페라떼' },
+    { name: '카푸치노' },
+    { name: '카페모카' },
+    { name: '마끼아또' },
+    { name: '라떼' },
+    { name: '블렌디드' },
+    { name: '스무디' },
+    { name: '에이드' },
+    { name: '티' },
+    { name: '기타' },
 ];
 
 const brandItems = [
@@ -78,7 +78,7 @@ class Compare extends React.Component {
     _dbTest = async () => {
         await axios.get(this.apiEndpoint)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 const params = res.data;
                 this.dataAll = res.data;
                 this.setState({ params });
@@ -194,7 +194,7 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-
+        console.log(this.state.params);
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
@@ -233,15 +233,16 @@ class Compare extends React.Component {
 
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
-                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
-                                        <form onSubmit={this.handleFormSubmit}>
-                                            {this.createCheckboxes()}
-                                        </form>
+                                  <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                                    <form onSubmit={this.handleFormSubmit}>
+                                        {this.createCheckboxes()}
+                                    </form>
+                                </div>
+                                <div className="shop__option__right">
+                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
+                                        <Select coffee={this.state.params}></Select>
                                     </div>
-                                    <div className="shop__option__right">
-                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
-                                            <Select></Select>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +277,6 @@ class Compare extends React.Component {
                                     </table>
                                 </div>
                                 <ModalExample product={this.state.params_compare}></ModalExample>
-                                {/* <button style={{'backgroundColor': 'white',border: 'none'}} onClick={() => console.log(this.state.params_compare)}>보기</button> */}
                             </div>
                         </div>
                     </div>
