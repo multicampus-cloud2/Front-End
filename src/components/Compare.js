@@ -126,17 +126,21 @@ class Compare extends React.Component {
         items.map(this.createCheckbox)
     )
 
-    // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
-    // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
+    // // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
+    // // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
     // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
     handleCompareAdd = function(product) {
-        if (this.state.params_compare.length < 3 ) {
-            this.setState(() => {
-                return {params_compare: this.state.params_compare.concat(product)};
-            });
-            console.log(this.state.params_compare)
-        }else{
+        const { params_compare } = this.state;
+        let verify_overlap = params_compare.filter(info => info.id === product.id)
+
+        if (params_compare.length >= 3 ) {
             alert('비교함에 최대 3개까지 넣을 수 있습니다.');
+        }else if (verify_overlap.length !== 0){
+            alert('비교함에 동일한 음료가 이미 들어있습니다.');
+        }else{
+            this.setState(() => {
+                return {params_compare: params_compare.concat(product)};
+            });
         }
     }
 
