@@ -48,7 +48,7 @@ class Product extends React.Component{
                         <div className="cart_add">
                             {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                             <form onSubmit={this.handleSubmit}>
-                                <button type="submit" style={{'backgroundColor': 'white', border: 'none'}}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
+                                <button type="submit" style={{'backgroundColor': 'white', border: 'none', outline: 'none'}}><FontAwesomeIcon icon={faPlus}/>비교함에 담기</button>
                             </form>
                         </div>
                     </div>

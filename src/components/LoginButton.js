@@ -10,7 +10,10 @@ const ButtonStyle = styled.div`
 function LoginButton() {
     const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-    return !isAuthenticated && (<ButtonStyle><button type="button" className="authLogin btn-success" onClick={() => loginWithRedirect()}>Log In</button></ButtonStyle>);
+    return !isAuthenticated && (
+        <ButtonStyle>
+            <button type="button" className="authLogin btn-success" onClick={() => loginWithRedirect()}>Log In</button>
+        </ButtonStyle>);
 };
 
 export default LoginButton;

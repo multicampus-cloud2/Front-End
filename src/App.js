@@ -15,20 +15,22 @@ import logo from 'img/logo.png';
 class App extends React.Component {
   render() {
     const style = {
-      display: 'block',
+      // display: 'block',
       margin: 'auto',
       'padding': '15px 0px'
     };
-    
+
     return (
       <>
         <div>
-          <Login></Login>
-          <Logout></Logout>
-          <User_LikeBrand></User_LikeBrand>
-          <User_Profile></User_Profile>
-          <Link to="/"><img src={logo} style={style} alt="logo"/></Link>
-          
+          <div style={{ position: "absolute" }}>
+            <Login></Login>
+            <Logout></Logout>
+            <User_LikeBrand></User_LikeBrand>
+            <User_Profile></User_Profile>
+          </div>
+          <div style={{ textAlign: "center" }}><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div>
+
         </div>
 
         <header className="header">
@@ -48,14 +50,15 @@ class App extends React.Component {
             </nav>
           </div>
         </header>
-        
+
         <div>
-            <Route path="/" component={Home} exact={true} />
-            <Route path="/compare" component={Compare}/>
-            <Route path="/about" component={About} />
+          <Route path="/" component={Home} exact={true} />
+          <Route path="/compare" component={Compare} />
+          <Route path="/about" component={About} />
         </div>
       </>
-  )};
+    )
+  };
 };
 
 
