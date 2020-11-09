@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
 import Checkbox from 'components/Checkbox';
@@ -11,29 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
 import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import RightArrow from 'img/rightarrow.png'
+import LeftArrow from 'img/leftarrow.png'
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
-
-
-// function BrandMenu(props) {
-//     // let ImagePath = require("img/"+props.brand);
-//     const imageName = props.brand + '.png';
-//     // const filePath = 'img/${imageName}';
-//     // const fileUrl = require(filePath);
-//     return (
-//     <div onClick={() => this.handleFilter("starbucks")} className="categories__item__whole">
-//         <div className="categories__item">
-//             <div className="categories__item__icon">
-//                 <div>
-//                     {/* <img src={ImageName} alt={props.brand} /> */}
-//                     <img src={images.starbucks}/>
-//                     </div>
-//                 <h5>{props.brand}</h5>
-//             </div>
-//         </div>
-//     </div>
-//     );
-// }
-
 
 
 const items = [
@@ -51,17 +31,44 @@ const items = [
     { name: '에이드' },
     { name: '티' },
     { name: '기타' },
-
 ];
 
-const data_all = [];
+const brandItems = [
+    { name_eng: "all", name_kor: "전체", image: 0},
+    { name_eng: "starbucks", name_kor: "스타벅스", image: 1},
+    { name_eng: "hollys", name_kor: "할리스", image: 2},
+    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 3},
+    { name_eng: "ediya", name_kor: "이디야", image: 4},
+    { name_eng: "coffeebean", name_kor: "커피빈", image: 5},
+    { name_eng: "twosome", name_kor: "투썸플레이스", image: 6},
+    { name_eng: "angelinus", name_kor: "엔제리너스", image: 7},
+    { name_eng: "paikdabang", name_kor: "빽다방", image: 8},
+]
+                                           
+function NextArrow(props) {
+    const { onClick, className } = props;
+    return (
+        <img src={RightArrow} alt="" onClick={onClick} className={className} />
+    );
+}
+
+function PrevArrow(props) {
+    const { onClick, className } = props;
+    return (
+        <img src={LeftArrow} alt="" onClick={onClick} className={className} />
+    );
+}
+
+const dataAll = [];
+let selectedBrand = [];
+let selectedMenu = [];
 
 class Compare extends React.Component {
     state = {
         params: [],
         params_compare: [],
         num: 0,
-        ModalStatus : false, Modal: null
+        ModalStatus: false, Modal: null
     }
 
     componentDidMount() {
@@ -73,22 +80,26 @@ class Compare extends React.Component {
             .then(res => {
                 // console.log(res.data);
                 const params = res.data;
-                this.data_all = res.data;
+                this.dataAll = res.data;
                 this.setState({ params });
             })
-    }
-    
-    // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
-    handleFilter = async function(name_eng, name_kor) {
-        const obj = {brand_eng: name_eng, brand_kor: name_kor, httpMethod: "POST"};
-        const response = await axios.post(this.apiEndpoint, obj);
-        const params = response.data;
-        this.setState({ params });
-        console.log(params);
     }
 
     UNSAFE_componentWillMount = () => {
         this.selectedCheckboxes = new Set();
+    }
+
+     // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
+     handleFilter = async function (name_eng, name_kor, isChecked) {
+        if (isChecked) {
+            selectedBrand.push(name_eng);
+        }
+        else {
+            selectedBrand.splice(selectedBrand.indexOf(name_eng),1);
+        }
+
+        console.log("브랜드메뉴 잘들어갔나요?" + selectedBrand);
+        this.MenuBrandFilter();
     }
 
     toggleCheckbox = label => {
@@ -97,22 +108,39 @@ class Compare extends React.Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
-        this.handleMenuFilter([...this.selectedCheckboxes]);
+        selectedMenu = [...this.selectedCheckboxes];
+        this.MenuBrandFilter();
     }
 
-    handleMenuFilter = function(menu_name) {
-        if (!(this.data_all == null)) {
+    MenuBrandFilter = function () {
+        if (!(this.dataAll == null)) {
             let params = [];
-            for (var i=0; i<menu_name.length; i++) {
-                const filteringData = this.data_all.filter(function(element){
-                    return element.category===menu_name[i];
-                })
-                params=params.concat(filteringData);
-            }
-            this.setState({ params });  
+            // if(selectedBrand.length == 0){
+            //     for (let i=0; i<selectedMenu.length; i++){
+            //         let filteringData = this.dataAll.filter(function(element) {
+            //             return element.category == selectedMenu[i];
+            //         })
+            //         params = params.concat(filteringData);
+            //     }
+            // }
+            for (let i = 0; i < selectedBrand.length; i++) {
+                for (let j = 0; j < selectedMenu.length; j++) {
+                    let filteringData = this.dataAll.filter(function (element) {
+                        return element.brand == selectedBrand[i] && element.category == selectedMenu[j];
+                    })
+                    params = params.concat(filteringData);
+                }
+            } 
+            this.setState({ params });
+            console.log(params);
         }
-
     }
+
+    
+   
+    createBrandMenus = () => (
+        brandItems.map(element=> <Brand name_eng={element.name_eng} name_kor={element.name_kor} image={element.image} submit={this.handleFilter.bind(this)}/> )
+    )
 
     createCheckbox = label => (
         <Checkbox
@@ -129,34 +157,43 @@ class Compare extends React.Component {
     // // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
     // // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
     // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
-    handleCompareAdd = function(product) {
+    handleCompareAdd = function (product) {
         const { params_compare } = this.state;
         let verify_overlap = params_compare.filter(info => info.id === product.id)
 
-        if (params_compare.length >= 3 ) {
+        if (params_compare.length >= 3) {
             alert('비교함에 최대 3개까지 넣을 수 있습니다.');
-        }else if (verify_overlap.length !== 0){
+        } else if (verify_overlap.length !== 0) {
             alert('비교함에 동일한 음료가 이미 들어있습니다.');
-        }else{
+        } else {
             this.setState(() => {
-                return {params_compare: params_compare.concat(product)};
+                return { params_compare: params_compare.concat(product) };
             });
         }
     }
 
     // 비교박스에서 상품 제거
-    handleCompareDelete = function(product) {
+    handleCompareDelete = function (product) {
         const { params_compare } = this.state;
-        if (params_compare.length >0 ){
+        if (params_compare.length > 0) {
             this.setState({
                 params_compare: params_compare.filter(info => info.id !== product.id)
             })
-        }else{
+        } else {
             alert('비교함에 제거할 상품이 없습니다.');
         }
     }
 
     render() {
+        var settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />
+        }
         console.log(this.state.params);
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
@@ -167,24 +204,36 @@ class Compare extends React.Component {
             <tr>
                 <td className="product__cart__item">
                     <div className="product__cart__item__pic">
-                        <img  onClick={() => this.handleCompareDelete(product)} src={product['image']} style={{width:'100px',height:'100px'}} alt=""/>
+                        <img onClick={() => this.handleCompareDelete(product)} src={product['image']} style={{ width: '100px', height: '100px' }} alt="" />
                     </div>
                 </td>
                 <td className="cart__price">{product['name']}{product['brand']}</td>
-                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{width:'30px'}}/></td>
+                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{ width: '30px' }} /></td>
             </tr>
         ));
 
         return (
             <>
-                <section style={{float:'left',width:'80%'}}>
+                <section style={{ float: 'left', width: '80%' }}>
                     <section className="search spad">
-                    <div className="container">
-                        {/* 자식(brand.js) 에게 submit이라는 props를 보내주고 자식에서 실행된 결과를 handleFilter의 파라미터값으로 받아옴 */}
-                        <Brand submit={this.handleFilter.bind(this)}></Brand>
-                        <div className="" style={{borderTop:'1px solid rgba(240, 135, 50, 0.5)',borderBottom:'1px solid rgba(240, 135, 50, 0.5)','paddingBottom':'10px'}}>
-                            <div className="row">
-                                <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                        <div className="container">
+                            {/* 자식(brand.js) 에게 submit이라는 props를 보내주고 자식에서 실행된 결과를 handleFilter의 파라미터값으로 받아옴 */}
+                            <div className="categories">
+                                <div className="container">
+                                    <div>
+                                        <div className="categories__slider owl-carousel">
+                                            <Slider {...settings}>
+                                                {this.createBrandMenus()}
+                                            </Slider>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
+                                <div className="row">
+                                  <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
                                     <form onSubmit={this.handleFormSubmit}>
                                         {this.createCheckboxes()}
                                     </form>
@@ -193,36 +242,37 @@ class Compare extends React.Component {
                                     <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
                                         <Select coffee={this.state.params}></Select>
                                     </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
                     <section className="product spad">
-                    <div className="container">
-                        <div className="row">
-                            {productList}
+                        <div className="container">
+                            <div className="row">
+                                {productList}
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
                 </section>
 
-                <section className="wishlist spad" style={{width:'18%',float:'left',position:'fixed',top:'300px',right:'30px'}}> 
+                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '300px', right: '30px' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                <div className="col-lg-12" style={{textAlign:'center'}}>Compare Box</div>
+                                <div className="col-lg-12" style={{ textAlign: 'center' }}>Compare Box</div>
                                 <div className="wishlist__cart__table">
                                     <table>
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th style={{width:'70%'}} colSpan='2'>Name</th>
+                                                <th style={{ width: '70%' }} colSpan='2'>Name</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {compareList}                                               
+                                            {compareList}
                                         </tbody>
                                     </table>
                                 </div>
@@ -231,7 +281,7 @@ class Compare extends React.Component {
                         </div>
                     </div>
                 </section>
-            </> 
+            </>
         );
     }
 }
