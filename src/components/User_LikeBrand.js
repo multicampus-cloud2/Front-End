@@ -7,6 +7,7 @@ import Selects from 'react-select';
 
 const ButtonStyle = styled.div`
     float: right;
+    margin: 15px 15px 0px 5px;
 `;
 
 const options = [
@@ -36,10 +37,16 @@ class User_LikeBrand extends React.Component {
         }));
     }
 
+    // saveUserBrand = async function(userinfo, brand_name) {
+    //     const obj = {user: userinfo, brand: brand_name, httpMethod: "POST"};
+    //     await axios.post(this.apiEndpoint, obj);
+    //     console.log("저장되었습니다.");
+    // }
+
     render() {
         console.log(this.state.modal)
 
-        const { isAuthenticated } = this.props.auth0;
+        const { user, isAuthenticated } = this.props.auth0;
 
         return isAuthenticated && (
             <ButtonStyle>
@@ -51,7 +58,9 @@ class User_LikeBrand extends React.Component {
                         <Selects options={options} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={this.toggle}>저장</Button>
+                        {/* <Button color="info" onClick={this.saveUserBrand(user, "스타벅스")}>저장</Button> */}
+                        <Button color="info">저장</Button>
+                        <Button color="light" onClick={this.toggle}>닫기</Button>
                     </ModalFooter>
                 </Modal>
             </ButtonStyle>
