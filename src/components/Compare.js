@@ -65,13 +65,9 @@ class Compare extends React.Component {
         params_compare: [],
         num: 0,
         ModalStatus: false, Modal: null,
-<<<<<<< HEAD
-        onChange: false
-=======
-
+        onChange: false,
         isBrandAllChecked: true,
         isMenuAllChecked: true,
->>>>>>> b771cdbfec0abf3aa02c3f010251e26092580011
     }
 
     componentDidMount() {
@@ -234,7 +230,7 @@ class Compare extends React.Component {
         }
     }
 
-<<<<<<< HEAD
+
     // 내림차순
     compareBy_DESC(key) {
         return function (a, b) {
@@ -269,11 +265,12 @@ class Compare extends React.Component {
         let arrayCopy = [...this.state.params];
         arrayCopy.sort(this.compareBy_ASC(key));
         this.setState({params : arrayCopy});
-=======
+    }
+
     // 스크롤 위로 올리기
     scrollUp(){
         window.scrollTo(0, 0);
->>>>>>> b771cdbfec0abf3aa02c3f010251e26092580011
+
     }
 
     render() {
@@ -291,19 +288,7 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
-<<<<<<< HEAD
-        // 데이터 정렬 처리하기
-        this.state.sortSize = []
-        var SelectFilterList = this.state.params
-        SelectFilterList.map((product) => (
-            this.state.sortSize.push(product['size']),
-            this.state.sortSize.sort((a, b) => a - b)
-        ));
 
-        console.log(this.state.params);
-=======
-
->>>>>>> b771cdbfec0abf3aa02c3f010251e26092580011
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
@@ -372,32 +357,24 @@ class Compare extends React.Component {
 
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
-<<<<<<< HEAD
+
                                   <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
-                                    <form onSubmit={this.handleFormSubmit}>
-                                        {this.createCheckboxes()}
-                                    </form>
-                                </div>
-                                <div className="shop__option__right">
-                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select 
-                                        onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') :() => this.sortBy_DESC('kcal')}
-                                        ></Select>
-=======
-                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
                                         <div className="checkbox">
                                             <label>
                                                 {chkAllMenu}전체
                                             </label>
                                         </div>
                                         {checkboxList}
->>>>>>> b771cdbfec0abf3aa02c3f010251e26092580011
+                                 </div>
+                                <div className="shop__option__right">
+                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
+                                        <Select 
+                                        onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') :() => this.sortBy_DESC('kcal')}
+                                        ></Select>
+
                                     </div>
-                                    <div className="shop__option__right">
-                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
-                                            <Select coffee={this.state.params}></Select>
-                                        </div>
-                                    </div>
+
+                                </div>
                                 </div>
                             </div>
                         </div>
