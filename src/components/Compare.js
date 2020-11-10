@@ -89,7 +89,7 @@ class Compare extends React.Component {
     }
 
     handleBrandMenu = function (name_eng, isChecked, index) {
-        brandItems[index].check = !(brandItems[index].check);
+        brandItems[index].check = brandItems[index].check === 0 ? 1 : 0;
 
         if (isChecked) {
             selectedBrand.push(name_eng);
@@ -152,6 +152,7 @@ class Compare extends React.Component {
         }
     }
 
+    // 브랜드 동그라미메뉴 생성
     createBrandMenus = () => (
         brandItems.map((element, index) =>
             <Brand
@@ -307,15 +308,18 @@ class Compare extends React.Component {
         ));
 
         // 브랜드 동그라미메뉴 'ALL'
+        console.log("allCheck" + this.state.isBrandAllChecked);
         let chkAllBrand = (
             <div className="categories__item__whole">
                 <div className="categories__item">
-                    <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandChk()} />
-                    <div className="categories__item__icon">
-                        <div>
-                            <img src={all} alt=""/>
+                    <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
+                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandChk()} />
+                        <div className="categories__item__icon">
+                            <div>
+                                <img src={all} alt="" />
+                            </div>
+                            <h5>ALL</h5>
                         </div>
-                        <h5>ALL</h5>
                     </div>
                 </div>
             </div>
