@@ -44,7 +44,7 @@ const brandItems = [
     { name_eng: "angelinus", name_kor: "엔제리너스", image: 7},
     { name_eng: "paikdabang", name_kor: "빽다방", image: 8},
 ]
-                                           
+
 function NextArrow(props) {
     const { onClick, className } = props;
     return (
@@ -68,7 +68,8 @@ class Compare extends React.Component {
         params: [],
         params_compare: [],
         num: 0,
-        ModalStatus: false, Modal: null
+        ModalStatus: false, Modal: null,
+        onChange: false
     }
 
     componentDidMount() {
@@ -132,7 +133,6 @@ class Compare extends React.Component {
                 }
             } 
             this.setState({ params });
-            console.log(params);
         }
     }
 
@@ -184,7 +184,48 @@ class Compare extends React.Component {
         }
     }
 
+    // 내림차순
+    compareBy_DESC(key) {
+        return function (a, b) {
+          var x = parseInt(a[key]);
+          var y = parseInt(b[key]);
+          
+          if (x > y) return -1;
+          if (x < y) return 1;
+          return 0;
+        };
+      }
+     
+      sortBy_DESC(key) {
+        let arrayCopy = [...this.state.params];
+        arrayCopy.sort(this.compareBy_DESC(key));
+        this.setState({params : arrayCopy});
+      }
+
+    // 오름차순
+    compareBy_ASC(key) {
+        return function (a, b) {
+          var x = parseInt(a[key]);
+          var y = parseInt(b[key]);
+          
+          if (x < y) return -1;
+          if (x > y) return 1;
+          return 0;
+        };
+      }
+
+    sortBy_ASC(key) {
+        let arrayCopy = [...this.state.params];
+        arrayCopy.sort(this.compareBy_ASC(key));
+        this.setState({params : arrayCopy});
+    }
+
     render() {
+        if (this.state.onChange === false) {
+            this.state.onChange = true;
+        }else if(this.state.onChange === true){
+            this.state.onChange = false;
+        }
         var settings = {
             dots: false,
             infinite: true,
@@ -194,6 +235,14 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
+        // 데이터 정렬 처리하기
+        this.state.sortSize = []
+        var SelectFilterList = this.state.params
+        SelectFilterList.map((product) => (
+            this.state.sortSize.push(product['size']),
+            this.state.sortSize.sort((a, b) => a - b)
+        ));
+
         console.log(this.state.params);
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
@@ -240,7 +289,9 @@ class Compare extends React.Component {
                                 </div>
                                 <div className="shop__option__right">
                                     <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select coffee={this.state.params}></Select>
+                                        <Select 
+                                        onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') :() => this.sortBy_DESC('kcal')}
+                                        ></Select>
                                     </div>
 
                                     </div>
