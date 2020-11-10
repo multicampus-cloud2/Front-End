@@ -8,7 +8,7 @@ import ModalExample from 'components/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
-import { faTrashAlt, } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt,faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 import all from 'img/all.png';
@@ -117,7 +117,6 @@ class Compare extends React.Component {
             console.log("선택메뉴" + selectedMenu);
 
             let params = [];
-
             if (isBrandAllChecked) {
                 if (isMenuAllChecked) {
                     params = dataAll;
@@ -232,6 +231,11 @@ class Compare extends React.Component {
         }
     }
 
+    // 스크롤 위로 올리기
+    scrollUp(){
+        window.scrollTo(0, 0);
+    }
+
     render() {
         var settings = {
             dots: false,
@@ -338,7 +342,7 @@ class Compare extends React.Component {
                     </section>
                 </section>
 
-                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '300px', right: '30px' }}>
+                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -361,6 +365,7 @@ class Compare extends React.Component {
                         </div>
                     </div>
                 </section>
+                <div onClick={this.scrollUp} style={{float:'right',position:'fixed',right:'40px',bottom:'40px'}}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
             </>
         );
     }
