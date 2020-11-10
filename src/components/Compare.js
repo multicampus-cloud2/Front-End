@@ -1,8 +1,6 @@
-
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import 'css/compare.css';
 import Slider from 'react-slick';
-import Checkbox from 'components/Checkbox';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -10,10 +8,10 @@ import ModalExample from 'components/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
-import { faSearch, faTrashAlt, faPlus, faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, } from "@fortawesome/free-solid-svg-icons";
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
-// 참고 : https://blog.logrocket.com/getting-started-with-react-select/
+import all from 'img/all.png';
 
 
 const items = [
@@ -33,15 +31,14 @@ const items = [
 ];
 
 const brandItems = [
-    { name_eng: "all", name_kor: "전체", image: 0 },
-    { name_eng: "starbucks", name_kor: "스타벅스", image: 1 },
-    { name_eng: "hollys", name_kor: "할리스", image: 2 },
-    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 3 },
-    { name_eng: "ediya", name_kor: "이디야", image: 4 },
-    { name_eng: "coffeebean", name_kor: "커피빈", image: 5 },
-    { name_eng: "twosome", name_kor: "투썸플레이스", image: 6 },
-    { name_eng: "angelinus", name_kor: "엔제리너스", image: 7 },
-    { name_eng: "paikdabang", name_kor: "빽다방", image: 8 },
+    { name_eng: "starbucks", name_kor: "스타벅스", image: 0, check: 0 },
+    { name_eng: "hollys", name_kor: "할리스", image: 1, check: 0 },
+    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 2, check: 0 },
+    { name_eng: "ediya", name_kor: "이디야", image: 3, check: 0 },
+    { name_eng: "coffeebean", name_kor: "커피빈", image: 4, check: 0 },
+    { name_eng: "twosome", name_kor: "투썸플레이스", image: 5, check: 0 },
+    { name_eng: "angelinus", name_kor: "엔제리너스", image: 6, check: 0 },
+    { name_eng: "paikdabang", name_kor: "빽다방", image: 7, check: 0 },
 ]
 
 function NextArrow(props) {
@@ -69,9 +66,8 @@ class Compare extends React.Component {
         num: 0,
         ModalStatus: false, Modal: null,
 
-        brandAllChecked: true,
-        menuAllChecked: true,
-        setCheckedMenuCount: 0
+        isBrandAllChecked: true,
+        isMenuAllChecked: true,
     }
 
     componentDidMount() {
@@ -81,7 +77,6 @@ class Compare extends React.Component {
     _dbTest = async () => {
         await axios.get(this.apiEndpoint)
             .then(res => {
-                // console.log(res.data);
                 const params = res.data;
 
                 dataAll = res.data;
@@ -93,56 +88,65 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
-    // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
-    handleFilter = async function (name_eng, name_kor, isChecked) {
+    handleBrandMenu = function (name_eng, isChecked, index) {
+        brandItems[index].check = !(brandItems[index].check);
+
         if (isChecked) {
             selectedBrand.push(name_eng);
         }
         else {
             selectedBrand.splice(selectedBrand.indexOf(name_eng), 1);
         }
-
-        console.log("브랜드메뉴 잘들어갔나요?" + selectedBrand);
-        this.MenuBrandFilter();
+        this.setState({
+            isBrandAllChecked: false,
+        }, () => this.MenuBrandFilter());
     }
 
-    toggleCheckbox = label => {
-        console.log("호출되었다");
-        if (this.selectedCheckboxes.has(label)) {
-            this.selectedCheckboxes.delete(label);
-        } else {
-            this.selectedCheckboxes.add(label);
-        }
-        selectedMenu = [...this.selectedCheckboxes];
-        this.MenuBrandFilter();
-    }
-
+    // 브랜드, 메뉴 필터링
     MenuBrandFilter = function () {
+        const { isBrandAllChecked, isMenuAllChecked } = this.state;
         if (!(dataAll == null)) {
-            let params = [];
-            let checkedItems = items.filter(function(element) {
-                return element.check == 1;
+            let checkedItems = items.filter(function (element) {
+                return element.check === 1;
             })
             selectedMenu = [];
             checkedItems.forEach(element => {
                 selectedMenu.push(element.name);
             })
+            console.log("선택브랜드" + selectedBrand);
             console.log("선택메뉴" + selectedMenu);
 
-            // if(selectedBrand.length == 0){
-            //     for (let i=0; i<selectedMenu.length; i++){
-            //         let filteringData = this.dataAll.filter(function(element) {
-            //             return element.category == selectedMenu[i];
-            //         })
-            //         params = params.concat(filteringData);
-            //     }
-            // }
-            for (let i = 0; i < selectedBrand.length; i++) {
-                for (let j = 0; j < selectedMenu.length; j++) {
-                    let filteringData = dataAll.filter(function (element) {
-                        return element.brand == selectedBrand[i] && element.category == selectedMenu[j];
-                    })
-                    params = params.concat(filteringData);
+            let params = [];
+
+            if (isBrandAllChecked) {
+                if (isMenuAllChecked) {
+                    params = dataAll;
+                } else {
+                    for (let i = 0; i < selectedMenu.length; i++) {
+                        let filteringData = dataAll.filter(function (element) {
+                            return element.category === selectedMenu[i];
+                        })
+                        params = params.concat(filteringData);
+                    }
+                }
+            }
+            else {
+                if (isMenuAllChecked) {
+                    for (let i = 0; i < selectedBrand.length; i++) {
+                        let filteringData = dataAll.filter(function (element) {
+                            return element.brand === selectedBrand[i];
+                        })
+                        params = params.concat(filteringData);
+                    }
+                } else {
+                    for (let i = 0; i < selectedBrand.length; i++) {
+                        for (let j = 0; j < selectedMenu.length; j++) {
+                            let filteringData = dataAll.filter(function (element) {
+                                return element.brand === selectedBrand[i] && element.category === selectedMenu[j];
+                            })
+                            params = params.concat(filteringData);
+                        }
+                    }
                 }
             }
             this.setState({ params });
@@ -150,45 +154,57 @@ class Compare extends React.Component {
         }
     }
 
-
-
     createBrandMenus = () => (
-        brandItems.map(element =>
+        brandItems.map((element, index) =>
             <Brand
                 name_eng={element.name_eng}
                 name_kor={element.name_kor}
                 image={element.image}
-                submit={this.handleFilter.bind(this)} />
+                checked={element.check}
+                index={index}
+                submit={this.handleBrandMenu.bind(this)} />
         )
     )
 
-    createCheckbox = label => (
-        <Checkbox
-            label={label.name}
-            handleCheckboxChange={this.toggleCheckbox}
-            isAllChecked={this.state.menuAllChecked}
-        />
-    )
-
-    createCheckboxes = () => (
-        items.map(this.createCheckbox)
-    )
-
-    handleAllChecked = () => {
-        const { menuAllChecked } = this.state;
-        // if (this.state.menuAllChecked) {
-        this.setState(({ menuAllChecked }) => (
-            {
-                menuAllChecked: !menuAllChecked,
+    // 단일 체크박스 선택 핸들러
+    handleChk = (selectrowIdx) => {
+        items.forEach(element => {
+            if (element.rowIdx === selectrowIdx) {
+                element.check = element.check === 1 ? 0 : 1
             }
-        ));
-        // }
+        })
+        this.setState({
+            isMenuAllChecked: false,
+        }, () => this.MenuBrandFilter());
 
     }
 
-    // // params_compare는 모든 컴포넌트 객체를 담고 있어야 하기 떄문에 compare.js에서 사용해야 함.
-    // // 자식 컴포넌트에서 실행된 결과를 product라는 파라미터로 저장해주고 이 파라미터값을 params_compare 배열에 저장
-    // 비교박스에 상품 추가 : 참고사이트 https://velopert.com/3636
+    // 체크박스 전체 선택 핸들러
+    handleAllChk = () => {
+        const { isMenuAllChecked } = this.state
+
+        items.forEach(element => {
+            element.check = 0;
+        })
+
+        this.setState({
+            isMenuAllChecked: !isMenuAllChecked,
+        }, () => this.MenuBrandFilter());
+    }
+
+    // 브랜드 동그라미메뉴 전체 선택 핸들러
+    handleAllBrandChk = () => {
+        selectedBrand = [];
+        const { isBrandAllChecked } = this.state
+        brandItems.forEach(element => {
+            element.check = 0;
+        })
+        this.setState({
+            isBrandAllChecked: !isBrandAllChecked,
+        }, () => this.MenuBrandFilter());
+    }
+
+
     handleCompareAdd = function (product) {
         const { params_compare } = this.state;
         let verify_overlap = params_compare.filter(info => info.id === product.id)
@@ -216,59 +232,6 @@ class Compare extends React.Component {
         }
     }
 
-
-    // 단일 체크박스 선택 핸들러
-    handleChk = (selectrowIdx) => {
-        const { setCheckedMenuCount } = this.state
-        let retChecked = 0
-        items.forEach(element => {
-            if (element.rowIdx == selectrowIdx) {
-                retChecked = element.check == 1 ? -1 : 1 
-                element.check = element.check == 1 ? 0 : 1
-            }
-        })
-        this.setState({
-            setCheckedMenuCount: retChecked == -1 ? setCheckedMenuCount - 1 : setCheckedMenuCount + 1,
-            menuAllChecked: false,
-        })
-
-        items.forEach(element => {
-            console.log(element.name + "," +element.check);
-        })
-       
-        this.MenuBrandFilter();
-
-    } 
-    
-    // 체크박스 전체 선택 핸들러
-    handleAllChk = () => {
-        const { menuAllChecked, setCheckedMenuCount } = this.state
-
-        let unCheckNum = 0
-        let checkNum = 0
-
-        items.forEach(element => {
-            if (menuAllChecked) {
-                unCheckNum = element.check == 1 ? unCheckNum + 1 : unCheckNum
-            } else {
-                checkNum = element.check == 0 ? checkNum + 1 : checkNum
-            }
-            element.check = 0;
-        })
-
-        this.setState({
-            menuAllChecked: !menuAllChecked,
-            setCheckedMenuCount: !menuAllChecked ? setCheckedMenuCount + checkNum : setCheckedMenuCount - unCheckNum,
-        })
-
-        items.forEach(element => {
-            console.log(element.name + "," +element.check);
-        })
-
-        this.MenuBrandFilter();
-    }
-
-
     render() {
         var settings = {
             dots: false,
@@ -279,6 +242,7 @@ class Compare extends React.Component {
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />
         }
+
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
         const productList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
@@ -296,18 +260,33 @@ class Compare extends React.Component {
             </tr>
         ));
 
+        // 브랜드 동그라미메뉴 'ALL'
+        let chkAllBrand = (
+            <div className="categories__item__whole">
+                <div className="categories__item">
+                    <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandChk()} />
+                    <div className="categories__item__icon">
+                        <div>
+                            <img src={all} alt=""/>
+                        </div>
+                        <h5>ALL</h5>
+                    </div>
+                </div>
+            </div>
+        )
+
         // 체크박스 '전체' 
-        let allChkInput;
-        if (this.state.menuAllChecked || this.state.setCheckedMenuCount == 0) {
-            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true} />
+        let chkAllMenu;
+        if (this.state.isMenuAllChecked) {
+            chkAllMenu = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true} />
         } else {
-            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false} />
+            chkAllMenu = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false} />
         }
 
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="checkbox">
-                <input type="checkbox" name={element.rowIdx} checked={element.check == 1} onChange={() => this.handleChk(element.rowIdx)} />
+                <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleChk(element.rowIdx)} />
                 {element.name}
             </div>
         ));
@@ -317,12 +296,12 @@ class Compare extends React.Component {
                 <section style={{ float: 'left', width: '80%' }}>
                     <section className="search spad">
                         <div className="container">
-                            {/* 자식(brand.js) 에게 submit이라는 props를 보내주고 자식에서 실행된 결과를 handleFilter의 파라미터값으로 받아옴 */}
                             <div className="categories">
                                 <div className="container">
                                     <div>
                                         <div className="categories__slider owl-carousel">
                                             <Slider {...settings}>
+                                                {chkAllBrand}
                                                 {this.createBrandMenus()}
                                             </Slider>
                                         </div>
@@ -330,23 +309,20 @@ class Compare extends React.Component {
                                 </div>
                             </div>
 
-
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
                                     <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
                                         <div className="checkbox">
                                             <label>
-                                            {allChkInput}전체
+                                                {chkAllMenu}전체
                                             </label>
                                         </div>
-                                        {/* {this.createCheckboxes()} */}
                                         {checkboxList}
                                     </div>
                                     <div className="shop__option__right">
                                         <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
                                             <Select coffee={this.state.params}></Select>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
