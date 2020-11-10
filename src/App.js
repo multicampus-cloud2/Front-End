@@ -11,8 +11,8 @@ import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
 
-
 class App extends React.Component {
+
   render() {
     const style = {
       // display: 'block',

@@ -1,6 +1,5 @@
 import React from 'react';
 import images from 'img/brand';
-import Slider from 'react-slick';
 import 'css/compare.css';
 import 'img/coffeebean.png';
 

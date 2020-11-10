@@ -71,8 +71,8 @@
   }
   
   .banner img{
-    width: 85%;
-    height: absolute;
+    max-width: 85%;
+    object-fit: cover;
     margin : auto;
   }
   

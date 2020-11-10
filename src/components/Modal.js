@@ -2,20 +2,19 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
-import _ from 'lodash';
-//참고 사이트 : https://www.hanumoka.net/2019/10/26/react-20191026-react-modal-draggable/
-// model 공식사이트 : https://reactstrap.github.io/components/modals/
+import Nested from './Modal_nested';
+// 참고 사이트 : https://6-4-0--reactstrap.netlify.app/components/modals/
 
 class ModalExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      lowest: [],
-      highest: []
     };
 
     this.toggle = this.toggle.bind(this);
+    // this.toggleNested = this.toggleNested.bind(this);
+    // this.toggleAll = this.toggleAll.bind(this);
   }
 
   toggle() {
@@ -28,6 +27,20 @@ class ModalExample extends React.Component {
     }
   }
 
+  // toggleNested() {
+  //   this.setState({
+  //     nestedModal: !this.state.nestedModal,
+  //     closeAll: false
+  //   });
+  // }
+
+  // toggleAll() {
+  //   this.setState({
+  //     nestedModal: !this.state.nestedModal,
+  //     closeAll: true
+  //   });
+  // }
+
   render() {
 
     const compareList = this.props.product.map((product) => (
@@ -36,25 +49,26 @@ class ModalExample extends React.Component {
           <img src={product['image']} style={{ width: '130px', height: '125px'}} alt="" />
         </div>
         <div style={{ textAlign: 'center',marginTop:'10px'}}>
-          <p style={{fontWeight:'bold'}}>{product['name']}</p>
+          <p style={{fontWeight:'bold',height:'45px'}}>{product['name']}</p>
           <p>{product['brand']}</p>
           <p>{product['category']}</p>
-          <p>{product['kcal']}</p>
-          <p>{product['size']}</p>
-          <p>{product['caffeine']}</p>
+          <p>{product['kcal']}(Kcal)</p>
+          <p>{product['size']}(ml)</p>
+          <p>{product['caffeine']}(mg)</p>
           
-          <p>{product['sugar']}</p>
-          <p>{product['price']}</p>
+          <p>{product['sugar']}(g)</p>
+          <p>{product['price']}(원)</p>
+          <Nested brand={product['brand']}></Nested>
         </div>
+        
       </div>
     ));
-
 
     return (
       <div>
         <Button style={{ border: 'none', float: 'right' }} onClick={this.toggle}><FontAwesomeIcon icon={faBalanceScale} />비교하러 가기</Button>
         <Modal size={'lg'} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} className="handle">음료 성분 비교</ModalHeader>
+          <ModalHeader toggle={this.toggle}>음료 성분 비교</ModalHeader>
           <ModalBody>
             <div className="container">
               <div className="row">
@@ -63,14 +77,14 @@ class ModalExample extends React.Component {
                     <p style={{ width: '100px', height: '130px',margin:'10px auto'}}><br/><br/>상품 이미지</p>
                   </div>
                   <div style={{ textAlign: 'center',marginTop:'-12px'}}>
-                    <p>상품명</p>
+                    <p style={{height:'45px'}}>상품명</p>
                     <p>브랜드</p>
                     <p>분류</p>
-                    <p>칼로리(Kcal)</p>
-                    <p>사이즈(ml)</p>
-                    <p>카페인(mg)</p>
-                    <p>당류(g)</p>
-                    <p>가격(원)</p>
+                    <p>칼로리</p>
+                    <p>사이즈</p>
+                    <p>카페인</p>
+                    <p>당류</p>
+                    <p>가격</p>
                   </div>
                 </div>
                 {compareList}
