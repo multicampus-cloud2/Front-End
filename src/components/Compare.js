@@ -238,15 +238,15 @@ class Compare extends React.Component {
 
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
-                                  <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
-                                    <form onSubmit={this.handleFormSubmit}>
-                                        {this.createCheckboxes()}
-                                    </form>
-                                </div>
-                                <div className="shop__option__right">
-                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select coffee={this.state.params}></Select>
+                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
+                                        <form onSubmit={this.handleFormSubmit}>
+                                            {this.createCheckboxes()}
+                                        </form>
                                     </div>
+                                    <div className="shop__option__right">
+                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
+                                            <Select coffee={this.state.params}></Select>
+                                        </div>
 
                                     </div>
                                 </div>
