@@ -10,7 +10,7 @@ import ModalExample from 'components/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
-import { faSearch, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTrashAlt, faPlus, faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 import RightArrow from 'img/rightarrow.png'
 import LeftArrow from 'img/leftarrow.png'
 // 참고 : https://blog.logrocket.com/getting-started-with-react-select/
@@ -69,8 +69,9 @@ class Compare extends React.Component {
         num: 0,
         ModalStatus: false, Modal: null,
 
+        brandAllChecked: true,
         menuAllChecked: true,
-        setCheckedCount: 0
+        setCheckedMenuCount: 0
     }
 
     componentDidMount() {
@@ -119,6 +120,15 @@ class Compare extends React.Component {
     MenuBrandFilter = function () {
         if (!(dataAll == null)) {
             let params = [];
+            let checkedItems = items.filter(function(element) {
+                return element.check == 1;
+            })
+            selectedMenu = [];
+            checkedItems.forEach(element => {
+                selectedMenu.push(element.name);
+            })
+            console.log("선택메뉴" + selectedMenu);
+
             // if(selectedBrand.length == 0){
             //     for (let i=0; i<selectedMenu.length; i++){
             //         let filteringData = this.dataAll.filter(function(element) {
@@ -209,7 +219,7 @@ class Compare extends React.Component {
 
     // 단일 체크박스 선택 핸들러
     handleChk = (selectrowIdx) => {
-        const { setCheckedCount } = this.state
+        const { setCheckedMenuCount } = this.state
         let retChecked = 0
         items.forEach(element => {
             if (element.rowIdx == selectrowIdx) {
@@ -218,24 +228,21 @@ class Compare extends React.Component {
             }
         })
         this.setState({
-            setCheckedCount: retChecked == -1 ? setCheckedCount - 1 : setCheckedCount + 1,
+            setCheckedMenuCount: retChecked == -1 ? setCheckedMenuCount - 1 : setCheckedMenuCount + 1,
             menuAllChecked: false,
         })
 
         items.forEach(element => {
             console.log(element.name + "," +element.check);
         })
+       
+        this.MenuBrandFilter();
 
-        items.forEach(element => {
-            this.state.selectedMenu.push(items.filter(function (element) {
-                return element.check==1;
-            }))
-        })
     } 
     
     // 체크박스 전체 선택 핸들러
     handleAllChk = () => {
-        const { menuAllChecked, setCheckedCount } = this.state
+        const { menuAllChecked, setCheckedMenuCount } = this.state
 
         let unCheckNum = 0
         let checkNum = 0
@@ -251,7 +258,7 @@ class Compare extends React.Component {
 
         this.setState({
             menuAllChecked: !menuAllChecked,
-            setCheckedCount: !menuAllChecked ? setCheckedCount + checkNum : setCheckedCount - unCheckNum,
+            setCheckedMenuCount: !menuAllChecked ? setCheckedMenuCount + checkNum : setCheckedMenuCount - unCheckNum,
         })
 
         items.forEach(element => {
@@ -263,8 +270,6 @@ class Compare extends React.Component {
 
 
     render() {
-        console.log("전체선택 yes?" + this.state.menuAllChecked);
-
         var settings = {
             dots: false,
             infinite: true,
@@ -293,7 +298,7 @@ class Compare extends React.Component {
 
         // 체크박스 '전체' 
         let allChkInput;
-        if (this.state.menuAllChecked || this.state.setCheckedCount == 0) {
+        if (this.state.menuAllChecked || this.state.setCheckedMenuCount == 0) {
             allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true} />
         } else {
             allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false} />
