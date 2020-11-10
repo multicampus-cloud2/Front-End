@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
-import Nested from './Modal_nested';
+import Nested from './Modal_map';
 // 참고 사이트 : https://6-4-0--reactstrap.netlify.app/components/modals/
 
 class ModalExample extends React.Component {
