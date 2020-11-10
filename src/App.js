@@ -11,8 +11,8 @@ import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
 
-
 class App extends React.Component {
+
   render() {
     const style = {
       // display: 'block',
@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <>
         <div>
-          <div style={{ position: "absolute" }}>
+          <div style={{ position: "absolute",left:'10px'}}>
             <Login></Login>
             <Logout></Logout>
             <User_LikeBrand></User_LikeBrand>
