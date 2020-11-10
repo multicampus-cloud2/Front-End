@@ -17,33 +17,33 @@ import LeftArrow from 'img/leftarrow.png'
 
 
 const items = [
-    { rowidx: 0, check: 0, name: '아메리카노' },
-    { rowidx: 1, check: 0, name: '에스프레소' },
-    { rowidx: 2, check: 0, name: '콜드브루' },
-    { rowidx: 3, check: 0, name: '카페라떼' },
-    { rowidx: 4, check: 0, name: '카푸치노' },
-    { rowidx: 5, check: 0, name: '카페모카' },
-    { rowidx: 6, check: 0, name: '마끼아또' },
-    { rowidx: 7, check: 0, name: '라떼' },
-    { rowidx: 8, check: 0, name: '블렌디드' },
-    { rowidx: 9, check: 0, name: '스무디' },
-    { rowidx: 10, check: 0, name: '에이드' },
-    { rowidx: 11, check: 0, name: '티' },
-    { rowidx: 12, check: 0, name: '기타' },
+    { rowIdx: 0, check: 0, name: '아메리카노' },
+    { rowIdx: 1, check: 0, name: '에스프레소' },
+    { rowIdx: 2, check: 0, name: '콜드브루' },
+    { rowIdx: 3, check: 0, name: '카페라떼' },
+    { rowIdx: 4, check: 0, name: '카푸치노' },
+    { rowIdx: 5, check: 0, name: '카페모카' },
+    { rowIdx: 6, check: 0, name: '마끼아또' },
+    { rowIdx: 7, check: 0, name: '라떼' },
+    { rowIdx: 8, check: 0, name: '블렌디드' },
+    { rowIdx: 9, check: 0, name: '스무디' },
+    { rowIdx: 10, check: 0, name: '에이드' },
+    { rowIdx: 11, check: 0, name: '티' },
+    { rowIdx: 12, check: 0, name: '기타' },
 ];
 
 const brandItems = [
-    { name_eng: "all", name_kor: "전체", image: 0},
-    { name_eng: "starbucks", name_kor: "스타벅스", image: 1},
-    { name_eng: "hollys", name_kor: "할리스", image: 2},
-    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 3},
-    { name_eng: "ediya", name_kor: "이디야", image: 4},
-    { name_eng: "coffeebean", name_kor: "커피빈", image: 5},
-    { name_eng: "twosome", name_kor: "투썸플레이스", image: 6},
-    { name_eng: "angelinus", name_kor: "엔제리너스", image: 7},
-    { name_eng: "paikdabang", name_kor: "빽다방", image: 8},
+    { name_eng: "all", name_kor: "전체", image: 0 },
+    { name_eng: "starbucks", name_kor: "스타벅스", image: 1 },
+    { name_eng: "hollys", name_kor: "할리스", image: 2 },
+    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 3 },
+    { name_eng: "ediya", name_kor: "이디야", image: 4 },
+    { name_eng: "coffeebean", name_kor: "커피빈", image: 5 },
+    { name_eng: "twosome", name_kor: "투썸플레이스", image: 6 },
+    { name_eng: "angelinus", name_kor: "엔제리너스", image: 7 },
+    { name_eng: "paikdabang", name_kor: "빽다방", image: 8 },
 ]
-                                           
+
 function NextArrow(props) {
     const { onClick, className } = props;
     return (
@@ -58,7 +58,7 @@ function PrevArrow(props) {
     );
 }
 
-const dataAll = [];
+let dataAll = [];
 let selectedBrand = [];
 let selectedMenu = [];
 
@@ -82,7 +82,8 @@ class Compare extends React.Component {
             .then(res => {
                 // console.log(res.data);
                 const params = res.data;
-                this.dataAll = res.data;
+
+                dataAll = res.data;
                 this.setState({ params });
             })
     }
@@ -91,13 +92,13 @@ class Compare extends React.Component {
         this.selectedCheckboxes = new Set();
     }
 
-     // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
-     handleFilter = async function (name_eng, name_kor, isChecked) {
+    // 자식 컴포넌트에서 보내준 값을 파라미터에 저장하고 실행
+    handleFilter = async function (name_eng, name_kor, isChecked) {
         if (isChecked) {
             selectedBrand.push(name_eng);
         }
         else {
-            selectedBrand.splice(selectedBrand.indexOf(name_eng),1);
+            selectedBrand.splice(selectedBrand.indexOf(name_eng), 1);
         }
 
         console.log("브랜드메뉴 잘들어갔나요?" + selectedBrand);
@@ -116,7 +117,7 @@ class Compare extends React.Component {
     }
 
     MenuBrandFilter = function () {
-        if (!(this.dataAll == null)) {
+        if (!(dataAll == null)) {
             let params = [];
             // if(selectedBrand.length == 0){
             //     for (let i=0; i<selectedMenu.length; i++){
@@ -128,18 +129,18 @@ class Compare extends React.Component {
             // }
             for (let i = 0; i < selectedBrand.length; i++) {
                 for (let j = 0; j < selectedMenu.length; j++) {
-                    let filteringData = this.dataAll.filter(function (element) {
+                    let filteringData = dataAll.filter(function (element) {
                         return element.brand == selectedBrand[i] && element.category == selectedMenu[j];
                     })
                     params = params.concat(filteringData);
                 }
-            } 
+            }
             this.setState({ params });
             console.log(params);
         }
     }
 
-    
+
 
     createBrandMenus = () => (
         brandItems.map(element =>
@@ -164,13 +165,13 @@ class Compare extends React.Component {
     )
 
     handleAllChecked = () => {
-        const {menuAllChecked} = this.state;
+        const { menuAllChecked } = this.state;
         // if (this.state.menuAllChecked) {
-            this.setState(({ menuAllChecked }) => (
-                {
-                    menuAllChecked: !menuAllChecked,
-                }
-            ));
+        this.setState(({ menuAllChecked }) => (
+            {
+                menuAllChecked: !menuAllChecked,
+            }
+        ));
         // }
 
     }
@@ -206,27 +207,64 @@ class Compare extends React.Component {
     }
 
 
-// 단일 체크박스 선택 
-handleChk = (selectRowIdx) => { 
-    const {setCheckedCnt } = this.state 
-    let retChecked = 0 
-    items.forEach(element => { 
-        if (element.rowIdx === selectRowIdx) { 
-            retChecked = element.chk === 1 ? -1 : 1 // 체크된 항목이 체크값 저장 
-            
-            // 체크 -> 미 체크, 미 체크 -> 체크 
-            element.chk = element.chk === 1 ? 0 : 1 
-        } 
-    }) 
-    this.setState({ 
-        // 체크된 항목이 있으면 개수 마이너스 처리 
-        setCheckedCnt: retChecked === -1 ? setCheckedCnt - 1 : setCheckedCnt + 1, 
-        allChecked: false, 
-    }) 
-} // 체크박스 전체 선택 handleAllChk = () => { const { list, allChecked, setCheckedCnt } = this.state let unCheckNum = 0 let checkNum = 0 const changeAllChecked = !allChecked ? 1 : 0 list.forEach(element => { if (allChecked) { unCheckNum = element.chk === 1 ? unCheckNum + 1 : unCheckNum } else { checkNum = element.chk === 0 ? checkNum + 1 : checkNum } element.chk = changeAllChecked }) this.setState({ list, allChecked: !allChecked ? true : false, setCheckedCnt: !allChecked ? setCheckedCnt + checkNum : setCheckedCnt - unCheckNum, }) }
+    // 단일 체크박스 선택 핸들러
+    handleChk = (selectrowIdx) => {
+        const { setCheckedCount } = this.state
+        let retChecked = 0
+        items.forEach(element => {
+            if (element.rowIdx == selectrowIdx) {
+                retChecked = element.check == 1 ? -1 : 1 
+                element.check = element.check == 1 ? 0 : 1
+            }
+        })
+        this.setState({
+            setCheckedCount: retChecked == -1 ? setCheckedCount - 1 : setCheckedCount + 1,
+            menuAllChecked: false,
+        })
+
+        items.forEach(element => {
+            console.log(element.name + "," +element.check);
+        })
+
+        items.forEach(element => {
+            this.state.selectedMenu.push(items.filter(function (element) {
+                return element.check==1;
+            }))
+        })
+    } 
+    
+    // 체크박스 전체 선택 핸들러
+    handleAllChk = () => {
+        const { menuAllChecked, setCheckedCount } = this.state
+
+        let unCheckNum = 0
+        let checkNum = 0
+
+        items.forEach(element => {
+            if (menuAllChecked) {
+                unCheckNum = element.check == 1 ? unCheckNum + 1 : unCheckNum
+            } else {
+                checkNum = element.check == 0 ? checkNum + 1 : checkNum
+            }
+            element.check = 0;
+        })
+
+        this.setState({
+            menuAllChecked: !menuAllChecked,
+            setCheckedCount: !menuAllChecked ? setCheckedCount + checkNum : setCheckedCount - unCheckNum,
+        })
+
+        items.forEach(element => {
+            console.log(element.name + "," +element.check);
+        })
+
+        this.MenuBrandFilter();
+    }
 
 
     render() {
+        console.log("전체선택 yes?" + this.state.menuAllChecked);
+
         var settings = {
             dots: false,
             infinite: true,
@@ -253,15 +291,20 @@ handleChk = (selectRowIdx) => {
             </tr>
         ));
 
+        // 체크박스 '전체' 
         let allChkInput;
-        if (!this.state.menuAllChecked || this.state.setCheckedCount == 0){
-            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false}/>
+        if (this.state.menuAllChecked || this.state.setCheckedCount == 0) {
+            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true} />
         } else {
-            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true}/>
+            allChkInput = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false} />
         }
 
-        const checkboxList = this.items.map((element) => (
-            <input type={'checkbox'} name={element.rowidx} checked={element.check == 1} onChange={() => this.handleChk(element.rowIdx)} />
+        // 나머지 카테고리 체크박스
+        const checkboxList = items.map((element) => (
+            <div className="checkbox">
+                <input type="checkbox" name={element.rowIdx} checked={element.check == 1} onChange={() => this.handleChk(element.rowIdx)} />
+                {element.name}
+            </div>
         ));
 
         return (
@@ -288,12 +331,7 @@ handleChk = (selectRowIdx) => {
                                     <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
                                         <div className="checkbox">
                                             <label>
-                                                <input
-                                                    type="checkbox"
-                                                    // value={label}
-                                                    checked={this.state.menuAllChecked}
-                                                    onChange={this.handleAllChecked}
-                                                />전체
+                                            {allChkInput}전체
                                             </label>
                                         </div>
                                         {/* {this.createCheckboxes()} */}
