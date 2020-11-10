@@ -6,7 +6,6 @@ import bbaek from 'img/bbaek.png';
 import tomntoms from 'img/tomntoms.png';
 import angelinus from 'img/angelinus.png';
 import twosome from 'img/twosome.png';
-import all from 'img/all.png';
 
 export const images = {
     starbucks: starbucks,
@@ -17,7 +16,6 @@ export const images = {
     tomntoms: tomntoms,
     coffeebean: coffeebean,
     angelinus: angelinus,
-    all: all
 }
 
 export default images;
