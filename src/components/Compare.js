@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import ModalExample from 'components/Modal';
+import ModalExample from 'components/Modal_compare';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/product';
 import Brand from 'components/brand';
