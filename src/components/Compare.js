@@ -152,6 +152,7 @@ class Compare extends React.Component {
         }
     }
 
+    
     // 브랜드 동그라미메뉴 생성
     createBrandMenus = () => (
         brandItems.map((element, index) =>
