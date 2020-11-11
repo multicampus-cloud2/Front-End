@@ -5,7 +5,6 @@ import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import ModalCompare from 'components/ModalCompare';
-import * as common from 'components/common.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from 'components/Product';
 import Brand from 'components/Brand';
