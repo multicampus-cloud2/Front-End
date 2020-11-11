@@ -14,9 +14,7 @@ import all from 'img/all.png';
 
 
 const items = common.items;
-
 const brandItems = common.brandItems;
-
 let dataAll = [];
 let selectedBrand = [];
 let selectedMenu = [];
@@ -127,8 +125,20 @@ class Compare extends React.Component {
         )
     )
 
+    // 브랜드 동그라미메뉴 전체 선택 핸들러
+    handleAllBrandCheck = () => {
+        selectedBrand = [];
+        const { isBrandAllChecked } = this.state
+        brandItems.forEach(element => {
+            element.check = 0;
+        })
+        this.setState({
+            isBrandAllChecked: !isBrandAllChecked,
+        }, () => this.MenuBrandFilter());
+    }
+
     // 단일 체크박스 선택 핸들러
-    handleChk = (selectrowIdx) => {
+    handleMenuCheck = (selectrowIdx) => {
         items.forEach(element => {
             if (element.rowIdx === selectrowIdx) {
                 element.check = element.check === 1 ? 0 : 1
@@ -141,7 +151,7 @@ class Compare extends React.Component {
     }
 
     // 체크박스 전체 선택 핸들러
-    handleAllChk = () => {
+    handleMenuAllCheck = () => {
         const { isMenuAllChecked } = this.state
 
         items.forEach(element => {
@@ -152,19 +162,6 @@ class Compare extends React.Component {
             isMenuAllChecked: !isMenuAllChecked,
         }, () => this.MenuBrandFilter());
     }
-
-    // 브랜드 동그라미메뉴 전체 선택 핸들러
-    handleAllBrandChk = () => {
-        selectedBrand = [];
-        const { isBrandAllChecked } = this.state
-        brandItems.forEach(element => {
-            element.check = 0;
-        })
-        this.setState({
-            isBrandAllChecked: !isBrandAllChecked,
-        }, () => this.MenuBrandFilter());
-    }
-
 
     handleCompareAdd = function (Product) {
         const { params_compare } = this.state;
@@ -276,7 +273,7 @@ class Compare extends React.Component {
             <div className="categories__item__whole">
                 <div className="categories__item">
                     <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
-                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandChk()} />
+                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandCheck()} />
                         <div className="categories__item__icon">
                             <div>
                                 <img src={all} alt="" />
@@ -291,15 +288,15 @@ class Compare extends React.Component {
         // 체크박스 '전체' 
         let chkAllMenu;
         if (this.state.isMenuAllChecked) {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleAllChk()} checked={true} />
+            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={true} />
         } else {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleAllChk()} checked={false} />
+            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={false} />
         }
 
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="checkbox">
-                <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleChk(element.rowIdx)} />
+                <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleMenuCheck(element.rowIdx)} />
                 {element.name}
             </div>
         ));
