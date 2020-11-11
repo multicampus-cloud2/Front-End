@@ -319,7 +319,7 @@ class Compare extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
+                            <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '-10px', 'marginBottom':'20px'}}>
                                 <div className="row">
 
                                     <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
@@ -331,7 +331,7 @@ class Compare extends React.Component {
                                         {checkboxList}
                                     </div>
                                     <div className="shop__option__right">
-                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
+                                        <div className="shop__option__right">
                                             <Select
                                                 onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') : () => this.sortBy_DESC('kcal')}
                                             ></Select>

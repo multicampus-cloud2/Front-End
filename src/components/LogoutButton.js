@@ -5,9 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ButtonStyle = styled.div`
     float: right;
-    border: 0;
-    outline: 0;
-    margin-top: 15px;
+    margin-top: 1%;
 `;
 
 function LogoutButton() {

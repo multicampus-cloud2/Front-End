@@ -1,5 +1,4 @@
 import React from 'react';
-import * as common from 'components/common.js';
 import 'css/compare.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,11 +30,6 @@ class Product extends React.Component{
         console.log("이벤트발생");
         this.props.submit(this.props.coffee);
     }
-
-
-    
-    
-
     
     render(){
 
@@ -49,7 +43,7 @@ class Product extends React.Component{
                     </div>
                     <div className="product__item__text">
                         <h6><p>{this.props.coffee['name']}</p></h6>
-                        <div className="product__item__price">{common.numberWithCommas(this.props.coffee['price'])}원</div>
+                        <div className="product__item__price">{this.props.coffee['price']}원</div>
                         <div className="cart_add">
                             {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                             <form onSubmit={this.handleSubmit}>
@@ -57,7 +51,7 @@ class Product extends React.Component{
                             </form>
                         </div>
                     </div>
-                    <div onClick={() => this.checkingred()} className="ingredient_table_box" style={{display: this.state.open === true ? "block" : "none"}}>
+                    <div onClick={() => this.checkingred()} className="ingredient_table_box" style={{display: this.state.open === true ? "block" : "none", 'zIndex': 1}}>
                         <br/>
                         <p>※1회 제공량 기준: {this.props.coffee['size']} ml</p>
                         <ul className="ingredient_table">

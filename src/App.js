@@ -15,21 +15,20 @@ class App extends React.Component {
 
   render() {
     const style = {
-      // display: 'block',
-      margin: 'auto',
-      'padding': '15px 0px'
+      'margin': 'auto',
+      'paddingBottom': '1%'
     };
 
     return (
       <>
         <div>
-          <div style={{ position: "absolute",left:'10px'}}>
+          <div>
             <Login></Login>
             <Logout></Logout>
             <UserLikeBrand></UserLikeBrand>
             <UserProfile></UserProfile>
           </div>
-          <div style={{ textAlign: "center" }}><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div>
+          <div className="App-logo"><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div>
 
         </div>
 
