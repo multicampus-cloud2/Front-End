@@ -1,6 +1,5 @@
 import React from 'react';
 import Selects from 'react-select';
-import _, { sortBy } from 'lodash';
 
 // const options = [
 //     { value: 1, label: '카페인 함량 오름차순' },
