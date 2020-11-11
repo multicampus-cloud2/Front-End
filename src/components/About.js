@@ -15,7 +15,7 @@ const About = () => {
             <p>이 프로젝트는 카페 별 성분을 조회하고 비교하기 위해 제작한 사이트 입니다.</p>
         </div>
         <div>
-            <h2>개발자 소개</h2>
+            <h2>개발자 소개</h2> 
                 <section className="team spad">
                    <div className="container">
                         <div className="row">
