@@ -5,8 +5,8 @@ import Compare from 'components/Compare';
 import About from 'components/About';
 import Login from 'components/LoginButton';
 import Logout from 'components/LogoutButton';
-import User_Profile from 'components/User_Profile';
-import User_LikeBrand from 'components/User_LikeBrand';
+import UserProfile from 'components/UserProfile';
+import UserLikeBrand from 'components/UserLikeBrand';
 import 'css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
@@ -26,8 +26,8 @@ class App extends React.Component {
           <div style={{ position: "absolute",left:'10px'}}>
             <Login></Login>
             <Logout></Logout>
-            <User_LikeBrand></User_LikeBrand>
-            <User_Profile></User_Profile>
+            <UserLikeBrand></UserLikeBrand>
+            <UserProfile></UserProfile>
           </div>
           <div style={{ textAlign: "center" }}><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div>
 

@@ -2,7 +2,7 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-class Nested extends React.Component {
+class ModalMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +39,7 @@ class Nested extends React.Component {
         let ps = new kakao.maps.services.Places();
 
         // 키워드로 장소를 검색합니다
-        ps.keywordSearch('서울 '+this.props.brand, placesSearchCB);
+        ps.keywordSearch('서울 ' + this.props.brand, placesSearchCB);
 
         // 키워드 검색 완료 시 호출되는 콜백함수 입니다
         function placesSearchCB(data, status, pagination) {
@@ -71,8 +71,8 @@ class Nested extends React.Component {
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
             infowindow.setContent(
               '<div style="padding:5px;font-size:12px;">' +
-                place.place_name +
-                "</div>"
+              place.place_name +
+              "</div>"
             );
             infowindow.open(map, marker);
           });
@@ -81,38 +81,38 @@ class Nested extends React.Component {
     };
   }
 
-  render(){
+  render() {
     return (
-        <div>
-          <Button
-            color="success"
-            onClick={this.toggleNested}
-            style={{ fontSize: "1.2vmin" }}
-          >
-            가장 가까운 매장 찾기
+      <div>
+        <Button
+          color="success"
+          onClick={this.toggleNested}
+          style={{ fontSize: "1.2vmin" }}
+        >
+          가장 가까운 매장 찾기
           </Button>
-          <Modal
-            size={"md"}
-            isOpen={this.state.nestedModal}
-            toggle={this.toggleNested}
-          >
-            <ModalHeader>주변 {this.props.brand} 매장</ModalHeader>
-            <ModalBody style={{ border: "1px solid orange" }}>
-              <div
-                id="map"
-                style={{ margin: "auto", width: "450px", height: "350px" }}
-              ></div>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggleNested}>
-                닫기
+        <Modal
+          size={"md"}
+          isOpen={this.state.nestedModal}
+          toggle={this.toggleNested}
+        >
+          <ModalHeader>주변 {this.props.brand} 매장</ModalHeader>
+          <ModalBody style={{ border: "1px solid orange" }}>
+            <div
+              id="map"
+              style={{ margin: "auto", width: "450px", height: "350px" }}
+            ></div>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggleNested}>
+              닫기
               </Button>
-            </ModalFooter>
-          </Modal>
-        </div>
-      );
+          </ModalFooter>
+        </Modal>
+      </div>
+    );
   }
-    
+
 }
 
-export default Nested;
+export default ModalMap;

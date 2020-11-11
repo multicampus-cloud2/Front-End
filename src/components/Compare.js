@@ -4,56 +4,18 @@ import Slider from 'react-slick';
 import Select from 'components/Select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import ModalExample from 'components/Modal_compare';
+import ModalCompare from 'components/ModalCompare';
+import * as common from 'components/common.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Product from 'components/product';
-import Brand from 'components/brand';
-import { faTrashAlt,faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import RightArrow from 'img/rightarrow.png'
-import LeftArrow from 'img/leftarrow.png'
+import Product from 'components/Product';
+import Brand from 'components/Brand';
+import { faTrashAlt, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import all from 'img/all.png';
 
 
-const items = [
-    { rowIdx: 0, check: 0, name: '아메리카노' },
-    { rowIdx: 1, check: 0, name: '에스프레소' },
-    { rowIdx: 2, check: 0, name: '콜드브루' },
-    { rowIdx: 3, check: 0, name: '카페라떼' },
-    { rowIdx: 4, check: 0, name: '카푸치노' },
-    { rowIdx: 5, check: 0, name: '카페모카' },
-    { rowIdx: 6, check: 0, name: '마끼아또' },
-    { rowIdx: 7, check: 0, name: '라떼' },
-    { rowIdx: 8, check: 0, name: '블렌디드' },
-    { rowIdx: 9, check: 0, name: '스무디' },
-    { rowIdx: 10, check: 0, name: '에이드' },
-    { rowIdx: 11, check: 0, name: '티' },
-    { rowIdx: 12, check: 0, name: '기타' },
-];
+const items = common.items;
 
-const brandItems = [
-    { name_eng: "starbucks", name_kor: "스타벅스", image: 0, check: 0 },
-    { name_eng: "hollys", name_kor: "할리스", image: 1, check: 0 },
-    { name_eng: "tomntoms", name_kor: "탐앤탐스", image: 2, check: 0 },
-    { name_eng: "ediya", name_kor: "이디야", image: 3, check: 0 },
-    { name_eng: "coffeebean", name_kor: "커피빈", image: 4, check: 0 },
-    { name_eng: "twosome", name_kor: "투썸플레이스", image: 5, check: 0 },
-    { name_eng: "angelinus", name_kor: "엔제리너스", image: 6, check: 0 },
-    { name_eng: "paikdabang", name_kor: "빽다방", image: 7, check: 0 },
-]
-
-function NextArrow(props) {
-    const { onClick, className } = props;
-    return (
-        <img src={RightArrow} alt="" onClick={onClick} className={className} />
-    );
-}
-
-function PrevArrow(props) {
-    const { onClick, className } = props;
-    return (
-        <img src={LeftArrow} alt="" onClick={onClick} className={className} />
-    );
-}
+const brandItems = common.brandItems;
 
 let dataAll = [];
 let selectedBrand = [];
@@ -204,9 +166,9 @@ class Compare extends React.Component {
     }
 
 
-    handleCompareAdd = function (product) {
+    handleCompareAdd = function (Product) {
         const { params_compare } = this.state;
-        let verify_overlap = params_compare.filter(info => info.id === product.id)
+        let verify_overlap = params_compare.filter(info => info.id === Product.id)
 
         if (params_compare.length >= 3) {
             alert('비교함에 최대 3개까지 넣을 수 있습니다.');
@@ -214,17 +176,17 @@ class Compare extends React.Component {
             alert('비교함에 동일한 음료가 이미 들어있습니다.');
         } else {
             this.setState(() => {
-                return { params_compare: params_compare.concat(product) };
+                return { params_compare: params_compare.concat(Product) };
             });
         }
     }
 
     // 비교박스에서 상품 제거
-    handleCompareDelete = function (product) {
+    handleCompareDelete = function (Product) {
         const { params_compare } = this.state;
         if (params_compare.length > 0) {
             this.setState({
-                params_compare: params_compare.filter(info => info.id !== product.id)
+                params_compare: params_compare.filter(info => info.id !== Product.id)
             })
         } else {
             alert('비교함에 제거할 상품이 없습니다.');
@@ -235,75 +197,76 @@ class Compare extends React.Component {
     // 내림차순
     compareBy_DESC(key) {
         return function (a, b) {
-          var x = parseInt(a[key]);
-          var y = parseInt(b[key]);
-          
-          if (x > y) return -1;
-          if (x < y) return 1;
-          return 0;
+            var x = parseInt(a[key]);
+            var y = parseInt(b[key]);
+
+            if (x > y) return -1;
+            if (x < y) return 1;
+            return 0;
         };
-      }
-     
-      sortBy_DESC(key) {
+    }
+
+    sortBy_DESC(key) {
         let arrayCopy = [...this.state.params];
         arrayCopy.sort(this.compareBy_DESC(key));
-        this.setState({params : arrayCopy});
-      }
+        this.setState({ params: arrayCopy });
+    }
 
     // 오름차순
     compareBy_ASC(key) {
         return function (a, b) {
-          var x = parseInt(a[key]);
-          var y = parseInt(b[key]);
-          
-          if (x < y) return -1;
-          if (x > y) return 1;
-          return 0;
+            var x = parseInt(a[key]);
+            var y = parseInt(b[key]);
+
+            if (x < y) return -1;
+            if (x > y) return 1;
+            return 0;
         };
-      }
+    }
 
     sortBy_ASC(key) {
         let arrayCopy = [...this.state.params];
         arrayCopy.sort(this.compareBy_ASC(key));
-        this.setState({params : arrayCopy});
+        this.setState({ params: arrayCopy });
     }
 
     // 스크롤 위로 올리기
-    scrollUp(){
+    scrollUp() {
         window.scrollTo(0, 0);
-
     }
 
     render() {
+        
         if (this.state.onChange === false) {
             this.state.onChange = true;
-        }else if(this.state.onChange === true){
+        } else if (this.state.onChange === true) {
             this.state.onChange = false;
         }
+
         var settings = {
             dots: false,
             infinite: true,
             speed: 500,
             slidesToShow: 5,
             slidesToScroll: 5,
-            nextArrow: <NextArrow />,
-            prevArrow: <PrevArrow />
+            nextArrow: <common.NextArrow />,
+            prevArrow: <common.PrevArrow />
         }
 
         // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
-        const productList = this.state.params.map((product) => (
+        const ProductList = this.state.params.map((product) => (
             <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
         ));
 
-        const compareList = this.state.params_compare.map((product) => (
+        const compareList = this.state.params_compare.map((Product) => (
             <tr>
-                <td className="product__cart__item">
-                    <div className="product__cart__item__pic">
-                        <img onClick={() => this.handleCompareDelete(product)} src={product['image']} style={{ width: '100px', height: '100px' }} alt="" />
+                <td className="Product__cart__item">
+                    <div className="Product__cart__item__pic">
+                        <img onClick={() => this.handleCompareDelete(Product)} src={Product['image']} style={{ width: '100px', height: '100px' }} alt="" />
                     </div>
                 </td>
-                <td className="cart__price">{product['name']}{product['brand']}</td>
-                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(product)} style={{ width: '30px' }} /></td>
+                <td className="cart__price">{Product['name']}{Product['brand']}</td>
+                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(Product)} style={{ width: '30px' }} /></td>
             </tr>
         ));
 
@@ -362,32 +325,32 @@ class Compare extends React.Component {
                             <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
                                 <div className="row">
 
-                                  <div className="shop__option__search" style={{width:'800px','paddingLeft':'30px',margin:'20px'}}>
+                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
                                         <div className="checkbox">
                                             <label>
                                                 {chkAllMenu}전체
                                             </label>
                                         </div>
                                         {checkboxList}
-                                 </div>
-                                <div className="shop__option__right">
-                                    <div className="shop__option__right" style={{float:'right','minWidth':'200px',margin:'20px'}}>
-                                        <Select 
-                                        onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') :() => this.sortBy_DESC('kcal')}
-                                        ></Select>
+                                    </div>
+                                    <div className="shop__option__right">
+                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
+                                            <Select
+                                                onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') : () => this.sortBy_DESC('kcal')}
+                                            ></Select>
+
+                                        </div>
 
                                     </div>
-
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section className="product spad">
+                    <section className="Product spad">
                         <div className="container">
                             <div className="row">
-                                {productList}
+                                {ProductList}
                             </div>
                         </div>
                     </section>
@@ -411,12 +374,12 @@ class Compare extends React.Component {
                                         </tbody>
                                     </table>
                                 </div>
-                                <ModalExample product={this.state.params_compare}></ModalExample>
+                                <ModalCompare product={this.state.params_compare}></ModalCompare>
                             </div>
                         </div>
                     </div>
                 </section>
-                <div onClick={this.scrollUp} style={{float:'right',position:'fixed',right:'40px',bottom:'40px'}}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
+                <div onClick={this.scrollUp} style={{ float: 'right', position: 'fixed', right: '40px', bottom: '40px' }}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
             </>
         );
     }
