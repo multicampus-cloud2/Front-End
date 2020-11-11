@@ -1,11 +1,12 @@
 import React from 'react';
+import * as common from 'components/common.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
-import Nested from './Modal_map';
+import ModalMap from './ModalMap';
 // 참고 사이트 : https://6-4-0--reactstrap.netlify.app/components/modals/
 
-class ModalExample extends React.Component {
+class ModalCompare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,30 +14,30 @@ class ModalExample extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
-    // this.toggleNested = this.toggleNested.bind(this);
+    // this.toggleModalMap = this.toggleModalMap.bind(this);
     // this.toggleAll = this.toggleAll.bind(this);
   }
 
   toggle() {
-    if(this.props.product.length <=1){
+    if (this.props.product.length <= 1) {
       alert('비교할 대상이 없습니다');
-    }else{
+    } else {
       this.setState(prevState => ({
         modal: !prevState.modal
       }));
     }
   }
 
-  // toggleNested() {
+  // toggleModalMap() {
   //   this.setState({
-  //     nestedModal: !this.state.nestedModal,
+  //     ModalMapModal: !this.state.ModalMapModal,
   //     closeAll: false
   //   });
   // }
 
   // toggleAll() {
   //   this.setState({
-  //     nestedModal: !this.state.nestedModal,
+  //     ModalMapModal: !this.state.ModalMapModal,
   //     closeAll: true
   //   });
   // }
@@ -44,23 +45,22 @@ class ModalExample extends React.Component {
   render() {
 
     const compareList = this.props.product.map((product) => (
-      <div className="product__cart__item" style={{float: 'left',width:this.props.product.length <= 2? '40%':'26%'}}>
-        <div className="product__cart__item__pic" style={{textAlign:'center'}}>
-          <img src={product['image']} style={{ width: '130px', height: '125px'}} alt="" />
+      <div className="product__cart__item" style={{ float: 'left', width: this.props.product.length <= 2 ? '40%' : '26%' }}>
+        <div className="product__cart__item__pic" style={{ textAlign: 'center' }}>
+          <img src={product['image']} style={{ width: '130px', height: '125px' }} alt="" />
         </div>
-        <div style={{ textAlign: 'center',marginTop:'10px'}}>
-          <p style={{fontWeight:'bold',height:'45px'}}>{product['name']}</p>
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <p style={{ fontWeight: 'bold', height: '45px' }}>{product['name']}</p>
           <p>{product['brand']}</p>
           <p>{product['category']}</p>
           <p>{product['kcal']}(Kcal)</p>
           <p>{product['size']}(ml)</p>
           <p>{product['caffeine']}(mg)</p>
-          
           <p>{product['sugar']}(g)</p>
-          <p>{product['price']}(원)</p>
-          <Nested brand={product['brand']}></Nested>
+          <p>{common.numberWithCommas(product['price'])}(원)</p>
+          <ModalMap brand={product['brand']}></ModalMap>
         </div>
-        
+
       </div>
     ));
 
@@ -72,12 +72,12 @@ class ModalExample extends React.Component {
           <ModalBody>
             <div className="container">
               <div className="row">
-                <div className="product__cart__item" style={{ float: 'left', marginRight:'10px', width: '15%' }}>
+                <div className="product__cart__item" style={{ float: 'left', marginRight: '10px', width: '15%' }}>
                   <div className="product__cart__item__pic">
-                    <p style={{ width: '100px', height: '130px',margin:'10px auto'}}><br/><br/>상품 이미지</p>
+                    <p style={{ width: '100px', height: '130px', margin: '10px auto' }}><br /><br />상품 이미지</p>
                   </div>
-                  <div style={{ textAlign: 'center',marginTop:'-12px'}}>
-                    <p style={{height:'45px'}}>상품명</p>
+                  <div style={{ textAlign: 'center', marginTop: '-12px' }}>
+                    <p style={{ height: '45px' }}>상품명</p>
                     <p>브랜드</p>
                     <p>분류</p>
                     <p>칼로리</p>
@@ -100,4 +100,4 @@ class ModalExample extends React.Component {
   }
 }
 
-export default ModalExample;
+export default ModalCompare;
