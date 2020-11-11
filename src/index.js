@@ -8,13 +8,13 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Auth0Provider
+    {/* <Auth0Provider
         domain="boolks.us.auth0.com"
         clientId="w4JB6HkVexu5IFL9v7KMSWZfdYYnri4X"
         redirectUri={window.location.origin}
-    >
+    > */}
       <App />
-    </Auth0Provider>
+    {/* </Auth0Provider> */}
   </BrowserRouter>,
   document.getElementById('root')
 );
