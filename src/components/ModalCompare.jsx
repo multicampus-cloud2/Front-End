@@ -1,5 +1,5 @@
 import React from 'react';
-import * as common from 'components/common.js';
+import * as common from 'components/common.jsx';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";

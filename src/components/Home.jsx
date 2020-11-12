@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const Home = () => {
-  var settings = {
+  const settings = {
     dots: true,
     arrows: false,
     infinite: true,

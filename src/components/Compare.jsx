@@ -5,7 +5,7 @@ import Select from "components/Select";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import ModalCompare from "components/ModalCompare";
-import * as common from "components/common.js";
+import * as common from "components/common.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from "components/Product";
 import Brand from "components/Brand";
@@ -418,7 +418,7 @@ class Compare extends React.Component {
                           <div style={{width:"80%",float: "left",  display:"table", height:"30px" }}>
                               <label style={{display:"table-cell", verticalAlign:"middle"}}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
                           </div>
-                          <div style={{width:"20%", float: "left", zIndex: "2"}}>
+                          <div className="shop__option__right">
                             <Select
                               params={this.state.params}
                               submit={this.handleSort.bind(this)}
@@ -429,43 +429,38 @@ class Compare extends React.Component {
                         <div className="row">{this.showMoreButton()}</div>
                     </div>
                 </section>
-
-                <section
-                    className="wishlist spad"
-                    style={{
-                        width: "18%",
-                        float: "left",
-                        position: "fixed",
-                        top: "45%",
-                        right: "30px",
-                    }}
-                >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="col-lg-12" style={{ textAlign: "center" }}>
-                                    Compare Box
-                                </div>
-                                <div className="wishlist__cart__table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th style={{ width: "70%" }} colSpan="2">
-                                                    Name
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>{compareList}</tbody>
-                                    </table>
-                                </div>
-                                <ModalCompare
-                                    product={this.state.params_compare}
-                                ></ModalCompare>
+                
+                <input type="checkbox" id="menuicon" className="menuicon"/>
+                <label htmlFor="menuicon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div className="sidebar">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="col-lg-12" style={{ textAlign: "center" }}>
+                                Compare Box
                             </div>
+                            <div className="wishlist__cart__table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th style={{ width: "70%" }} colSpan="2">
+                                                Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>{compareList}</tbody>
+                                </table>
+                            </div>
+                            <ModalCompare
+                                product={this.state.params_compare}
+                            ></ModalCompare>
                         </div>
                     </div>
-                </section>
+                </div>
                 <div
                     onClick={this.scrollUp}
                     style={{
