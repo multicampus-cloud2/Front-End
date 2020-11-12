@@ -28,20 +28,6 @@ class ModalCompare extends React.Component {
     }
   }
 
-  // toggleModalMap() {
-  //   this.setState({
-  //     ModalMapModal: !this.state.ModalMapModal,
-  //     closeAll: false
-  //   });
-  // }
-
-  // toggleAll() {
-  //   this.setState({
-  //     ModalMapModal: !this.state.ModalMapModal,
-  //     closeAll: true
-  //   });
-  // }
-
   render() {
 
     const compareList = this.props.product.map((product) => (
@@ -66,7 +52,7 @@ class ModalCompare extends React.Component {
 
     return (
       <div>
-        <Button style={{ border: 'none', float: 'right' }} onClick={this.toggle}><FontAwesomeIcon icon={faBalanceScale} />비교하러 가기</Button>
+        <Button style={{ minWidth:'100px',fontSize:'1vw'}} onClick={this.toggle}><FontAwesomeIcon icon={faBalanceScale}/>비교하러 가기</Button>
         <Modal size={'lg'} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>음료 성분 비교</ModalHeader>
           <ModalBody>
