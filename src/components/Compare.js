@@ -122,6 +122,7 @@ class Compare extends React.Component {
         }
     }
 
+    
     // 브랜드 동그라미메뉴 생성
     createBrandMenus = () => (
         brandItems.map((element, index) =>
@@ -203,43 +204,6 @@ class Compare extends React.Component {
         }
     }
 
-
-    // 내림차순
-    compareBy_DESC(key) {
-        return function (a, b) {
-            var x = parseInt(a[key]);
-            var y = parseInt(b[key]);
-
-            if (x > y) return -1;
-            if (x < y) return 1;
-            return 0;
-        };
-    }
-
-    sortBy_DESC(key) {
-        let arrayCopy = [...this.state.params];
-        arrayCopy.sort(this.compareBy_DESC(key));
-        this.setState({ params: arrayCopy });
-    }
-
-    // 오름차순
-    compareBy_ASC(key) {
-        return function (a, b) {
-            var x = parseInt(a[key]);
-            var y = parseInt(b[key]);
-
-            if (x < y) return -1;
-            if (x > y) return 1;
-            return 0;
-        };
-    }
-
-    sortBy_ASC(key) {
-        let arrayCopy = [...this.state.params];
-        arrayCopy.sort(this.compareBy_ASC(key));
-        this.setState({ params: arrayCopy });
-    }
-
     // 스크롤 위로 올리기
     scrollUp() {
         window.scrollTo(0, 0);
@@ -279,150 +243,153 @@ class Compare extends React.Component {
             })
         }
     }
+    // select box 정렬 핸들러
+    handleSort = function(product){
+      this.setState(() => {
+        return { params: product };
+      });
+    };
+
 
     render() {
         
-        if (this.state.onChange === false) {
-            this.state.onChange = true;
-        } else if (this.state.onChange === true) {
-            this.state.onChange = false;
-        }
+      if (this.state.onChange === false) {
+          this.state.onChange = true;
+      } else if (this.state.onChange === true) {
+          this.state.onChange = false;
+      }
 
-        var settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            nextArrow: <common.NextArrow />,
-            prevArrow: <common.PrevArrow />
-        }
+      var settings = {
+          dots: false,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          nextArrow: <common.NextArrow />,
+          prevArrow: <common.PrevArrow />
+      }
 
-        const compareList = this.state.params_compare.map((Product) => (
-            <tr>
-                <td className="Product__cart__item">
-                    <div className="Product__cart__item__pic">
-                        <img onClick={() => this.handleCompareDelete(Product)} src={Product['image']} style={{ width: '100px', height: '100px' }} alt="" />
-                    </div>
-                </td>
-                <td className="cart__price">{Product['name']}{Product['brand']}</td>
-                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(Product)} style={{ width: '30px' }} /></td>
-            </tr>
-        ));
+      const compareList = this.state.params_compare.map((Product) => (
+          <tr>
+              <td className="Product__cart__item">
+                  <div className="Product__cart__item__pic">
+                      <img onClick={() => this.handleCompareDelete(Product)} src={Product['image']} style={{ width: '100px', height: '100px' }} alt="" />
+                  </div>
+              </td>
+              <td className="cart__price">{Product['name']}{Product['brand']}</td>
+              <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(Product)} style={{ width: '30px' }} /></td>
+          </tr>
+      ));
 
-        // 브랜드 동그라미메뉴 'ALL'
-        console.log("allCheck" + this.state.isBrandAllChecked);
-        let chkAllBrand = (
-            <div className="categories__item__whole">
-                <div className="categories__item">
-                    <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
-                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandCheck()} />
-                        <div className="categories__item__icon">
-                            <div>
-                                <img src={all} alt="" />
-                            </div>
-                            <h5>ALL</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+      // 브랜드 동그라미메뉴 'ALL'
+      console.log("allCheck" + this.state.isBrandAllChecked);
+      let chkAllBrand = (
+          <div className="categories__item__whole">
+              <div className="categories__item">
+                  <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
+                      <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandCheck()} />
+                      <div className="categories__item__icon">
+                          <div>
+                              <img src={all} alt="" />
+                          </div>
+                          <h5>ALL</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      )
 
-        // 체크박스 '전체' 
-        let chkAllMenu;
-        if (this.state.isMenuAllChecked) {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={true} />
-        } else {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={false} />
-        }
+      // 체크박스 '전체' 
+      let chkAllMenu;
+      if (this.state.isMenuAllChecked) {
+          chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={true} />
+      } else {
+          chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={false} />
+      }
 
-        // 나머지 카테고리 체크박스
-        const checkboxList = items.map((element) => (
-            <div className="checkbox">
-                <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleMenuCheck(element.rowIdx)} />
-                {element.name}
-            </div>
-        ));
+      // 나머지 카테고리 체크박스
+      const checkboxList = items.map((element) => (
+          <div className="checkbox">
+              <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleMenuCheck(element.rowIdx)} />
+              {element.name}
+          </div>
+      ));
 
-        return (
-            <>
-                <section style={{ float: 'left', width: '80%' }}>
-                    <section className="search spad">
-                        <div className="container">
-                            <div className="categories">
-                                <div className="container">
-                                    <div>
-                                        <div className="categories__slider owl-carousel">
-                                            <Slider {...settings}>
-                                                {chkAllBrand}
-                                                {this.createBrandMenus()}
-                                            </Slider>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+      return (
+          <>
+              <section style={{ float: 'left', width: '80%' }}>
+                  <section className="search spad">
+                      <div className="container">
+                          <div className="categories">
+                              <div className="container">
+                                  <div>
+                                      <div className="categories__slider owl-carousel">
+                                          <Slider {...settings}>
+                                              {chkAllBrand}
+                                              {this.createBrandMenus()}
+                                          </Slider>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
 
-                            <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '-10px', 'marginBottom':'20px'}}>
-                                <div className="row">
+                          <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '-10px', 'marginBottom':'20px'}}>
+                              <div className="row">
 
-                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
-                                        <div className="checkbox">
-                                            <label>
-                                                {chkAllMenu}전체
-                                            </label>
-                                        </div>
-                                        {checkboxList}
-                                    </div>
-                                    <div className="shop__option__right">
-                                        <div className="shop__option__right">
-                                            <Select
-                                                onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') : () => this.sortBy_DESC('kcal')}
-                                            ></Select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                                  <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
+                                      <div className="checkbox">
+                                          <label>
+                                              {chkAllMenu}전체
+                                          </label>
+                                      </div>
+                                      {checkboxList}
+                                  </div>
+                                  <div className="shop__option__right">
+                                      <Select params={this.state.params} submit={this.handleSort.bind(this)}></Select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
 
-                    <section className="Product spad">
-                        <div className="container">
-                            <div className="row">
-                                {this.productList()}
-                            </div>
-                            <div className="row">
-                            {this.showMoreButton()}
-                            </div>
-                        </div>
-                    </section>
-                </section>
+                  <section className="Product spad">
+                      <div className="container">
+                          <div className="row">
+                              {this.productList()}
+                          </div>
+                          <div className="row">
+                          {this.showMoreButton()}
+                          </div>
+                      </div>
+                  </section>
+              </section>
 
-                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="col-lg-12" style={{ textAlign: 'center' }}>Compare Box</div>
-                                <div className="wishlist__cart__table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th style={{ width: '70%' }} colSpan='2'>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {compareList}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <ModalCompare product={this.state.params_compare}></ModalCompare>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div onClick={this.scrollUp} style={{ float: 'right', position: 'fixed', right: '40px', bottom: '40px' }}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
-            </>
-        );
-    }
+              <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
+                  <div className="container">
+                      <div className="row">
+                          <div className="col-lg-12">
+                              <div className="col-lg-12" style={{ textAlign: 'center' }}>Compare Box</div>
+                              <div className="wishlist__cart__table">
+                                  <table>
+                                      <thead>
+                                          <tr>
+                                              <th>Product</th>
+                                              <th style={{ width: '70%' }} colSpan='2'>Name</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          {compareList}
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <ModalCompare product={this.state.params_compare}></ModalCompare>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+              <div onClick={this.scrollUp} style={{ float: 'right', position: 'fixed', right: '40px', bottom: '40px' }}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
+          </>
+      );
+  }
 }
 export default Compare;
