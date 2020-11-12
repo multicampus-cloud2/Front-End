@@ -28,12 +28,15 @@ class App extends React.Component {
             <UserLikeBrand></UserLikeBrand>
             <UserProfile></UserProfile>
           </div>
-          <div className="App-logo"><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div>
+          {/* <div className="App-logo"><Link to="/"><img src={logo} style={style} alt="logo" /></Link></div> */}
 
         </div>
 
         <header className="header">
           <div className="header__menu">
+            <div className="logo">
+          <Link to="/"><img src={logo} style={style} alt="logo" /></Link>
+          </div>
             <nav>
               <ul>
                 <li>
