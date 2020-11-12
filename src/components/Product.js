@@ -40,7 +40,7 @@ function Product(props) {
                 </div>
                 <div className="product__item__text">
                     <h6><p>{props.coffee['name']}</p></h6>
-                    <div className="product__item__price">{props.coffee['price']}원</div>
+                    <div className="product__item__price">{common.numberWithCommas(props.coffee['price'])}원</div>
                     <div className="cart_add">
                         {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                         <form onSubmit={handleSubmit}>
