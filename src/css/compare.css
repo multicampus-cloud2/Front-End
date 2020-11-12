@@ -135,6 +135,14 @@
 div.checkbox{
     float: left;
     margin: 5px;
+    width: 30%;
+    font-size: 1vw;
+}
+
+div.shop__option__search{
+  max-width: 600px;
+  padding-left: 30px;
+  margin: 20px;
 }
 
 .set-bg {
@@ -283,12 +291,17 @@ div.checkbox{
   }
 
   .shop__option__right {
-    float: right;
-    min-width: 200px;
+    float: left;
+    min-width: 180px;
     margin: 20px;
     z-index: 2;
   }
 
+  @media screen and (max-width: 480px){
+    .wishlist .spad{
+      right: '0px';
+    }
+  }
   .btn.btn-concrete {
     background-color: #7e8c8d; 
     border-color: #7e8c8d; 
