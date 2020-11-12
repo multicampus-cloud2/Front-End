@@ -404,38 +404,26 @@ class Compare extends React.Component {
                         }}
                     >
                         <div className="row">
-                            {/* <div
-                  className="shop__option__search"
-                  style={{
-                    width: "800px",
-                    paddingLeft: "30px",
-                    margin: "20px",
-                  }}
-                > */}
                             <div className="checkbox">
                                 {chkAllMenu}전체
-                      </div>
+                            </div>
                             {checkboxList}
-                            {/* </div> */}
-                            {/* <div className="shop__option__right"> */}
-
-                            {/* </div> */}
                         </div>
                     </div>
                 </section>
 
                 <section className="Product spad">
                     <div className="container">
-                        <div className="row" style={{marginBottom: "1.5%"}}>
-                        <div style={{width:"80%",float: "left",  display:"table", height:"30px" }}>
-                            <label style={{display:"table-cell", verticalAlign:"middle"}}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
-                        </div>
-                        <div style={{width:"20%", float: "left"}}>
-                        <Select
-                            params={this.state.params}
-                            submit={this.handleSort.bind(this)}
-                        ></Select>
-                        </div>
+                        <div className="row" style={{ marginBottom: "1.5%" }}>
+                            <div style={{ width: "80%", float: "left", display: "table", height: "30px" }}>
+                                <label style={{ display: "table-cell", verticalAlign: "middle" }}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
+                            </div>
+                            <div style={{ width: "20%", float: "left" }}>
+                                <Select
+                                    params={this.state.params}
+                                    submit={this.handleSort.bind(this)}
+                                ></Select>
+                            </div>
                         </div>
                         <div className="row">{this.productList()}</div>
                         <div className="row">{this.showMoreButton()}</div>
@@ -457,7 +445,7 @@ class Compare extends React.Component {
                             <div className="col-lg-12">
                                 <div className="col-lg-12" style={{ textAlign: "center" }}>
                                     Compare Box
-                </div>
+                                </div>
                                 <div className="wishlist__cart__table">
                                     <table>
                                         <thead>
@@ -465,7 +453,7 @@ class Compare extends React.Component {
                                                 <th>Product</th>
                                                 <th style={{ width: "70%" }} colSpan="2">
                                                     Name
-                        </th>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>{compareList}</tbody>
