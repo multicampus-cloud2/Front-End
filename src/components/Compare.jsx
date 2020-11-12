@@ -1,15 +1,21 @@
 import React from "react";
-import "css/compare.css";
-import Slider from "react-slick";
+// components
 import Select from "components/Select";
-import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
-import ModalCompare from "components/ModalCompare";
-import * as common from "components/common.jsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Product from "components/Product";
 import Brand from "components/Brand";
-import { faTrashAlt, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import SideBar from "components/SideBarFolder/SideBox/SideBar"
+import ScrollUp from "components/SideBarFolder/Scroll/ScrollUp"
+import ModalCompare from "components/ModalCompare";
+import * as common from "components/common.jsx";
+// css
+import "bootstrap/dist/css/bootstrap.min.css";
+import "css/compare.css";
+// Library
+import axios from "axios";
+import Slider from "react-slick";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+// Image
 import all from "img/all.png";
 
 const items = common.items;
@@ -216,11 +222,6 @@ class Compare extends React.Component {
         }
     };
 
-    // 스크롤 위로 올리기
-    scrollUp() {
-        window.scrollTo(0, 0);
-    }
-
     // 12개씩 보여줄 리스트
     productList = () => {
         productSlice = this.state.params.slice(0, this.state.showLimit);
@@ -313,7 +314,6 @@ class Compare extends React.Component {
         ));
 
         // 브랜드 동그라미메뉴 'ALL'
-        console.log("allCheck" + this.state.isBrandAllChecked);
         let chkAllBrand = (
             <div className="categories__item__whole">
                 <div className="categories__item">
@@ -430,12 +430,7 @@ class Compare extends React.Component {
                     </div>
                 </section>
                 
-                <input type="checkbox" id="menuicon" className="menuicon"/>
-                <label htmlFor="menuicon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
+                <SideBar/>
                 <div className="sidebar">
                     <div className="row">
                         <div className="col-lg-12">
@@ -455,23 +450,11 @@ class Compare extends React.Component {
                                     <tbody>{compareList}</tbody>
                                 </table>
                             </div>
-                            <ModalCompare
-                                product={this.state.params_compare}
-                            ></ModalCompare>
+                            <ModalCompare product={this.state.params_compare} />
                         </div>
                     </div>
                 </div>
-                <div
-                    onClick={this.scrollUp}
-                    style={{
-                        float: "right",
-                        position: "fixed",
-                        right: "40px",
-                        bottom: "20px",
-                    }}
-                >
-                    <FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top
-        </div>
+                <ScrollUp/>
             </>
         );
     }
