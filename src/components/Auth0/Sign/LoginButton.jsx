@@ -4,7 +4,8 @@ import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ButtonStyle = styled.div`
-    float: right;
+    margin-top: 30%;
+    
 `;
 
 function LoginButton() {
