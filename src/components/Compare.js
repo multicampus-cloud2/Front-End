@@ -430,7 +430,7 @@ class Compare extends React.Component {
                         <div style={{width:"80%",float: "left",  display:"table", height:"30px" }}>
                             <label style={{display:"table-cell", verticalAlign:"middle"}}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
                         </div>
-                        <div style={{width:"20%", float: "left"}}>
+                        <div style={{width:"20%", float: "left", zIndex: "2"}}>
                         <Select
                             params={this.state.params}
                             submit={this.handleSort.bind(this)}
@@ -457,7 +457,7 @@ class Compare extends React.Component {
                             <div className="col-lg-12">
                                 <div className="col-lg-12" style={{ textAlign: "center" }}>
                                     Compare Box
-                </div>
+                                </div>
                                 <div className="wishlist__cart__table">
                                     <table>
                                         <thead>
@@ -465,7 +465,7 @@ class Compare extends React.Component {
                                                 <th>Product</th>
                                                 <th style={{ width: "70%" }} colSpan="2">
                                                     Name
-                        </th>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>{compareList}</tbody>
