@@ -18,6 +18,7 @@ const brandItems = common.brandItems;
 let dataAll = [];
 let selectedBrand = [];
 let selectedMenu = [];
+let productSlice = [];
 
 class Compare extends React.Component {
     state = {
@@ -28,6 +29,8 @@ class Compare extends React.Component {
         onChange: false,
         isBrandAllChecked: true,
         isMenuAllChecked: true,
+        showMore: true,
+        showLimit: 12,
     }
 
     componentDidMount() {
@@ -59,6 +62,7 @@ class Compare extends React.Component {
         }
         this.setState({
             isBrandAllChecked: false,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -108,6 +112,12 @@ class Compare extends React.Component {
                     }
                 }
             }
+            if (params.length > 12) {
+                this.setState({ showMore: true });
+            }
+            else {
+                this.setState({ showMore: false });
+            }
             this.setState({ params });
         }
     }
@@ -134,6 +144,7 @@ class Compare extends React.Component {
         })
         this.setState({
             isBrandAllChecked: !isBrandAllChecked,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -146,6 +157,7 @@ class Compare extends React.Component {
         })
         this.setState({
             isMenuAllChecked: false,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
 
     }
@@ -160,6 +172,7 @@ class Compare extends React.Component {
 
         this.setState({
             isMenuAllChecked: !isMenuAllChecked,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -232,6 +245,41 @@ class Compare extends React.Component {
         window.scrollTo(0, 0);
     }
 
+    // 12개씩 보여줄 리스트
+    productList = ()=> {
+        productSlice = this.state.params.slice(0, this.state.showLimit);
+        return ( productSlice.map((product) => (
+            <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
+        )));
+    }
+
+    // 더보기 버튼
+    showMoreButton = () => {
+        if (!this.state.showMore) {
+            return null;
+        }
+        return (		
+            <button onClick={this.showMore} className="btn btn-concrete">+더보기</button>
+        )
+    }
+
+    // 더보기 버튼 onClick
+    showMore = () => {
+        const { showLimit, showMore } = this.state;
+        if (this.state.params.length == productSlice.length) {
+            this.setState({ showMore: false, });
+        }
+        else {
+            this.setState({
+                showLimit: showLimit + 12,
+            },() => {
+                if((this.state.params.length - productSlice.length) <= 12) {
+                    this.setState({showMore: false,});
+                }
+            })
+        }
+    }
+
     render() {
         
         if (this.state.onChange === false) {
@@ -249,11 +297,6 @@ class Compare extends React.Component {
             nextArrow: <common.NextArrow />,
             prevArrow: <common.PrevArrow />
         }
-
-        // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
-        const ProductList = this.state.params.map((product) => (
-            <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
-        ));
 
         const compareList = this.state.params_compare.map((Product) => (
             <tr>
@@ -335,9 +378,7 @@ class Compare extends React.Component {
                                             <Select
                                                 onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') : () => this.sortBy_DESC('kcal')}
                                             ></Select>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -347,7 +388,10 @@ class Compare extends React.Component {
                     <section className="Product spad">
                         <div className="container">
                             <div className="row">
-                                {ProductList}
+                                {this.productList()}
+                            </div>
+                            <div className="row">
+                            {this.showMoreButton()}
                             </div>
                         </div>
                     </section>
