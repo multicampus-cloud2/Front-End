@@ -67,7 +67,7 @@ function User_LikeBrand(props) {
                         전화번호 : <input value={ phone } onChange= { handleChange }></input>
                         <br />※전화번호는 -를 뺀 숫자만 입력해주세요.
                         <br />※한 카페만 관심 카페로 등록할 수 있습니다.
-                    </form>
+                    </form> 
                 </ModalBody>
                 <ModalFooter>
                     <Button color="info" onClick={() => saveUserBrand(user, selectOption )}>저장</Button>
