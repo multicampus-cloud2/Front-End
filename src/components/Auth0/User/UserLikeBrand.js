@@ -76,7 +76,6 @@ function User_LikeBrand(props) {
             </Modal>
         </ButtonStyle>
     );
-
 }
 
 // class User_LikeBrand extends React.Component {
