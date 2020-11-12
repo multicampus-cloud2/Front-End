@@ -18,6 +18,7 @@ const brandItems = common.brandItems;
 let dataAll = [];
 let selectedBrand = [];
 let selectedMenu = [];
+let productSlice = [];
 
 class Compare extends React.Component {
     state = {
@@ -28,6 +29,8 @@ class Compare extends React.Component {
         onChange: false,
         isBrandAllChecked: true,
         isMenuAllChecked: true,
+        showMore: true,
+        showLimit: 12,
     }
 
     componentDidMount() {
@@ -59,6 +62,7 @@ class Compare extends React.Component {
         }
         this.setState({
             isBrandAllChecked: false,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -108,10 +112,17 @@ class Compare extends React.Component {
                     }
                 }
             }
+            if (params.length > 12) {
+                this.setState({ showMore: true });
+            }
+            else {
+                this.setState({ showMore: false });
+            }
             this.setState({ params });
         }
     }
 
+    
     // 브랜드 동그라미메뉴 생성
     createBrandMenus = () => (
         brandItems.map((element, index) =>
@@ -134,6 +145,7 @@ class Compare extends React.Component {
         })
         this.setState({
             isBrandAllChecked: !isBrandAllChecked,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -146,6 +158,7 @@ class Compare extends React.Component {
         })
         this.setState({
             isMenuAllChecked: false,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
 
     }
@@ -160,6 +173,7 @@ class Compare extends React.Component {
 
         this.setState({
             isMenuAllChecked: !isMenuAllChecked,
+            showLimit: 12
         }, () => this.MenuBrandFilter());
     }
 
@@ -190,195 +204,192 @@ class Compare extends React.Component {
         }
     }
 
-
-    // 내림차순
-    compareBy_DESC(key) {
-        return function (a, b) {
-            var x = parseInt(a[key]);
-            var y = parseInt(b[key]);
-
-            if (x > y) return -1;
-            if (x < y) return 1;
-            return 0;
-        };
-    }
-
-    sortBy_DESC(key) {
-        let arrayCopy = [...this.state.params];
-        arrayCopy.sort(this.compareBy_DESC(key));
-        this.setState({ params: arrayCopy });
-    }
-
-    // 오름차순
-    compareBy_ASC(key) {
-        return function (a, b) {
-            var x = parseInt(a[key]);
-            var y = parseInt(b[key]);
-
-            if (x < y) return -1;
-            if (x > y) return 1;
-            return 0;
-        };
-    }
-
-    sortBy_ASC(key) {
-        let arrayCopy = [...this.state.params];
-        arrayCopy.sort(this.compareBy_ASC(key));
-        this.setState({ params: arrayCopy });
-    }
-
     // 스크롤 위로 올리기
     scrollUp() {
         window.scrollTo(0, 0);
     }
 
+    // 12개씩 보여줄 리스트
+    productList = ()=> {
+        productSlice = this.state.params.slice(0, this.state.showLimit);
+        return ( productSlice.map((product) => (
+            <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
+        )));
+    }
+
+    // 더보기 버튼
+    showMoreButton = () => {
+        if (!this.state.showMore) {
+            return null;
+        }
+        return (		
+            <button onClick={this.showMore} className="btn btn-concrete">+더보기</button>
+        )
+    }
+
+    // 더보기 버튼 onClick
+    showMore = () => {
+        const { showLimit, showMore } = this.state;
+        if (this.state.params.length == productSlice.length) {
+            this.setState({ showMore: false, });
+        }
+        else {
+            this.setState({
+                showLimit: showLimit + 12,
+            },() => {
+                if((this.state.params.length - productSlice.length) <= 12) {
+                    this.setState({showMore: false,});
+                }
+            })
+        }
+    }
+    // select box 정렬 핸들러
+    handleSort = function(product){
+      this.setState(() => {
+        return { params: product };
+      });
+    };
+
+
     render() {
         
-        if (this.state.onChange === false) {
-            this.state.onChange = true;
-        } else if (this.state.onChange === true) {
-            this.state.onChange = false;
-        }
+      if (this.state.onChange === false) {
+          this.state.onChange = true;
+      } else if (this.state.onChange === true) {
+          this.state.onChange = false;
+      }
 
-        var settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            nextArrow: <common.NextArrow />,
-            prevArrow: <common.PrevArrow />
-        }
+      var settings = {
+          dots: false,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          nextArrow: <common.NextArrow />,
+          prevArrow: <common.PrevArrow />
+      }
 
-        // submit으로 자식 컴포넌트에 props를 전달해주면 자식이 실행한 결과를 받아와 handleCompareAdd의 파라미터로 저장함 
-        const ProductList = this.state.params.map((product) => (
-            <Product coffee={product} submit={this.handleCompareAdd.bind(this)}></Product>
-        ));
+      const compareList = this.state.params_compare.map((Product) => (
+          <tr>
+              <td className="Product__cart__item">
+                  <div className="Product__cart__item__pic">
+                      <img onClick={() => this.handleCompareDelete(Product)} src={Product['image']} style={{ width: '100px', height: '100px' }} alt="" />
+                  </div>
+              </td>
+              <td className="cart__price">{Product['name']}{Product['brand']}</td>
+              <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(Product)} style={{ width: '30px' }} /></td>
+          </tr>
+      ));
 
-        const compareList = this.state.params_compare.map((Product) => (
-            <tr>
-                <td className="Product__cart__item">
-                    <div className="Product__cart__item__pic">
-                        <img onClick={() => this.handleCompareDelete(Product)} src={Product['image']} style={{ width: '100px', height: '100px' }} alt="" />
-                    </div>
-                </td>
-                <td className="cart__price">{Product['name']}{Product['brand']}</td>
-                <td className="cart__close"><FontAwesomeIcon icon={faTrashAlt} onClick={() => this.handleCompareDelete(Product)} style={{ width: '30px' }} /></td>
-            </tr>
-        ));
+      // 브랜드 동그라미메뉴 'ALL'
+      console.log("allCheck" + this.state.isBrandAllChecked);
+      let chkAllBrand = (
+          <div className="categories__item__whole">
+              <div className="categories__item">
+                  <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
+                      <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandCheck()} />
+                      <div className="categories__item__icon">
+                          <div>
+                              <img src={all} alt="" />
+                          </div>
+                          <h5>ALL</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      )
 
-        // 브랜드 동그라미메뉴 'ALL'
-        console.log("allCheck" + this.state.isBrandAllChecked);
-        let chkAllBrand = (
-            <div className="categories__item__whole">
-                <div className="categories__item">
-                    <div className="category__item_hidden" style={{ backgroundColor: this.state.isBrandAllChecked ? "#888888" : "transparent" }}>
-                        <input type="submit" value="" className="input_hidden" onClick={() => this.handleAllBrandCheck()} />
-                        <div className="categories__item__icon">
-                            <div>
-                                <img src={all} alt="" />
-                            </div>
-                            <h5>ALL</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+      // 체크박스 '전체' 
+      let chkAllMenu;
+      if (this.state.isMenuAllChecked) {
+          chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={true} />
+      } else {
+          chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={false} />
+      }
 
-        // 체크박스 '전체' 
-        let chkAllMenu;
-        if (this.state.isMenuAllChecked) {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={true} />
-        } else {
-            chkAllMenu = <input type="checkbox" onChange={() => this.handleMenuAllCheck()} checked={false} />
-        }
+      // 나머지 카테고리 체크박스
+      const checkboxList = items.map((element) => (
+          <div className="checkbox">
+              <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleMenuCheck(element.rowIdx)} />
+              {element.name}
+          </div>
+      ));
 
-        // 나머지 카테고리 체크박스
-        const checkboxList = items.map((element) => (
-            <div className="checkbox">
-                <input type="checkbox" name={element.rowIdx} checked={element.check === 1} onChange={() => this.handleMenuCheck(element.rowIdx)} />
-                {element.name}
-            </div>
-        ));
+      return (
+          <>
+              <section style={{ float: 'left', width: '80%' }}>
+                  <section className="search spad">
+                      <div className="container">
+                          <div className="categories">
+                              <div className="container">
+                                  <div>
+                                      <div className="categories__slider owl-carousel">
+                                          <Slider {...settings}>
+                                              {chkAllBrand}
+                                              {this.createBrandMenus()}
+                                          </Slider>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
 
-        return (
-            <>
-                <section style={{ float: 'left', width: '80%' }}>
-                    <section className="search spad">
-                        <div className="container">
-                            <div className="categories">
-                                <div className="container">
-                                    <div>
-                                        <div className="categories__slider owl-carousel">
-                                            <Slider {...settings}>
-                                                {chkAllBrand}
-                                                {this.createBrandMenus()}
-                                            </Slider>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '-10px', 'marginBottom':'20px'}}>
+                              <div className="row">
 
-                            <div className="" style={{ borderTop: '1px solid rgba(240, 135, 50, 0.5)', borderBottom: '1px solid rgba(240, 135, 50, 0.5)', 'paddingBottom': '10px' }}>
-                                <div className="row">
+                                  <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
+                                      <div className="checkbox">
+                                          <label>
+                                              {chkAllMenu}전체
+                                          </label>
+                                      </div>
+                                      {checkboxList}
+                                  </div>
+                                  <div className="shop__option__right">
+                                      <Select params={this.state.params} submit={this.handleSort.bind(this)}></Select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
 
-                                    <div className="shop__option__search" style={{ width: '800px', 'paddingLeft': '30px', margin: '20px' }}>
-                                        <div className="checkbox">
-                                            <label>
-                                                {chkAllMenu}전체
-                                            </label>
-                                        </div>
-                                        {checkboxList}
-                                    </div>
-                                    <div className="shop__option__right">
-                                        <div className="shop__option__right" style={{ float: 'right', 'minWidth': '200px', margin: '20px' }}>
-                                            <Select
-                                                onChange={this.state.onChange === false ? () => this.sortBy_ASC('kcal') : () => this.sortBy_DESC('kcal')}
-                                            ></Select>
+                  <section className="Product spad">
+                      <div className="container">
+                          <div className="row">
+                              {this.productList()}
+                          </div>
+                          <div className="row">
+                          {this.showMoreButton()}
+                          </div>
+                      </div>
+                  </section>
+              </section>
 
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section className="Product spad">
-                        <div className="container">
-                            <div className="row">
-                                {ProductList}
-                            </div>
-                        </div>
-                    </section>
-                </section>
-
-                <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="col-lg-12" style={{ textAlign: 'center' }}>Compare Box</div>
-                                <div className="wishlist__cart__table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th style={{ width: '70%' }} colSpan='2'>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {compareList}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <ModalCompare product={this.state.params_compare}></ModalCompare>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div onClick={this.scrollUp} style={{ float: 'right', position: 'fixed', right: '40px', bottom: '40px' }}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
-            </>
-        );
-    }
+              <section className="wishlist spad" style={{ width: '18%', float: 'left', position: 'fixed', top: '280px', right: '30px' }}>
+                  <div className="container">
+                      <div className="row">
+                          <div className="col-lg-12">
+                              <div className="col-lg-12" style={{ textAlign: 'center' }}>Compare Box</div>
+                              <div className="wishlist__cart__table">
+                                  <table>
+                                      <thead>
+                                          <tr>
+                                              <th>Product</th>
+                                              <th style={{ width: '70%' }} colSpan='2'>Name</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          {compareList}
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <ModalCompare product={this.state.params_compare}></ModalCompare>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+              <div onClick={this.scrollUp} style={{ float: 'right', position: 'fixed', right: '40px', bottom: '40px' }}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>Top</div>
+          </>
+      );
+  }
 }
 export default Compare;

@@ -40,7 +40,7 @@ class Brand extends React.Component {
                                 <div>
                                     <img src={imageArray[this.state.image]} alt="" />
                                 </div>
-                                <h5>{this.props.name_eng}</h5>
+                                <h5>{this.props.name_kor}</h5>
                             </div>
                         </div>
                     </div>

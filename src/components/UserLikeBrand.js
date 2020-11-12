@@ -8,7 +8,8 @@ import axios from 'axios';
 
 const ButtonStyle = styled.div`
     float: right;
-    margin: 15px 15px 0px 5px;
+    margin-top: 1%;
+    margin-right: 1%
 `;
 
 const options = [
@@ -43,7 +44,7 @@ class User_LikeBrand extends React.Component {
     apiEndpoint = "https://u7oi4ayp4h.execute-api.us-east-1.amazonaws.com/dev/userinfo"
     saveUserBrand = async function (userinfo, brand_name) {
         console.log(brand_name['value']);
-        const obj = { user: userinfo, brand: brand_name['value'], phone:this.state.phone_number, httpMethod: "POST" };
+        const obj = { user: userinfo, brand: brand_name['value'], phone: this.state.phone_number, httpMethod: "POST" };
         await axios.post(this.apiEndpoint, obj)
         alert("저장되었습니다.");
     }
@@ -61,12 +62,12 @@ class User_LikeBrand extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader>관심 카페 등록</ModalHeader>
                     <ModalBody>
-                        관심 카페와 전화번호를 등록해주세요.<br/>선택한 카페에 신제품이 출시되면 알림을 보내드립니다.
+                        관심 카페와 전화번호를 등록해주세요.<br />선택한 카페에 신제품이 출시되면 알림을 보내드립니다.
                         <Selects options={options} onChange={this.handleChange} />
                         <form>
-                            전화번호 : <input value={this.state.phone_number} onChange={(e) => {this.setState({phone_number: e.target.value})}}></input>
-                            <br/>※전화번호는 -를 뺀 숫자만 입력해주세요.
-                            <br/>※한 카페만 관심 카페로 등록할 수 있습니다.
+                            전화번호 : <input value={this.state.phone_number} onChange={(e) => { this.setState({ phone_number: e.target.value }) }}></input>
+                            <br />※전화번호는 -를 뺀 숫자만 입력해주세요.
+                            <br />※한 카페만 관심 카페로 등록할 수 있습니다.
                         </form>
                     </ModalBody>
                     <ModalFooter>

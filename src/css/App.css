@@ -3,17 +3,12 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  margin-left: 45%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .container {
     max-width: 1170px;
-  }
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
   }
 }
 
