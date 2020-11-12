@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Home from 'components/Home';
 import Compare from 'components/Compare';
-import About from 'components/About';
+import About from 'components/About/AboutForm';
 import Login from 'components/Auth0/Sign/LoginButton';
 import Logout from 'components/Auth0/Sign/LogoutButton';
 import UserProfile from 'components/Auth0/User/UserProfile';

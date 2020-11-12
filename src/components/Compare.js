@@ -414,16 +414,16 @@ class Compare extends React.Component {
 
                 <section className="Product spad">
                     <div className="container">
-                        <div className="row" style={{ marginBottom: "1.5%" }}>
-                            <div style={{ width: "80%", float: "left", display: "table", height: "30px" }}>
-                                <label style={{ display: "table-cell", verticalAlign: "middle" }}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
-                            </div>
-                            <div style={{ width: "20%", float: "left" }}>
-                                <Select
-                                    params={this.state.params}
-                                    submit={this.handleSort.bind(this)}
-                                ></Select>
-                            </div>
+                        <div className="row" style={{marginBottom: "1.5%"}}>
+                          <div style={{width:"80%",float: "left",  display:"table", height:"30px" }}>
+                              <label style={{display:"table-cell", verticalAlign:"middle"}}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
+                          </div>
+                          <div style={{width:"20%", float: "left", zIndex: "2"}}>
+                            <Select
+                              params={this.state.params}
+                              submit={this.handleSort.bind(this)}
+                            ></Select>
+                          </div>
                         </div>
                         <div className="row">{this.productList()}</div>
                         <div className="row">{this.showMoreButton()}</div>
