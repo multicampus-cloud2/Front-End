@@ -7,6 +7,17 @@ export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+export const selectBrandOptions = [
+    { value: 'starbucks', label: '스타벅스' },
+    { value: 'hollys', label: '할리스 커피' },
+    { value: 'tomntoms', label: '탐앤탐스' },
+    { value: 'ediya', label: '이디야 커피' },
+    { value: 'coffeebean', label: '커피빈' },
+    { value: 'twosome', label: '투썸플레이스' },
+    { value: 'angelinus', label: '엔제리너스' },
+    { value: 'paikdabang', label: '빽다방' }
+];
+
 export const items = [
     { rowIdx: 0, check: 0, name: '아메리카노' },
     { rowIdx: 1, check: 0, name: '에스프레소' },
