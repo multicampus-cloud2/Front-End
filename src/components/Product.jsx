@@ -3,7 +3,7 @@ import 'css/compare.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlus } from "@fortawesome/free-solid-svg-icons";
-import * as common from 'components/common.js';
+import * as common from 'components/common.jsx';
 
 function Product(props) {
 

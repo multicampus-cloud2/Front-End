@@ -8,9 +8,6 @@ import axios from 'axios';
 import * as common from 'components/common';
 
 const ButtonStyle = styled.div`
-    float: right;
-    margin-top: 1%;
-    margin-right: 1%
 `;
 
 function User_LikeBrand(props) {
