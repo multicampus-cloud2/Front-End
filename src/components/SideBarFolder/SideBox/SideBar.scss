@@ -4,10 +4,12 @@
     background: #ffffff;
     border: 2px solid #b3b1b1;
     position: fixed;
-    top:50%;
+    top:45%;
     right: -300px;
     z-index: 3;
     transition: all .35s;
+    padding: 1%;
+    text-Align: center;
   }
   
   .menuicon:checked + label + div {

@@ -299,10 +299,16 @@ class Compare extends React.Component {
                         />
                     </div>
                 </td>
-                <td className="cart__price">
-                    {Product["name"]}
-                    {Product["brand"]}
-                </td>
+                <tr>
+                    <td style={{ verticalAlign: "top" }}>
+                        {Product["brand"]}
+                    </td>
+                </tr>
+                <tr>
+                    <td className="cart__price" style={{ verticalAlign: "top" }}>
+                        {Product["name"]}
+                    </td>
+                </tr>
                 <td className="cart__close">
                     <FontAwesomeIcon
                         icon={faTrashAlt}
@@ -376,10 +382,7 @@ class Compare extends React.Component {
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                <label htmlFor="filteringCheckbox">
-                    {element.name}
-                </label>
-
+                {element.name}
             </div>
         ));
 
@@ -436,22 +439,16 @@ class Compare extends React.Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="col-lg-12" style={{ textAlign: "center" }}>
-                                Compare Box
+                                음료 성분 비교하기
                             </div>
-                            <div className="wishlist__cart__table">
+                            <div className="wishlist__cart__table" style={{margin: "5%"}}>
                                 <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th style={{ width: "70%" }} colSpan="2">
-                                                Name
-                                            </th>
-                                        </tr>
-                                    </thead>
                                     <tbody>{compareList}</tbody>
                                 </table>
                             </div>
+                            <div> 
                             <ModalCompare product={this.state.params_compare} />
+                            </div>
                         </div>
                     </div>
                 </div>
