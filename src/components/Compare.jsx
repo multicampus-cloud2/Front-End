@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // Image
 import coffee from "img/coffee.png";
-
+import all from 'img/all.png'
 const items = common.items;
 const brandItems = common.brandItems;
 let dataAll = [];
@@ -83,7 +83,7 @@ class Compare extends React.Component {
             });
             selectedMenu = [];
             checkedItems.forEach((element) => {
-                selectedMenu.push(element.test);
+                selectedMenu.push(element.name);
             });
             console.log("선택브랜드" + selectedBrand);
             console.log("선택메뉴" + selectedMenu);
@@ -375,14 +375,14 @@ class Compare extends React.Component {
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="filteringCheckbox">
-                <input style={{display:"none"}}
+                <input 
                     id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                {element.name}
+                {element.img}
             </div>
         ));
 
@@ -409,7 +409,7 @@ class Compare extends React.Component {
                         className="container filteringBorder">
                         <div className="row">
                             <div className="filteringCheckbox">
-                                {chkAllMenu}전체
+                                {chkAllMenu}<img src={all} width="42px"></img>
                             </div>
                             {checkboxList}
                         </div>
