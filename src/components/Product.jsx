@@ -7,20 +7,20 @@ import * as common from 'components/common.jsx';
 
 function Product(props) {
 
-    const [openState, setOpenState ] = useState(0)
+    const [openState, setOpenState ] = useState(0);
     
     const switchStateHandler = () => {
         if(openState === 0) {
-            setOpenState(1)
+            setOpenState(1);
         } else {
-            setOpenState(0)
+            setOpenState(0);
         }
     }
 
     useEffect(() => {
         return () => {
             if(openState === 1){
-                setOpenState(0)
+                setOpenState(0);
             }
         }
     });
@@ -42,9 +42,10 @@ function Product(props) {
                     <h6><p>{props.coffee['name']}</p></h6>
                     <div className="product__item__price">{common.numberWithCommas(props.coffee['price'])}원</div>
                     <div className="cart_add">
-                        {/* form 태그를 통해서 자식 컴포넌트에서 부모 컴포넌트로 값을 전달해 줄 수 있음 */}
                         <form onSubmit={handleSubmit}>
-                            <button type="submit" style={{ 'backgroundColor': 'white', border: 'none', outline: 'none' }}><FontAwesomeIcon icon={faPlus} />비교함에 담기</button>
+                            <button type="submit" style={{ 'backgroundColor': 'white', border: 'none', outline: 'none' }}>
+                                <FontAwesomeIcon icon={faPlus} />비교함에 담기
+                            </button>
                         </form>
                     </div>
                 </div>
