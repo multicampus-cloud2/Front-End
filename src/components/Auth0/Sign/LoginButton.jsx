@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ButtonStyle = styled.div`
     margin-top: 30%;
-    
 `;
 
 function LoginButton() {
