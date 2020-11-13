@@ -436,16 +436,16 @@ class Compare extends React.Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="col-lg-12" style={{ textAlign: "center" }}>
-                                Compare Box
+                                음료 성분 비교하기
                             </div>
                             <div className="wishlist__cart__table">
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th style={{ width: "70%" }} colSpan="2">
+                                            {/* <th>Product</th> */}
+                                            {/* <th style={{ width: "70%" }} colSpan="2">
                                                 Name
-                                            </th>
+                                            </th> */}
                                         </tr>
                                     </thead>
                                     <tbody>{compareList}</tbody>
