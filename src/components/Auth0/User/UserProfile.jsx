@@ -6,8 +6,7 @@ function User_Profile() {
 
   return isAuthenticated && (
     <>
-      <img style={{ width: '60px', height: '60px', borderRadius: '50%' }} src={user.picture} alt={user.name} />
-      <span>환영합니다 {user.name}님</span>
+      <img style={{ width: '45px', height: '45px', borderRadius: '50%' }} src={user.picture} alt={user.name} />
     </>
   );
 }
