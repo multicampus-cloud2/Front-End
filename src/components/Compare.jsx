@@ -9,7 +9,7 @@ import ModalCompare from "components/ModalCompare";
 import * as common from "components/common.jsx";
 // css
 import "bootstrap/dist/css/bootstrap.min.css";
-import "css/compare.css";
+import "css/compare.scss";
 // Library
 import axios from "axios";
 import Slider from "react-slick";

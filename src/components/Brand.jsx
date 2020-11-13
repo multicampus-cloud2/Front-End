@@ -1,6 +1,6 @@
 import React from 'react';
 import images from 'img/brand';
-import 'css/compare.css';
+import 'css/compare.scss';
 import 'img/coffeebean.png';
 
 
