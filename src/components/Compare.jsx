@@ -9,7 +9,7 @@ import ModalCompare from "components/ModalCompare";
 import * as common from "components/common.jsx";
 // css
 import "bootstrap/dist/css/bootstrap.min.css";
-import "css/compare.css";
+import "css/compare.scss";
 // Library
 import axios from "axios";
 import Slider from "react-slick";
@@ -321,7 +321,7 @@ class Compare extends React.Component {
                         className="category__item_hidden"
                         style={{
                             backgroundColor: this.state.isBrandAllChecked
-                                ? "#d39bce"
+                                ? "#7f57ac"
                                 : "transparent",
                         }}
                     >
@@ -397,14 +397,7 @@ class Compare extends React.Component {
                 </section>
                 <section className="search spad">
                     <div
-                        className="container"
-                        style={{
-                            borderTop: "1px solid rgba(240, 135, 50, 0.5)",
-                            borderBottom: "1px solid rgba(240, 135, 50, 0.5)",
-                            paddingBottom: "-10px",
-                            marginBottom: "20px",
-                        }}
-                    >
+                        className="container filteringBorder">
                         <div className="row">
                             <div className="filteringCheckbox">
                                 {chkAllMenu}전체

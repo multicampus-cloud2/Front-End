@@ -7,7 +7,7 @@ import Login from 'components/Auth0/Sign/LoginButton';
 import Logout from 'components/Auth0/Sign/LogoutButton';
 import UserProfile from 'components/Auth0/User/UserProfile';
 import UserLikeBrand from 'components/Auth0/User/UserLikeBrand';
-import 'css/App.css';
+import 'css/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
 

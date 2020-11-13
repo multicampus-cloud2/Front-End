@@ -4,7 +4,6 @@
 
 .header {
   background: #bfb4cc;
-  padding-bottom: 1px;
 }
 
 .menu_list li {
@@ -13,7 +12,7 @@
 }
 
 .menu_list li:hover {
-  background: #7bad41;
+  background: #7f57ac;
 }
 
 .menu_nav {
@@ -25,7 +24,7 @@
   color: #ffffff;
   display: block;
   font-weight: 600;
-  padding: 20px 35px;
+  padding: 30px 35px 25px 35px;
   letter-spacing: 1px;
 }
 
@@ -43,6 +42,7 @@
   float: right;
   margin-right: -2%;
   margin-left: -20%;
+  margin-top: 1%;
 }
 
 .auth_list li {
