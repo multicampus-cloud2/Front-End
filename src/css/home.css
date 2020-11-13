@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .header {
     background: #439e71;
     height: 55px;
@@ -89,3 +90,10 @@
     height: 100%;
 }
   
+=======
+.banner img{
+  max-width: 85%;
+  object-fit: cover;
+  margin : auto;
+}
+>>>>>>> a56f99c92a5a24548ed738f6f6b2168af714cf5b

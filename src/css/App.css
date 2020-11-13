@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -35,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+=======
+.header {
+  background: #439e71;
+}
+
+.menu_list li {
+  list-style: none;
+  display: inline-block;
+}
+
+.menu_list li:hover {
+  background: #7bad41;
+}
+
+.menu_nav {
+  text-align: center;
+  
+}
+
+.menu_nav a {
+  font-size: 16px;
+  color: #ffffff;
+  display: block;
+  font-weight: 600;
+  padding: 20px 35px;
+  letter-spacing: 1px;
+}
+
+.logo {
+  background: #d34747;
+  float: left;
+  height: 100%;
+}
+
+.auth_menu {
+  float: right;
+  margin-right: 1%;
+}
+
+.auth_list li {
+  list-style: none;
+  display: inline-block;
+}
+>>>>>>> a56f99c92a5a24548ed738f6f6b2168af714cf5b
