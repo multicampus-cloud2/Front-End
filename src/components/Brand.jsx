@@ -32,7 +32,7 @@ class Brand extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="categories__item__whole">
                     <div className="categories__item">
-                        <div className="category__item_hidden" style={{ backgroundColor: this.props.checked === 0 ? "transparent" : "#d39bce" }}>
+                        <div className="category__item_hidden" style={{ backgroundColor: this.props.checked === 0 ? "transparent" : "#7f57ac" }}>
                             <input type="submit" value="" className="input_hidden" onClick={() =>
                                 this.handleFilter(this.props.name_eng, this.props.name_kor, this.props.checked, this.props.index)}
                             />
