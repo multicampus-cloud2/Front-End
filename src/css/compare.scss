@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "NanumGothicCoding-Bold";
+  font-weight: 200;
+  src: url("fonts/NanumGothicCoding-Bold.ttf") format("ttf")
+}
+@font-face {
+  font-family: "NanumPenScript-Regular";
+  font-weight: 200;
+  src: url("fonts/NanumPenScript-Regular.ttf") format("ttf")
+}
+
 .compare_body {
   background: #fffbfe;
 }
@@ -63,6 +74,7 @@
 }
 @media screen and (max-width: 480px){
   .categories__item__icon h5 {
+    font-family: "NanumGothicCoding-Bold";
     color: #4e4e4e;
     font-weight: 100;
     font-size: 1vw;
@@ -73,8 +85,9 @@
 }
 
 .categories__item__icon div img {
-    width: 50%;
-    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    // object-fit: cover;
     display: block; margin: 0px auto;
 }
 
@@ -278,8 +291,4 @@ Product
  outline: none; 
  -webkit-box-shadow: none; 
  box-shadow: none;
-}
-
-#filteringCheckbox + label {
-  background: #8a5151;
 }

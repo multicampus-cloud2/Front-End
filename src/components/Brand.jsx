@@ -40,7 +40,7 @@ class Brand extends React.Component {
                                 <div>
                                     <img src={imageArray[this.state.image]} alt="" />
                                 </div>
-                                <h5>{this.props.name_kor}</h5>
+                                <h5 style={{ color: this.props.checked === 0 ? "#474747" : "#ffffff" }}>{this.props.name_kor}</h5>
                             </div>
                         </div>
                     </div>
