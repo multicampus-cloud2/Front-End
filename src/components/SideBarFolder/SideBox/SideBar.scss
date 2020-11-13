@@ -2,6 +2,7 @@
     width: 300px;
     height: 100%;
     background: #ffffff;
+    border: 2px solid #b3b1b1;
     position: fixed;
     top:50%;
     right: -300px;
@@ -32,7 +33,7 @@
     width: 100%;
     height: 5px;
     border-radius: 30px;
-    background: #000000;
+    background: #b3b1b1;
     transition: all .35s;
   }
   
@@ -40,7 +41,7 @@
   .menuicon + label span:nth-child(2) { top: 50%; transform: translateY(-50%); }
   .menuicon + label span:nth-child(3) { bottom: 0; }
   .menuicon:checked + label span {
-    background: #000000;
+    background: #6b6565;
   }
   .menuicon:checked + label span:nth-child(1) { top: 50%; transform:translateY(-50%) rotate(45deg); }
   .menuicon:checked + label span:nth-child(2) { opacity: 0;}

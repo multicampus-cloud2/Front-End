@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Selects from 'react-select';
 import axios from 'axios';
 import * as common from 'components/common';
+import 'components/Auth0/User/UserLikeBrand.scss';
 
 function User_LikeBrand(props) {
     const { user, isAuthenticated } = props.auth0;
@@ -38,7 +39,7 @@ function User_LikeBrand(props) {
 
     return isAuthenticated && (
         <>
-            <button type="button" className="btn-info" onClick={ toggle }>관심 카페 설정</button>
+            <button type="button" className="likeBrand" onClick={ toggle }>관심 카페 설정</button>
             <Modal isOpen={ modal } className={ props.className }>
                 <ModalHeader>관심 카페 등록</ModalHeader>
                 <ModalBody>
