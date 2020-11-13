@@ -321,7 +321,7 @@ class Compare extends React.Component {
                         className="category__item_hidden"
                         style={{
                             backgroundColor: this.state.isBrandAllChecked
-                                ? "#888888"
+                                ? "#d39bce"
                                 : "transparent",
                         }}
                     >
@@ -364,19 +364,21 @@ class Compare extends React.Component {
 
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
-            <div className="checkbox">
+            <div className="filteringCheckbox">
                 <input
+                    id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
+                <label htmlFor="filteringCheckbox"></label>
                 {element.name}
             </div>
         ));
 
         return (
-            <>
+            <div className="compare_body">
                 <section className="search spad">
                     <div className="container">
                         <div className="categories">
@@ -404,7 +406,7 @@ class Compare extends React.Component {
                         }}
                     >
                         <div className="row">
-                            <div className="checkbox">
+                            <div className="filteringCheckbox">
                                 {chkAllMenu}전체
                             </div>
                             {checkboxList}
@@ -455,7 +457,7 @@ class Compare extends React.Component {
                     </div>
                 </div>
                 <ScrollUp/>
-            </>
+            </div>
         );
     }
 }

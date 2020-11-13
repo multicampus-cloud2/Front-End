@@ -1,5 +1,10 @@
+.app_body {
+  background: #fffbfe;
+}
+
 .header {
-  background: #439e71;
+  background: #bfb4cc;
+  padding-bottom: 1px;
 }
 
 .menu_list li {
@@ -26,14 +31,19 @@
 }
 
 .logo {
-  background: #d34747;
   float: left;
-  height: 100%;
+  margin-left: 1%;
 }
 
-.auth_menu {
+.auth_menu_login {
   float: right;
   margin-right: 1%;
+}
+
+.auth_menu_profile {
+  float: right;
+  margin-right: -2%;
+  margin-left: -20%;
 }
 
 .auth_list li {

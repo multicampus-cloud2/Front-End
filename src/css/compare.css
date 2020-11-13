@@ -1,3 +1,7 @@
+.compare_body {
+  background: #fffbfe;
+}
+
 .categories__slider {
   padding: 0px;
 }
@@ -19,48 +23,16 @@
 .categories__item {
   text-align: center;
   border-radius: 30%;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-  height: 100%;
-  width: auto;
   padding-top: 100%;
   position: relative;
   border: 1px solid #b4b4b4;
 }
 
-.categories__item:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: -48px;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #f08632;
-  border-color: transparent #f08632 #f08632 transparent;
-  content: "";
-  -webkit-transform: rotate(-100deg);
-      -ms-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-  opacity: 0;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-}
 .categories__item:hover {
-  background: #888888;
+  background: #d39bce;
 }
-.categories__item:active {
-  background: transparent;
-}
-.categories__item:hover:after {
-  opacity: 1;
-}
+
 .categories__item:hover span {
-  color: #ffffff;
-}
-.categories__item:hover h5 {
   color: #ffffff;
 }
 
@@ -130,9 +102,11 @@
   right: -20px;
 }
 .categories__item__whole {
-  padding: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: -20px;
 }
-div.checkbox{
+div.filteringCheckbox{
   float: left;
   margin: 5px;
   font-size: 1vw;
