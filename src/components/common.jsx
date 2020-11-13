@@ -1,5 +1,6 @@
 import RightArrow from 'img/rightarrow.png';
 import LeftArrow from 'img/leftarrow.png';
+import americano from 'img/americano.png';
 
 
 // 가격 콤마 찍어주는 함수
@@ -19,7 +20,7 @@ export const selectBrandOptions = [
 ];
 
 export const items = [
-    { rowIdx: 0, check: 0, name: '아메리카노' },
+    { rowIdx: 0, check: 0, name: <img src={americano} width="90px"/>, test: "아메리카노"},
     { rowIdx: 1, check: 0, name: '에스프레소' },
     { rowIdx: 2, check: 0, name: '콜드브루' },
     { rowIdx: 3, check: 0, name: '카페라떼' },

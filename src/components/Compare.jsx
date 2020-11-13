@@ -83,7 +83,7 @@ class Compare extends React.Component {
             });
             selectedMenu = [];
             checkedItems.forEach((element) => {
-                selectedMenu.push(element.name);
+                selectedMenu.push(element.test);
             });
             console.log("선택브랜드" + selectedBrand);
             console.log("선택메뉴" + selectedMenu);
@@ -369,7 +369,7 @@ class Compare extends React.Component {
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="filteringCheckbox">
-                <input
+                <input style={{display:"none"}}
                     id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
