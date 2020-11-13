@@ -376,16 +376,12 @@ class Compare extends React.Component {
         const checkboxList = items.map((element) => (
             <div className="filteringCheckbox">
                 <input
-                    // id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                <label htmlFor="filteringCheckbox">
-                    {element.name}
-                </label>
-
+                {element.name}
             </div>
         ));
 

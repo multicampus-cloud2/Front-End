@@ -21,11 +21,14 @@ function ModalCompare(props) {
   const compareButton = () => {
     if (props.product.length > 1) {
       return (
-        <Button style={{ minWidth: '100px', fontSize: '1vw' }}
-          onClick={handleToggle}>
-          <FontAwesomeIcon icon={faBalanceScale} />
-          비교하러 가기
-        </Button>)
+        <div className="compareButton">
+          <Button style={{ minWidth: '100px', fontSize: '1vw' }}
+            onClick={handleToggle}>
+            <FontAwesomeIcon icon={faBalanceScale} />
+            비교하러 가기
+          </Button>
+        </div>
+      )
     } else {
       return null;
     }
