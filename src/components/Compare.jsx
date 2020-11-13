@@ -16,7 +16,7 @@ import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // Image
-import all from "img/all.png";
+import coffee from "img/coffee.png";
 
 const items = common.items;
 const brandItems = common.brandItems;
@@ -333,9 +333,13 @@ class Compare extends React.Component {
                         />
                         <div className="categories__item__icon">
                             <div>
-                                <img src={all} alt="" />
+                                <img src={coffee} alt="" style={{marginLeft: "28%" }}/>
                             </div>
-                            <h5>ALL</h5>
+                            <h5 style={{
+                            color: this.state.isBrandAllChecked
+                                ? "#ffffff"
+                                : "#474747",
+                        }}>전체</h5>
                         </div>
                     </div>
                 </div>
@@ -372,8 +376,10 @@ class Compare extends React.Component {
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                <label htmlFor="filteringCheckbox"></label>
-                {element.name}
+                <label htmlFor="filteringCheckbox">
+                    {element.name}
+                </label>
+
             </div>
         ));
 
