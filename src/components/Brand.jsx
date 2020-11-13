@@ -1,6 +1,6 @@
 import React from 'react';
 import images from 'img/brand';
-import 'css/compare.css';
+import 'css/compare.scss';
 import 'img/coffeebean.png';
 
 
@@ -32,7 +32,7 @@ class Brand extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="categories__item__whole">
                     <div className="categories__item">
-                        <div className="category__item_hidden" style={{ backgroundColor: this.props.checked === 0 ? "transparent" : "#888888" }}>
+                        <div className="category__item_hidden" style={{ backgroundColor: this.props.checked === 0 ? "transparent" : "#7f57ac" }}>
                             <input type="submit" value="" className="input_hidden" onClick={() =>
                                 this.handleFilter(this.props.name_eng, this.props.name_kor, this.props.checked, this.props.index)}
                             />
@@ -40,7 +40,7 @@ class Brand extends React.Component {
                                 <div>
                                     <img src={imageArray[this.state.image]} alt="" />
                                 </div>
-                                <h5>{this.props.name_kor}</h5>
+                                <h5 style={{ color: this.props.checked === 0 ? "#474747" : "#ffffff" }}>{this.props.name_kor}</h5>
                             </div>
                         </div>
                     </div>

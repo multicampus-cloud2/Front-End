@@ -7,22 +7,16 @@ import Login from 'components/Auth0/Sign/LoginButton';
 import Logout from 'components/Auth0/Sign/LogoutButton';
 import UserProfile from 'components/Auth0/User/UserProfile';
 import UserLikeBrand from 'components/Auth0/User/UserLikeBrand';
-import 'css/App.css';
+import 'css/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from 'img/logo.png';
-import styled from "styled-components";
-
-const styledLogo = styled.div`
-'margin': 'auto',
-'paddingBottom': '1%'
-`;
 
 class App extends React.Component {
 
   render() {
 
     return (
-      <>
+      <div className="app_body">
         <header className="header">
           <div className="header__menu">
             <styledLogo>
@@ -30,12 +24,16 @@ class App extends React.Component {
                 <Link to="/"><img src={logo} alt="logo" /></Link>
               </div>
             </styledLogo>
-            <div className="auth_menu">
+            <div className="auth_menu_login">
               <ul className="auth_list">
-                <li><Login /></li>
-                <li><UserProfile /></li>
-                <li><UserLikeBrand /></li>
-                <li><Logout /></li>
+                <li className="login"><Login /></li>
+              </ul>
+            </div>
+            <div className="auth_menu_profile">
+              <ul className="auth_list">
+                <li className="auth"><UserProfile /></li>
+                <li className="auth"><UserLikeBrand /></li>
+                <li className="auth"><Logout /></li>
               </ul>
             </div>
             <div className="menu_nav">
@@ -49,11 +47,11 @@ class App extends React.Component {
         </header>
 
         <div>
-            <Route path="/" component={Home} exact={true} />
-            <Route path="/compare" component={Compare} />
-            <Route path="/about" component={About} />
+          <Route path="/" component={Home} exact={true} />
+          <Route path="/compare" component={Compare} />
+          <Route path="/about" component={About} />
         </div>
-      </>
+      </div>
     )
   };
 };

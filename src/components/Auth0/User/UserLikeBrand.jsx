@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
-import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Selects from 'react-select';
 import axios from 'axios';
 import * as common from 'components/common';
-
-const ButtonStyle = styled.div`
-`;
 
 function User_LikeBrand(props) {
     const { user, isAuthenticated } = props.auth0;
@@ -41,7 +37,7 @@ function User_LikeBrand(props) {
     }
 
     return isAuthenticated && (
-        <ButtonStyle>
+        <>
             <button type="button" className="btn-info" onClick={ toggle }>관심 카페 설정</button>
             <Modal isOpen={ modal } className={ props.className }>
                 <ModalHeader>관심 카페 등록</ModalHeader>
@@ -59,7 +55,7 @@ function User_LikeBrand(props) {
                     <Button color="light" onClick={ toggle }>닫기</Button>
                 </ModalFooter>
             </Modal>
-        </ButtonStyle>
+        </>
     );
 }
 

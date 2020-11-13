@@ -1,5 +1,9 @@
+.app_body {
+  background: #fffbfe;
+}
+
 .header {
-  background: #439e71;
+  background: #bfb4cc;
 }
 
 .menu_list li {
@@ -8,12 +12,11 @@
 }
 
 .menu_list li:hover {
-  background: #7bad41;
+  background: #7f57ac;
 }
 
 .menu_nav {
   text-align: center;
-  
 }
 
 .menu_nav a {
@@ -21,19 +24,25 @@
   color: #ffffff;
   display: block;
   font-weight: 600;
-  padding: 20px 35px;
+  padding: 30px 35px 25px 35px;
   letter-spacing: 1px;
 }
 
 .logo {
-  background: #d34747;
   float: left;
-  height: 100%;
+  margin-left: 1%;
 }
 
-.auth_menu {
+.auth_menu_login {
   float: right;
   margin-right: 1%;
+}
+
+.auth_menu_profile {
+  float: right;
+  margin-right: -2%;
+  margin-left: -20%;
+  margin-top: 1%;
 }
 
 .auth_list li {
