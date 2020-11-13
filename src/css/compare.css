@@ -1,3 +1,7 @@
+.compare_body {
+  background: #fffbfe;
+}
+
 .categories__slider {
   padding: 0px;
 }
@@ -11,7 +15,7 @@
   left: -60px;
   top: 35%;
 }
-.categories__slider.owl-carousel {
+.categories__slider.owl-carousel{
   left: auto;
   right: -60px;
 }
@@ -19,48 +23,16 @@
 .categories__item {
   text-align: center;
   border-radius: 30%;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-  height: 100%;
-  width: auto;
   padding-top: 100%;
   position: relative;
   border: 1px solid #b4b4b4;
 }
 
-.categories__item:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: -48px;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #f08632;
-  border-color: transparent #f08632 #f08632 transparent;
-  content: '';
-  -webkit-transform: rotate(-100deg);
-  -ms-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-  opacity: 0;
-  -webkit-transition: all, 0.3s;
-  -o-transition: all, 0.3s;
-  transition: all, 0.3s;
-}
 .categories__item:hover {
-  background: #888888;
+  background: #d39bce;
 }
-.categories__item:active {
-  background: transparent;
-}
-.categories__item:hover:after {
-  opacity: 1;
-}
+
 .categories__item:hover span {
-  color: #ffffff;
-}
-.categories__item:hover h5 {
   color: #ffffff;
 }
 
@@ -73,6 +45,7 @@
   -webkit-transition: all, 0.2s;
   -o-transition: all, 0.2s;
   transition: all, 0.2s;
+  
 }
 .categories__item__icon h5 {
   color: #4e4e4e;
@@ -81,7 +54,7 @@
   text-transform: uppercase;
   margin-top: 4%;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px){
   .categories__item__icon h5 {
     color: #4e4e4e;
     font-weight: 100;
@@ -93,10 +66,9 @@
 }
 
 .categories__item__icon div img {
-  width: 50%;
-  object-fit: cover;
-  display: block;
-  margin: 0px auto;
+    width: 50%;
+    object-fit: cover;
+    display: block; margin: 0px auto;
 }
 @media only screen and (min-width: 1200px) {
   .container {
@@ -130,18 +102,20 @@
   right: -20px;
 }
 .categories__item__whole {
-  padding: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: -20px;
 }
-div.checkbox {
+div.filteringCheckbox{
   float: left;
   margin: 5px;
   font-size: 1vw;
 }
 
-div.shop__option__search {
-  max-width: 600px;
-  padding-left: 30px;
-  margin: 20px;
+div.shop__option__search{
+max-width: 600px;
+padding-left: 30px;
+margin: 20px;
 }
 
 .set-bg {
@@ -176,7 +150,7 @@ Product
   bottom: -4px;
 }
 
-.product__item__pic {
+.product__item__pic{
   height: 270px;
   position: relative;
   background-position: center;
@@ -196,7 +170,7 @@ Product
   padding: 6px 10px 4px;
   border-radius: 2px;
   -webkit-box-shadow: 0 0 10px rgba(223, 223, 224, 0.7);
-  box-shadow: 0 0 10px rgba(223, 223, 224, 0.7);
+          box-shadow: 0 0 10px rgba(223, 223, 224, 0.7);
   -webkit-transition: all, 0.5s;
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
@@ -243,8 +217,9 @@ Product
   padding-bottom: 4px;
 }
 
+
 .ingredient_table_box {
-  background: #cc99ff;
+  background:#cc99ff;
   position: absolute;
   top: 0;
   left: 0;
@@ -259,8 +234,8 @@ Product
 .ingredient_table {
   list-style: none;
   padding-top: 5%;
-  border-top: 3px solid #000;
-  border-bottom: 3px solid #000;
+  border-top:3px solid #000;
+  border-bottom:3px solid #000;
 }
 
 .brand_button {
@@ -275,9 +250,7 @@ Product
   border-radius: 30%;
   border: 0px;
   outline: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: absolute; top: 0; left: 0;
   width: 100%;
   height: 100%;
 }
@@ -285,9 +258,7 @@ Product
 .category__item_hidden {
   background-color: transparent;
   border-radius: 30%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: absolute; top: 0; left: 0;
   width: 100%;
   height: 100%;
 }
@@ -299,29 +270,29 @@ Product
   z-index: 2;
 }
 
-@media screen and (max-width: 480px) {
-  .wishlist .spad {
+@media screen and (max-width: 480px){
+  .wishlist .spad{
     right: '0px';
   }
 }
 
 .btn.btn-concrete {
-  background-color: #7e8c8d;
-  border-color: #7e8c8d;
-  -webkit-box-shadow: 0 3px 0 #4e5b5c;
+  background-color: #7e8c8d; 
+  border-color: #7e8c8d; 
+  -webkit-box-shadow: 0 3px 0 #4e5b5c; 
   box-shadow: 0 3px 0 #4e5b5c;
   width: 100%;
   margin: 2%;
   color: white;
-}
+ }
 
 .btn.btn-concrete:hover {
-  background-color: #6a7879;
+ background-color:#6a7879;
 }
 
 .btn.btn-concrete:active {
-  top: 3px;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+ top: 3px; 
+ outline: none; 
+ -webkit-box-shadow: none; 
+ box-shadow: none;
 }
