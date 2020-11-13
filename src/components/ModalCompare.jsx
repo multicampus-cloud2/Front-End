@@ -3,7 +3,7 @@ import * as common from 'components/common.jsx';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
-import ModalMap from './ModalMap';
+import ModalMap from 'components/ModalMap';
 
 function ModalCompare(props) {
 
@@ -44,8 +44,8 @@ function ModalCompare(props) {
     return (
       compareProduct.map((product) => (
         <div className="product__cart__item" style={{ float: 'left', width: compareProduct.length <= 2 ? '40%' : '26%' }}>
-          <div className="product__cart__item__pic" style={{ textAlign: 'center' }}>
-            <img src={product['image']} style={{ width: '130px', height: '125px' }} alt="" />
+          <div className="product__cart__item__pic" style={{ textAlign: 'center',margin:'auto',maxWidth: '130px', height: '125px' }}>
+            <img src={product['image']} style={{ width: '90%' }} alt="" />
           </div>
           <div style={{ textAlign: 'center', marginTop: '10px' }}>
             <p style={{ fontWeight: 'bold', height: '45px' }}>{product['name']}</p>
@@ -71,8 +71,8 @@ function ModalCompare(props) {
           <div className="container">
             <div className="row">
               <div className="product__cart__item" style={{ float: 'left', marginRight: '10px', width: '15%' }}>
-                <div className="product__cart__item__pic">
-                  <p style={{ width: '100px', height: '130px', margin: '10px auto' }}><br /><br />상품 이미지</p>
+                <div className="product__cart__item__pic" style={{ height: '130px'}}>
+                  <p style={{ width: '100px', margin: '10px auto' }}></p>
                 </div>
                 <div style={{ textAlign: 'center', marginTop: '-12px' }}>
                   <p style={{ height: '45px' }}>상품명</p>

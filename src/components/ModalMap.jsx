@@ -145,7 +145,7 @@ class ModalMap extends React.Component {
           <ModalBody style={{ border: "1px solid orange" }}>
             <div
               id="map"
-              style={{ margin: "auto", width: "450px", height: "350px" }}
+              style={{ margin: "auto",width:'95%', height: "350px" }}
             ></div>
           </ModalBody>
           <ModalFooter>
