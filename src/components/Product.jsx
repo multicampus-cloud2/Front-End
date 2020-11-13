@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import 'css/compare.css';
+import 'css/compare.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlus } from "@fortawesome/free-solid-svg-icons";
