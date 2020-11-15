@@ -287,7 +287,9 @@ class Compare extends React.Component {
             prevArrow: <common.PrevArrow />,
         };
 
-        const compareList = this.state.params_compare.map((Product) => (
+        let compareList;
+        if (this.state.params_compare.length > 0) {
+            compareList = this.state.params_compare.map((Product) => (
             <table className="compare_table">
                 <tr>
                     <td rowspan="2" className="compare_table_img">
@@ -317,6 +319,14 @@ class Compare extends React.Component {
                 </tr>
             </table>
         ));
+            }
+            else {
+                compareList = (
+                <div style={{lineHeight: "300px"}}>
+                    <small>비교할 음료가 없습니다.</small>
+                </div>
+                );
+            }
 
         // 브랜드 동그라미메뉴 'ALL'
         let chkAllBrand = (
