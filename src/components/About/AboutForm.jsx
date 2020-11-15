@@ -5,7 +5,7 @@ import 'css/about.scss';
 
 const About = () => {
   return (
-    <div>
+    <div className="container">
         <InformService/>
         <InformDeveloper/>
     </div>
