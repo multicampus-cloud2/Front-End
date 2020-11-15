@@ -35,9 +35,11 @@
   url("fonts/NanumBarunGothicBold.otf") format('truetype')
 }
 
+
 body {
   margin: 0;
   font-family: "Nanum Barun Gothic KR";
+  color: #3a3a3a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

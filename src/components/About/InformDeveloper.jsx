@@ -9,9 +9,9 @@ import { faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 const InformDeveloper = () => {
     return (
         <div>
-            <h2>개발자 소개</h2>
             <section className="team spad">
-                <div className="container">
+            <h3>만든 사람들</h3>
+                <div>
                     <div className="row">
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="team__item set-bg" style={{ backgroundImage: `url(${teamA})` }} data-setbg="img/team/team-1.jpg">
