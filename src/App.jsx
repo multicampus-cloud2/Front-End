@@ -16,7 +16,7 @@ class App extends React.Component {
   render() {
 
     return (
-      <div className="app_body">
+      <div>
         <header className="header">
           <div className="header__menu">
             <styledLogo>

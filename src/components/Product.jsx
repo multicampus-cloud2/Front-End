@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlus } from "@fortawesome/free-solid-svg-icons";
 import * as common from 'components/common.jsx';
+import close from 'img/close.png';
 
 function Product(props) {
 
@@ -43,20 +44,25 @@ function Product(props) {
                     <div className="product__item__price">{common.numberWithCommas(props.coffee['price'])}원</div>
                     <div className="cart_add">
                         <form onSubmit={handleSubmit}>
-                            <button type="submit" style={{ 'backgroundColor': 'white', border: 'none', outline: 'none' }}>
+                            <button type="submit" className="btn_to_compare">
                                 <FontAwesomeIcon icon={faPlus} />비교함에 담기
                             </button>
                         </form>
                     </div>
                 </div>
-                <div onClick={switchStateHandler} className="ingredient_table_box" style={{display: openState === 1 ? 'block' : 'none'}} >
-                    <br />
-                    <p>※1회 제공량 기준: {props.coffee['size']} ml</p>
-                    <ul className="ingredient_table">
-                        <li><div>칼로리 (kcal)</div><div>{props.coffee['kcal']}</div></li>
-                        <li><div>당류 (g)</div><div>{props.coffee['sugar']}</div></li>
-                        <li><div>카페인 (mg)</div><div>{props.coffee['caffeine']}</div></li>
-                    </ul>
+                <div onClick={switchStateHandler} className="ingredient_table_box" style={{ display: openState === 1 ? 'block' : 'none' }}>
+                    <button className="close_button">
+                        <img src={close} alt=""/></button>
+                    <h5>{props.coffee['name']}</h5>
+                    {props.coffee['brand']}
+                    <div className="ingredient_bottom">
+                        <span>※1회 제공량 기준: {props.coffee['size']} ml</span>
+                        <ul className="ingredient_table">
+                            <li><div className="ingredient_table_div_left">칼로리 (kcal)</div><div className="ingredient_table_div_right">{props.coffee['kcal']}</div></li>
+                            <li><div className="ingredient_table_div_left">당류 (g)</div><div className="ingredient_table_div_right">{props.coffee['sugar']}</div></li>
+                            <li><div className="ingredient_table_div_left">카페인 (mg)</div><div className="ingredient_table_div_right">{props.coffee['caffeine']}</div></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

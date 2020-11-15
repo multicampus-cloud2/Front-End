@@ -288,35 +288,34 @@ class Compare extends React.Component {
         };
 
         const compareList = this.state.params_compare.map((Product) => (
-            <tr>
-                <td className="Product__cart__item">
-                    <div className="Product__cart__item__pic">
-                        <img
-                            onClick={() => this.handleCompareDelete(Product)}
-                            src={Product["image"]}
-                            style={{ width: "100px", height: "100px" }}
-                            alt=""
-                        />
-                    </div>
-                </td>
+            <table className="compare_table">
                 <tr>
-                    <td style={{ verticalAlign: "top" }}>
+                    <td rowspan="2" className="compare_table_img">
+                        <div>
+                            <img
+                                onClick={() => this.handleCompareDelete(Product)}
+                                src={Product["image"]}
+                                alt=""
+                            />
+                        </div>
+                    </td>
+                    <td className="compare_table_brand">
                         {Product["brand"]}
+                    </td>
+                    <td rowspan="2">
+                        <FontAwesomeIcon
+                            icon={faTrashAlt}
+                            onClick={() => this.handleCompareDelete(Product)}
+                            style={{ width: "30px" }}
+                        />
                     </td>
                 </tr>
                 <tr>
-                    <td className="cart__price" style={{ verticalAlign: "top" }}>
+                    <td className="compare_table_name">
                         {Product["name"]}
                     </td>
                 </tr>
-                <td className="cart__close">
-                    <FontAwesomeIcon
-                        icon={faTrashAlt}
-                        onClick={() => this.handleCompareDelete(Product)}
-                        style={{ width: "30px" }}
-                    />
-                </td>
-            </tr>
+            </table>
         ));
 
         // 브랜드 동그라미메뉴 'ALL'
@@ -418,17 +417,17 @@ class Compare extends React.Component {
 
                 <section className="Product spad">
                     <div className="container">
-                        <div className="row" style={{marginBottom: "1.5%"}}>
-                          <div style={{width:"80%",float: "left",  display:"table", height:"30px" }}>
-                              <label style={{display:"table-cell", verticalAlign:"middle"}}>※모든 음료는 톨(Tall) 사이즈 기준입니다.</label>
-                          </div>
-                          <div className="shop__option__right">
-                            <Select
+                        <table style={{width: "100%", marginBottom: "2%"}}>
+                            <tr>
+                                <td>※모든 음료는 톨(Tall) 사이즈 기준입니다.</td>
+                                <td>
+                                <Select
                               params={this.state.params}
                               submit={this.handleSort.bind(this)}
                             ></Select>
-                          </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                         <div className="row">{this.productList()}</div>
                         <div className="row">{this.showMoreButton()}</div>
                     </div>
@@ -441,10 +440,8 @@ class Compare extends React.Component {
                             <div className="col-lg-12" style={{ textAlign: "center" }}>
                                 음료 성분 비교하기
                             </div>
-                            <div className="wishlist__cart__table" style={{margin: "5%"}}>
-                                <table>
-                                    <tbody>{compareList}</tbody>
-                                </table>
+                            <div className="wishlist__cart__table" style={{marginTop: "5%"}}>
+                                    {compareList}
                             </div>
                             <div> 
                             <ModalCompare product={this.state.params_compare} />

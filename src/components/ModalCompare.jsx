@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
 import ModalMap from './ModalMap';
+import "css/compare.scss";
 
 function ModalCompare(props) {
 
@@ -24,7 +25,7 @@ function ModalCompare(props) {
         <div className="compareButton">
           <Button style={{ minWidth: '100px', fontSize: '1vw' }}
             onClick={handleToggle}>
-            <FontAwesomeIcon icon={faBalanceScale} />
+            <FontAwesomeIcon icon={faBalanceScale} style={{marginRight: "7px"}}/>
             비교하러 가기
           </Button>
         </div>
@@ -72,7 +73,7 @@ function ModalCompare(props) {
             <div className="row">
               <div className="product__cart__item" style={{ float: 'left', marginRight: '10px', width: '15%' }}>
                 <div className="product__cart__item__pic">
-                  <p style={{ width: '100px', height: '130px', margin: '10px auto' }}><br /><br />상품 이미지</p>
+                  <p style={{ width: '100px', height: '130px', margin: '10px auto' }}></p>
                 </div>
                 <div style={{ textAlign: 'center', marginTop: '-12px' }}>
                   <p style={{ height: '45px' }}>상품명</p>
