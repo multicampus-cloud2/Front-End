@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // Image
 import coffee from "img/coffee.png";
-import all from 'img/all.png'
 const items = common.items;
 const brandItems = common.brandItems;
 let dataAll = [];
@@ -365,7 +364,7 @@ class Compare extends React.Component {
         let chkAllMenu;
         if (this.state.isMenuAllChecked) {
             chkAllMenu = (
-                <input
+                <input style={{marginTop:"10px"}}
                     type="checkbox"
                     onChange={() => this.handleMenuAllCheck()}
                     checked={true}
@@ -373,7 +372,7 @@ class Compare extends React.Component {
             );
         } else {
             chkAllMenu = (
-                <input
+                <input style={{marginTop:"10px"}}
                     type="checkbox"
                     onChange={() => this.handleMenuAllCheck()}
                     checked={false}
@@ -384,14 +383,14 @@ class Compare extends React.Component {
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="filteringCheckbox">
-                <input 
+                <input style={{margin:"10px 4px"}}
                     id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                {element.img}
+                {element.name}
             </div>
         ));
 
@@ -418,7 +417,7 @@ class Compare extends React.Component {
                         className="container filteringBorder">
                         <div className="row">
                             <div className="filteringCheckbox">
-                                {chkAllMenu}<img src={all} width="42px"></img>
+                            {chkAllMenu}전체
                             </div>
                             {checkboxList}
                         </div>

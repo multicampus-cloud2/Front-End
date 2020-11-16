@@ -13,8 +13,6 @@ const InformService = () => {
             <div>
                 <img src={aboutcoffee} alt="" style={{width: "500px", marginLeft: "5%"}} />
             </div>
-            <div>
-            </div>
         </div>
     )
 }
