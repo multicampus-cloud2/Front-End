@@ -8,8 +8,7 @@ import close from 'img/close.png';
 
 function Product(props) {
 
-    const [openState, setOpenState ] = useState(0);
-    
+    const [openState, setOpenState ] = useState(0);    
     const switchStateHandler = () => {
         if(openState === 0) {
             setOpenState(1);
@@ -54,7 +53,7 @@ function Product(props) {
                     <button className="close_button">
                         <img src={close} alt=""/></button>
                     <h5>{props.coffee['name']}</h5>
-                    {props.coffee['brand']}
+                    {common.brand_map.get(props.coffee['brand'])}
                     <div className="ingredient_bottom">
                         <span>※1회 제공량 기준: {props.coffee['size']} ml</span>
                         <ul className="ingredient_table">

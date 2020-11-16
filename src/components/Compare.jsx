@@ -247,8 +247,8 @@ class Compare extends React.Component {
 
     // 더보기 버튼 onClick
     showMore = () => {
-        const { showLimit, showMore } = this.state;
-        if (this.state.params.length == productSlice.length) {
+        const { showLimit } = this.state;
+        if (this.state.params.length === productSlice.length) {
             this.setState({ showMore: false });
         } else {
             this.setState(
@@ -302,7 +302,7 @@ class Compare extends React.Component {
                         </div>
                     </td>
                     <td className="compare_table_brand">
-                        {Product["brand"]}
+                        {common.brand_map.get(Product["brand"])}
                     </td>
                     <td rowspan="2">
                         <FontAwesomeIcon
