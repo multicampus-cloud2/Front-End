@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import aboutcoffee from 'img/getting_coffee.png';
 
 const InformService = () => {
@@ -12,8 +12,6 @@ const InformService = () => {
             </div>
             <div>
                 <img src={aboutcoffee} alt="" style={{width: "500px", marginLeft: "5%"}} />
-            </div>
-            <div>
             </div>
         </div>
     )

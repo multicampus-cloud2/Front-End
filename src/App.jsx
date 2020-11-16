@@ -19,11 +19,9 @@ class App extends React.Component {
       <div>
         <header className="header">
           <div className="header__menu">
-            <styledLogo>
-              <div className="logo">
-                <Link to="/"><img src={logo} alt="logo" /></Link>
-              </div>
-            </styledLogo>
+            <div className="logo">
+              <Link to="/"><img src={logo} alt="logo" /></Link>
+            </div>
             <div className="auth_menu_login">
               <ul className="auth_list">
                 <li className="login"><Login /></li>

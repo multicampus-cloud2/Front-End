@@ -1,18 +1,5 @@
 import RightArrow from 'img/rightarrow.png';
 import LeftArrow from 'img/leftarrow.png';
-import americano from 'img/americano.png';
-import Espresso from 'img/Espresso.png';
-import coldbrew from 'img/coldbrew.png';
-import cafeLatte from 'img/cafeLatte.png';
-import capucino from 'img/capucino.png'
-import moca from 'img/moca.png'
-import macchiato from 'img/Macchiato.png'
-import Latte from 'img/Latte.png'
-import Blended from 'img/Blended.png'
-import Smoothie from 'img/Smoothie.png'
-import Ade from 'img/Ade.png'
-import tea from 'img/tea.png'
-import gita from 'img/gita.png'
 
 
 // 가격 콤마 찍어주는 함수
@@ -43,19 +30,19 @@ export const selectBrandOptions = [
 ];
 
 export const items = [
-    { rowIdx: 0, check: 0, img: <img src={americano} width="80px"/>, name: "아메리카노"},
-    { rowIdx: 1, check: 0, img: <img src={Espresso} width="80px"/>, name: '에스프레소' },
-    { rowIdx: 2, check: 0, img: <img src={coldbrew} width="62px"/>, name: '콜드브루' },
-    { rowIdx: 3, check: 0, img: <img src={cafeLatte} width="64px"/>, name: '카페라떼' },
-    { rowIdx: 4, check: 0, img: <img src={capucino} width="60px"/>, name: '카푸치노' },
-    { rowIdx: 5, check: 0, img: <img src={moca} width="62px"/>, name: '카페모카' },
-    { rowIdx: 6, check: 0, img: <img src={macchiato} width="64px"/>, name: '마끼아또' },
-    { rowIdx: 7, check: 0, img: <img src={Latte} width="36px"/>, name: '라떼' },
-    { rowIdx: 8, check: 0, img: <img src={Blended} width="64px"/>, name: '블렌디드' },
-    { rowIdx: 9, check: 0, img: <img src={Smoothie} width="50px"/>, name: '스무디' },
-    { rowIdx: 10, check: 0, img: <img src={Ade} width="50px"/>, name: '에이드' },
-    { rowIdx: 11, check: 0, img: <img src={tea} width="25px"/>, name: '티' },
-    { rowIdx: 12, check: 0, img: <img src={gita} width="36px"/>, name: '기타' },
+    { rowIdx: 0, check: 0, name: "아메리카노"},
+    { rowIdx: 1, check: 0, name: '에스프레소' },
+    { rowIdx: 2, check: 0, name: '콜드브루' },
+    { rowIdx: 3, check: 0, name: '카페라떼' },
+    { rowIdx: 4, check: 0, name: '카푸치노' },
+    { rowIdx: 5, check: 0, name: '카페모카' },
+    { rowIdx: 6, check: 0, name: '마끼아또' },
+    { rowIdx: 7, check: 0, name: '라떼' },
+    { rowIdx: 8, check: 0, name: '블렌디드' },
+    { rowIdx: 9, check: 0, name: '스무디' },
+    { rowIdx: 10, check: 0, name: '에이드' },
+    { rowIdx: 11, check: 0, name: '티' },
+    { rowIdx: 12, check: 0,  name: '기타' },
 ];
 
 export const brandItems = [

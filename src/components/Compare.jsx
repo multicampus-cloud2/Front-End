@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // Image
 import coffee from "img/coffee.png";
-import all from 'img/all.png'
 const items = common.items;
 const brandItems = common.brandItems;
 let dataAll = [];
@@ -85,15 +84,14 @@ class Compare extends React.Component {
             checkedItems.forEach((element) => {
                 selectedMenu.push(element.name);
             });
-            console.log("선택브랜드" + selectedBrand);
-            console.log("선택메뉴" + selectedMenu);
-
+            
             let params = [];
             if (isBrandAllChecked) {
                 if (isMenuAllChecked) {
                     params = dataAll;
                 } else {
                     for (let i = 0; i < selectedMenu.length; i++) {
+                        // eslint-disable-next-line no-loop-func
                         let filteringData = dataAll.filter(function (element) {
                             return element.category === selectedMenu[i];
                         });
@@ -103,6 +101,7 @@ class Compare extends React.Component {
             } else {
                 if (isMenuAllChecked) {
                     for (let i = 0; i < selectedBrand.length; i++) {
+                        // eslint-disable-next-line no-loop-func
                         let filteringData = dataAll.filter(function (element) {
                             return element.brand === selectedBrand[i];
                         });
@@ -111,6 +110,7 @@ class Compare extends React.Component {
                 } else {
                     for (let i = 0; i < selectedBrand.length; i++) {
                         for (let j = 0; j < selectedMenu.length; j++) {
+                            // eslint-disable-next-line no-loop-func
                             let filteringData = dataAll.filter(function (element) {
                                 return (
                                     element.brand === selectedBrand[i] &&
@@ -272,8 +272,10 @@ class Compare extends React.Component {
 
     render() {
         if (this.state.onChange === false) {
+            // eslint-disable-next-line react/no-direct-mutation-state
             this.state.onChange = true;
         } else if (this.state.onChange === true) {
+            // eslint-disable-next-line react/no-direct-mutation-state
             this.state.onChange = false;
         }
 
@@ -291,32 +293,34 @@ class Compare extends React.Component {
         if (this.state.params_compare.length > 0) {
             compareList = this.state.params_compare.map((Product) => (
             <table className="compare_table">
-                <tr>
-                    <td rowspan="2" className="compare_table_img">
-                        <div>
-                            <img
+                <tbody>
+                    <tr>
+                        <td rowSpan="2" className="compare_table_img">
+                            <div>
+                                <img
+                                    onClick={() => this.handleCompareDelete(Product)}
+                                    src={Product["image"]}
+                                    alt=""
+                                />
+                            </div>
+                        </td>
+                        <td className="compare_table_brand">
+                            {common.brand_map.get(Product["brand"])}
+                        </td>
+                        <td rowSpan="2">
+                            <FontAwesomeIcon
+                                icon={faTrashAlt}
                                 onClick={() => this.handleCompareDelete(Product)}
-                                src={Product["image"]}
-                                alt=""
+                                style={{ width: "30px" }}
                             />
-                        </div>
-                    </td>
-                    <td className="compare_table_brand">
-                        {common.brand_map.get(Product["brand"])}
-                    </td>
-                    <td rowspan="2">
-                        <FontAwesomeIcon
-                            icon={faTrashAlt}
-                            onClick={() => this.handleCompareDelete(Product)}
-                            style={{ width: "30px" }}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td className="compare_table_name">
-                        {Product["name"]}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="compare_table_name">
+                            {Product["name"]}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         ));
             }
@@ -365,7 +369,7 @@ class Compare extends React.Component {
         let chkAllMenu;
         if (this.state.isMenuAllChecked) {
             chkAllMenu = (
-                <input
+                <input style={{marginTop:"10px"}}
                     type="checkbox"
                     onChange={() => this.handleMenuAllCheck()}
                     checked={true}
@@ -373,7 +377,7 @@ class Compare extends React.Component {
             );
         } else {
             chkAllMenu = (
-                <input
+                <input style={{marginTop:"10px"}}
                     type="checkbox"
                     onChange={() => this.handleMenuAllCheck()}
                     checked={false}
@@ -384,14 +388,14 @@ class Compare extends React.Component {
         // 나머지 카테고리 체크박스
         const checkboxList = items.map((element) => (
             <div className="filteringCheckbox">
-                <input 
+                <input style={{margin:"10px 4px"}}
                     id="filteringCheckbox"
                     type="checkbox"
                     name={element.rowIdx}
                     checked={element.check === 1}
                     onChange={() => this.handleMenuCheck(element.rowIdx)}
                 />
-                {element.img}
+                {element.name}
             </div>
         ));
 
@@ -418,7 +422,7 @@ class Compare extends React.Component {
                         className="container filteringBorder">
                         <div className="row">
                             <div className="filteringCheckbox">
-                                {chkAllMenu}<img src={all} width="42px"></img>
+                            {chkAllMenu}전체
                             </div>
                             {checkboxList}
                         </div>
@@ -428,6 +432,7 @@ class Compare extends React.Component {
                 <section className="Product spad">
                     <div className="container">
                         <table style={{width: "100%", marginBottom: "2%"}}>
+                            <tbody>
                             <tr>
                                 <td>※모든 음료는 톨(Tall) 사이즈 기준입니다.</td>
                                 <td>
@@ -437,6 +442,7 @@ class Compare extends React.Component {
                             ></Select>
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                         <div className="row">{this.productList()}</div>
                         <div className="row">{this.showMoreButton()}</div>

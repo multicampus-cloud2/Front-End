@@ -39,7 +39,7 @@ function ModalCompare(props) {
     if (props.product.length > 1) {
       setCompareProduct(props.product);
     }
-  })
+  }, [props.product])
 
   const compareList = () => {
     return (
