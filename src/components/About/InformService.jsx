@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import aboutcoffee from 'img/getting_coffee.png';
 
 const InformService = () => {
