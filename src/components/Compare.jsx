@@ -135,6 +135,7 @@ class Compare extends React.Component {
     createBrandMenus = () =>
         brandItems.map((element, index) => (
             <Brand
+                key={element}
                 name_eng={element.name_eng}
                 name_kor={element.name_kor}
                 image={element.image}
