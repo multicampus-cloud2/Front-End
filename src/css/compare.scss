@@ -347,7 +347,9 @@ Product
 .compareButton {
   position: fixed;
   bottom: 0;
-  margin-left: 4%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 0.6%;
 }
 

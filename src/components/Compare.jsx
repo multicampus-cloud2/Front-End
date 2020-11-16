@@ -453,7 +453,7 @@ class Compare extends React.Component {
                             <div className="wishlist__cart__table" style={{marginTop: "5%"}}>
                                     {compareList}
                             </div>
-                            <div> 
+                            <div style={{textAlign: "center"}}> 
                             <ModalCompare product={this.state.params_compare} />
                             </div>
                         </div>
