@@ -79,7 +79,6 @@
 .categories__item__whole {
   padding: 15px;
   margin-top: 20px;
-  margin-bottom: -20px;
 }
 div.filteringCheckbox{
   float: left;
@@ -347,7 +346,9 @@ Product
 .compareButton {
   position: fixed;
   bottom: 0;
-  margin-left: 4%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 0.6%;
 }
 

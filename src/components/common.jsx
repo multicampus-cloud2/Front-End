@@ -7,6 +7,17 @@ export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+export const brand_map = new Map();
+
+brand_map.set('starbucks','스타벅스');
+brand_map.set("hollys",'할리스');
+brand_map.set("tomntoms",'탐앤탐스');
+brand_map.set("ediya",'이디야');
+brand_map.set("coffeebean",'커피빈');
+brand_map.set("twosome",'투썸플레이스');
+brand_map.set("angelinus",'엔젤리너스');
+brand_map.set("paikdabang",'빽다방');
+
 export const selectBrandOptions = [
     { value: 'starbucks', label: '스타벅스' },
     { value: 'hollys', label: '할리스 커피' },
