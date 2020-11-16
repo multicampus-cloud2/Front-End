@@ -39,9 +39,9 @@ const Home = () => {
         <div className="banner">
           <img src='https://cacao-newproductbucket.s3.amazonaws.com/coffeebean_new.png' alt="coffeebeannew"/>
         </div>
-        <div className="banner">
+        {/* <div className="banner">
           <img src='https://cacao-newproductbucket.s3.amazonaws.com/twosome_new.png' alt="twosomenew"/>
-        </div>
+        </div> */}
         <div className="banner">
           <img src='https://cacao-newproductbucket.s3.amazonaws.com/angelinus_new.png' alt="angelinusnew"/>
         </div>
