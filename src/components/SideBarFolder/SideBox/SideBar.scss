@@ -18,7 +18,7 @@
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 658px) {
     .sidebar {
       top:50%;
     }
@@ -51,7 +51,7 @@
     transition: all .35s;
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 658px) {
     .menuicon + label {
       margin: -20px;
     }
