@@ -15,6 +15,12 @@
   text-align: center;
 }
 
+@media screen and (max-width: 400px) {
+  .menu_nav {
+    padding: 30px;
+  }
+}
+
 .menu_nav a {
   font-size: 16px;
   color: #ffffff;
