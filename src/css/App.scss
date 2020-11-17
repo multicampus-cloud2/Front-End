@@ -16,8 +16,21 @@
 }
 
 @media screen and (max-width: 400px) {
-  .menu_nav {
-    padding: 30px;
+  .menu_list {
+    padding-top: 100px;
+  }
+
+  .menu_list li a{
+    padding: 0 20px 0 0;
+  }
+
+  .auth_menu_login {
+    position: absolute;
+    margin-left: 70%;
+  }
+
+  .auth_menu_profile {
+    position: relative;
   }
 }
 

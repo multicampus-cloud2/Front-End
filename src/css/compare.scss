@@ -214,6 +214,13 @@ Product
   color: #3a3a3a;
 }
 
+@media screen and (max-width: 400px) {
+  .ingredient_table_box {
+    left: 43px;
+    width: 260px;
+  }
+}
+
 .close_button {
   position: absolute;
   right: 0;
