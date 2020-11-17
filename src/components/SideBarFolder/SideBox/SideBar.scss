@@ -18,6 +18,12 @@
     }
   }
 
+  @media screen and (max-width: 400px) {
+    .sidebar {
+      top:50%;
+    }
+  }
+
   .menuicon:checked + label + div {
     right: 0;
   }
@@ -43,6 +49,18 @@
     border-radius: 30px;
     background: #b3b1b1;
     transition: all .35s;
+  }
+
+  @media screen and (max-width: 400px) {
+    .menuicon + label {
+      margin: -20px;
+    }
+
+    .menuicon + label span {
+      width: 30%;
+      height: 5px;
+      top: 20%;
+    }
   }
   
   .menuicon + label span:nth-child(1) { top: 0; }

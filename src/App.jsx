@@ -36,9 +36,9 @@ class App extends React.Component {
             </div>
             <div className="menu_nav">
               <ul className="menu_list">
-                <li> <Link to="/">홈</Link> </li>
-                <li> <Link to="/compare">카카비교</Link> </li>
-                <li> <Link to="/about">카카오바웃</Link> </li>
+                <li><Link to="/">홈</Link></li>
+                <li><Link to="/compare">카카비교</Link></li>
+                <li><Link to="/about">카카오바웃</Link></li>
               </ul>
             </div>
           </div>
