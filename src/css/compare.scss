@@ -352,6 +352,18 @@ Product
   margin-bottom: 0.6%;
 }
 
+@media screen and (max-width: 1550px) {
+  .compareButton {
+    margin-left: 65px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .compareButton {
+    margin-left: 85px;
+  }
+}
+
 .sidebar {
   color: #3a3a3a;
 }
